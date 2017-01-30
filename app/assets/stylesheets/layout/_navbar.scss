@@ -1,0 +1,50 @@
+.navbar {
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #bbb;
+}
+
+.logo-group {
+  float: left;
+  margin-left: 30px;
+  height: 100%;
+  width: 200px;
+  overflow: hidden;
+  .navbar_logo {
+    height: 100%;
+    width: auto;
+    vertical-align: middle;
+  }
+}
+
+.avatar-group {
+  float: right;
+  height: 60px;
+  width: 160px;
+  overflow: hidden;
+  .avatar-round {
+    display: inline-block;
+    padding: 5px;
+    width: auto;
+    height: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    margin-right: 10px;
+    img {
+      border-radius: 100%;
+      height: 100%;
+      width: auto;
+    }
+  }
+  .avatar-name {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .avatar-dropdown {
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: 1.2em;
+  }
+}
+
+

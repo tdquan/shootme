@@ -10,7 +10,10 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
-    <%= yield %>
+    <%= render 'layouts/navbar' %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
     <%= javascript_include_tag 'application' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
