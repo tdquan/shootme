@@ -9,17 +9,14 @@
             <%= f.input :start_time, wrapper_html: { class: 'col-sm-4' }, as: :select, label: 'Profession' %>
           </div>
           <div class="row">
-            <%= f.input :end_date, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0' }, label: 'Range (km)' %>
+            <%= f.input :end_date, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0', max: '20', min: '0', id: 'range-slider' }, label: 'Range (km)' %>
+            <span id="range-value"></span>
           </div>
           <hr>
-          <%= link_to '#', class: 'search-bar-link' do %>
+          <%= link_to '#', class: 'search-bar-link reset' do %>
             <i class="fa fa-close"></i>Reset Filter
           <% end %>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <%= link_to '#', class: 'search-bar-link' do %>
-            <i class="fa fa-save"></i>Save search
-          <% end %>
-          <%= f.button :submit, 'Search!', class: 'btn btn-primary float-right' %>
+          <%= f.button :submit, 'Search', class: 'btn btn-primary float-right' %>
         <% end %>
       </div>
     </div>
@@ -32,6 +29,7 @@
 
 <% content_for(:after_js) do %>
   <script>
+    // Google map
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
@@ -44,6 +42,21 @@
           handler.getMap().setZoom(14);
         }
       });
+    });
+
+    // Slider
+    $('#range-value').html($('#range-slider').val());
+    $('input#range-slider').on('mousemove', function(){
+      $('#range-value').html($('#range-slider').val());
+    });
+    $('input#range-slider').on('change', function(){
+      $('#range-value').html($('#range-slider').val());
+    });
+
+    // Reset input fields
+    $(".reset").click(function() {
+      $(this).closest('form').find("input[type=text], input[type=number], select, textarea").val("");
+      $(this).closest('form').find("input[type=range]").val("0");
     });
   </script>
 <% end %>
