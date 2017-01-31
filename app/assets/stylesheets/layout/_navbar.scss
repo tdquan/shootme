@@ -2,6 +2,7 @@
   height: 60px;
   background-color: #fff;
   box-shadow: 1px 1px 1px #bbb;
+  margin-bottom: 0;
 }
 
 .logo-group {
@@ -21,7 +22,6 @@
   float: right;
   height: 60px;
   width: 160px;
-  overflow: hidden;
   .avatar-round {
     display: inline-block;
     padding: 5px;
@@ -44,6 +44,21 @@
     display: inline-block;
     vertical-align: text-bottom;
     font-size: 1.2em;
+  }
+}
+
+.dropdown {
+  margin-right: 15px;
+}
+
+.dropdown-menu {
+  margin-top: 25px;
+  text-align: center;
+  a.dropdown-item {
+    display: block;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 

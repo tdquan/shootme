@@ -4,10 +4,25 @@
   </div>
 
   <div class="avatar-group">
-    <div class="avatar-round">
-      <%= image_tag "quan_avatar.jpg" %>
+    <% if user_signed_in? %>
+      <div class="avatar-round">
+        <%= image_tag "quan_avatar.jpg" %>
+      </div>
+      <p class="avatar-name">Quan</p>
+    <% end %>
+    <div class="dropdown inline-block float-right">
+      <a class="avatar-dropdown dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-sort-down"></i>
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuLink">
+        <% if user_signed_in? %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "dropdown-item") %>
+        <% else %>
+          <%= link_to('Login', new_user_session_path, :class => "dropdown-item")  %>
+          <%= link_to("Sign up", new_user_registration_path, :class => "dropdown-item") %>
+        <% end %>
+      </div>
     </div>
-    <p class="avatar-name">Quan</p>
-    <a href="" class="avatar-dropdown"><i class="fa fa-sort-down"></i></a>
   </div>
 </nav>

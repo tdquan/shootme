@@ -2,3 +2,33 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+.home-page-wrapper {
+  margin: 0 -15px;
+  width: 100%;
+  height: calc(100vh - 60px);
+  position: fixed;
+}
+
+.fullscreen-wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+  .fullscreen-scroll {
+    display: table-cell;
+    width: 60%;
+  }
+
+  .fullscreen-map {
+    display: table-cell;
+    width: 40%;
+    height: calc(100vh - 60px);
+    position: relative;
+    overflow: hidden;
+    .map {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
