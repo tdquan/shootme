@@ -4,9 +4,12 @@
       <div class="card clearfix">
         <%= simple_form_for @booking do |f| %>
           <div class="row">
-            <%= f.input :user_id, wrapper_html: { class: 'col-sm-4' }, label: false %>
-            <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, label: false %>
-            <%= f.input :start_time, wrapper_html: { class: 'col-sm-4' }, as: :select, label: false %>
+            <%= f.input :user_id, wrapper_html: { class: 'col-sm-4' }, label: 'Search term' %>
+            <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, label: 'Location' %>
+            <%= f.input :start_time, wrapper_html: { class: 'col-sm-4' }, as: :select, label: 'Profession' %>
+          </div>
+          <div class="row">
+            <%= f.input :end_date, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0' }, label: 'Range (km)' %>
           </div>
           <hr>
           <%= link_to '#', class: 'search-bar-link' do %>
