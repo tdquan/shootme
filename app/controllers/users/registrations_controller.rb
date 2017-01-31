@@ -1,9 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
-protected
-
-  def update_resource(resource,params)
-    resource.update_without_password(params)
+  def show
+    super
+    @user = User.find(params[user_id: current_user.id])
+    @booking = Booking.new
   end
-
 end
