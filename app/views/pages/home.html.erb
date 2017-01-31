@@ -1,7 +1,10 @@
 <main class="home-page-wrapper">
   <div class="fullscreen-wrapper">
     <div class="fullscreen-scroll">
-
+      <%= simple_form_for @booking do |f| %>
+        <%= f.input :location, label: false %>
+        <%= f.button :submit, 'Search!' %>
+      <% end %>
     </div>
 
     <div class="fullscreen-map">
@@ -9,7 +12,6 @@
     </div>
   </div>
 </main>
-
 
 <% content_for(:after_js) do %>
   <script>
