@@ -3,10 +3,6 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 .home-page-wrapper {
-  margin: 0 -15px;
-  width: 100%;
-  height: calc(100vh - 60px);
-  position: fixed;
 }
 
 .fullscreen-wrapper {
@@ -21,14 +17,21 @@
   .fullscreen-map {
     display: table-cell;
     width: 40%;
-    height: calc(100vh - 60px);
     position: relative;
     overflow: hidden;
+    height: 100%;
     .map {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
     }
+  }
+}
+
+.search-bar-link {
+  color: $gray;
+  &:hover, &:focus {
+    color: #666;
   }
 }

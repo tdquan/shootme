@@ -1,10 +1,24 @@
 <main class="home-page-wrapper">
   <div class="fullscreen-wrapper">
-    <div class="fullscreen-scroll">
-      <%= simple_form_for @booking do |f| %>
-        <%= f.input :location, label: false %>
-        <%= f.button :submit, 'Search!' %>
-      <% end %>
+    <div class="fullscreen-scroll container-fluid">
+      <div class="card clearfix">
+        <%= simple_form_for @booking do |f| %>
+          <div class="row">
+            <%= f.input :user_id, wrapper_html: { class: 'col-sm-4' }, label: false %>
+            <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, label: false %>
+            <%= f.input :start_time, wrapper_html: { class: 'col-sm-4' }, as: :select, label: false %>
+          </div>
+          <hr>
+          <%= link_to '#', class: 'search-bar-link' do %>
+            <i class="fa fa-close"></i>Reset Filter
+          <% end %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to '#', class: 'search-bar-link' do %>
+            <i class="fa fa-save"></i>Save search
+          <% end %>
+          <%= f.button :submit, 'Search!', class: 'btn btn-primary float-right' %>
+        <% end %>
+      </div>
     </div>
 
     <div class="fullscreen-map">
