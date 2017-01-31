@@ -42,17 +42,20 @@
   }
   .avatar-dropdown {
     display: inline-block;
-    vertical-align: text-bottom;
+    line-height: 60px;
     font-size: 1.2em;
+    i {
+      vertical-align: super;
+    }
   }
 }
 
 .dropdown {
   margin-right: 15px;
+  height: 100%;
 }
 
 .dropdown-menu {
-  margin-top: 25px;
   text-align: center;
   a.dropdown-item {
     display: block;
