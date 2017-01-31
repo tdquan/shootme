@@ -43,6 +43,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 #maps
 gem 'geocoder'
 gem 'gmaps4rails'
+gem "coffee-rails"
 
 # authorizations:
 gem 'pundit'
