@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     get '/users/:id/show', to: "devise/registrations#show"
   end
 
-  root to: 'pages#home'
+  root to: 'pages#landing_page'
+  get '/home', to: "pages#home"
 end
-
