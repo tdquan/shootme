@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   root to: 'pages#landing_page'
   get '/home', to: "pages#home"
+
+  resources :bookings
 end

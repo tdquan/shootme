@@ -1,3 +1,134 @@
-<p>landing page</p>
-
 <%= link_to('home', home_path) %>
+
+<div class="landing-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" id="account">
+        <div class="jumbotron">
+          <h1>Shoot-me</h1>
+          <p>Create your free account</p>
+          <p>today on Shoot-me.</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="email" placeholder="Email">
+            </div>
+          </div>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button" id="create-account">Create account</a></p>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="search-box">
+        <div class="search-wrapper">
+          <div class="card">
+            <ul class="list-inline">
+              <li><i class="fa fa-map fa-2x" aria-hidden="true"></i></li>
+              <li><h3>Show locations</h3></li>
+            </ul>
+            <div class="form-group">
+              <select class="form-control" id="cities">
+                <option>Paris</option>
+                <option>Marseille</option>
+                <option>Lyon</option>
+                <option>Lille</option>
+                <option>Toulouse</option>
+                <option>Strasbourg</option>
+                <option>Montpellier</option>
+                <option>Bordeaux</option>
+                <option>Autre...</option>
+              </select>
+            </div>
+            <p><a class="btn btn-primary" href="#" role="button">SEARCH</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="description-wrapper">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="lens-wrapper">
+            <%= image_tag "lens.png", class: "lens" %>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <h4>Shoot-Me is the confluence of photography and video production enthusiasts! This platform puts you in direct contact with gifted people in the filed of image and visual production to help you immortalize your precious moments at the lowest price and without going through very expensive agencies ...</h4>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+  </div>
+</div>
+
+<div class="packages-wrapper">
+  <div class="container text-center">
+  <h3 class="packages-title">Clear packages that suit your needs</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="dark-red">
+          <%= image_tag "account1.png", class: "image-account"%>
+          <i class="fa fa-camera-retro fa-4x" aria-hidden="true"></i>
+          <h3 class="account-title">Standard Account - Artist </h3>
+          <p class="account-text">You are passionate about photography and you want to make a source of income out of it? Find your future customers for free on Shoot-Me and exchange with them directly on our plateform.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="red">
+          <%= image_tag "account2.png", class: "image-account"%>
+          <i class="fa fa-camera fa-4x" aria-hidden="true"></i>
+          <h3 class="account-title">Premium Account - Artist </h3>
+          <p class="account-text">Benefit from all the advantages of a standard account and contact your future customers directly by email or phone. You can also upload your most beautiful photos and build your portfolio directly on your private space to give your future customers a taste of your creativity!</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="light-red">
+          <%= image_tag "account3.png", class: "image-account"%>
+          <i class="fa fa-video-camera fa-4x" aria-hidden="true"></i>
+          <h3 class="account-title">Standard Account Free - Service Search </h3>
+          <p class="account-text">Take advantage of maximum possibilities and find talented people in the field of photography and video production, able to help you capture your best moments in photo and / or video all at the lowest prices and without going through corporations!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hr-landing-page">
+
+<div class="wrapper-join-us">
+  <h3 class="join-us-title text-center">Why join Shoot-Me?</h3>
+  <h4>Broadcast your works / portfolio:</h4>
+  <p>Upload the best samples of your work so that the new customers can quickly recognize the quality of your presentation and find your contact information in one place.</p>
+  <h4>Build your reputation / brand:</h4>
+  <p>Gather all your customers' positive opinions in one place and reinforce your credibility in the eyes of future clients. Thanks to Shoot-Me and your satisfied customers, you will build a strong presence on the web and optimize your brand name.</p>
+  <h4>Very attractive pricing:</h4>
+  <p>At only one euro, you can access all the services of Shoot-Me thus gaining in exposure and building awareness.</p>
+</div>
+
+<hr class="hr-landing-page">
+
+<div class="wrapper-contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "contact_us.png", class: "image-contact-us"%>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group text-center">
+          <input type="text" class="form-control" id="name" placeholder="Name">
+          <input type="text" class="form-control" id="email" placeholder="Email">
+          <textarea class="form-control" rows="5" id="message" placeholder="Message"></textarea>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button" id="submit">Submit</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
