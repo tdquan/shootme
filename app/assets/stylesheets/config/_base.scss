@@ -55,6 +55,10 @@ body > .container-fluid > * {
 .card {
   background-color: #fff;
   padding: 20px;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .form-control {

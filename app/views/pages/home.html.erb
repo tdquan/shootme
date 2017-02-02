@@ -2,16 +2,16 @@
   <div class="fullscreen-wrapper">
     <div class="fullscreen-scroll container-fluid">
       <div class="card clearfix">
-        <%= simple_form_for @booking do |f| %>
+        <%= simple_form_for :user, url: search_path, method: :get, remote: true do |f| %>
           <div class="row">
-            <%= f.input :user_id, wrapper_html: { class: 'col-sm-4' }, label: 'Search term' %>
-            <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, label: 'Location' %>
-            <%= f.input :start_time, wrapper_html: { class: 'col-sm-4' }, as: :select, label: 'Profession' %>
+            <%= f.input :email, wrapper_html: { class: 'col-sm-4' }, label: 'Email' %>
+            <%#= f.input :address, wrapper_html: { class: 'col-sm-4' }, as: :select, collection: @cities, selected: "Paris", label: 'Location' %>
+            <%#= f.input :photographer, wrapper_html: { class: 'col-sm-4' }, as: :check_boxes, collection: ["Photographer"], label: 'Profession' %>
           </div>
-          <div class="row">
-            <%= f.input :end_date, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0', max: '20', min: '0', id: 'range-slider' }, label: 'Range (km)' %>
+          <!-- <div class="row">
+            <%#= f.input :end_date, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0', max: '20', min: '0', id: 'range-slider' }, label: 'Range (km)' %>
             <span id="range-value"></span>
-          </div>
+          </div> -->
           <hr>
           <%= link_to '#', class: 'search-bar-link reset' do %>
             <i class="fa fa-close"></i>Reset Filter
@@ -19,6 +19,16 @@
           <%= f.button :submit, 'Search', class: 'btn btn-primary float-right' %>
         <% end %>
       </div>
+
+      <br>
+      <br>
+
+      <!-- Search results -->
+
+      <div>
+        <div id="search-result-wrapper"></div>
+      </div>
+
     </div>
 
     <div class="fullscreen-map">
@@ -55,7 +65,7 @@
 
     // Reset input fields
     $(".reset").click(function() {
-      $(this).closest('form').find("input[type=text], input[type=number], select, textarea").val("");
+      $(this).closest('form').find("input[type=text], input[type=number],input[type=email], select, textarea").val("");
       $(this).closest('form').find("input[type=range]").val("0");
     });
   </script>
