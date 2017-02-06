@@ -1,6 +1,6 @@
 <% if @users.empty? == false %>
   <% @users.each do |user| %>
-    <div class="card">
+    <%= link_to "#", class: "card block" do %>
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
           <div class="avatar-round">
@@ -21,12 +21,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </span>
-          <span class="block"><a href="#">262 reviews</a></span>
+          <span class="block"><i href="#">262 reviews</i></span>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% else %>
-  <%= @users.empty? %>
   <%= params.inspect %>
 <% end %>

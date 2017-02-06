@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get '/users/:id/show', to: "devise/registrations#show"
+    get '/users/:id/show', to: "devise/registrations#show", as: :user
   end
 
   resources :users, only: :index do
@@ -13,8 +13,5 @@ Rails.application.routes.draw do
 
   get 'home', to: "pages#home"
   get 'search', to: "search#search"
-<<<<<<< HEAD
 
-=======
->>>>>>> 112e18c5752c7b89e145ad7cbe7b9dea15188e3c
 end
