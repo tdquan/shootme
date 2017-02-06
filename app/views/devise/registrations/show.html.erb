@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-1">
       <%= image_tag "quan_avatar.jpg", class: "user_picture" %>
       <div class="h4"><%= current_user.first_name %> <%= current_user.last_name%></div>
       <ul class="list-inline">
@@ -11,11 +11,53 @@
     <div class="col-md-6">
       <h3>Select the date</h3>
       <hr>
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
+      <div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker2'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button" id="Book-now">Book now!</a></p>
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker1').datetimepicker(
+                    {
+                      format: 'DD/MM/YYYY LT',
+                      stepping: 15
+                  });
+              });
+              $(function () {
+                  $('#datetimepicker2').datetimepicker(
+                    {
+                      format: 'DD/MM/YYYY LT',
+                      stepping: 15
+                  });
+              });
+          </script>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
 
