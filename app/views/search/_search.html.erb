@@ -1,0 +1,29 @@
+<% if @users.empty? == false %>
+  <% @users.each do |user| %>
+    <div class="card">
+      <div class="row list-row">
+        <div class="col-md-3 list-profile-container">
+          <div class="avatar-round">
+            <img src="/assets/quan_avatar-d292a60832ea464f736694efe4c00902a3ee42c40ca90b566b3a7a71632f6e14.jpg" alt="Quan avatar">
+          </div>
+        </div>
+        <div class="col-md-6 list-info">
+          <h4 class="list-name h4lock"><%= user.first_name %> <%= user.last_name %></h4>
+          <span class="block">Photographer</span>
+          <br>
+          <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
+        </div>
+        <div class="col-md-3 list-ratings text-center">
+          <span class="ratings block">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </span>
+          <span class="block"><a href="#">262 reviews</a></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

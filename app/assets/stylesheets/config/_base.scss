@@ -35,6 +35,15 @@ select {
   -webkit-border-radius: 0px;
 }
 
+input[type="range"] {
+  padding: 0;
+  border: none;
+  &:focus {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 body > .container-fluid > * {
   margin-top: 40px;
 }
@@ -46,6 +55,10 @@ body > .container-fluid > * {
 .card {
   background-color: #fff;
   padding: 20px;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .form-control {

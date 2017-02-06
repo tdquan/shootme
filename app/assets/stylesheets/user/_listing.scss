@@ -1,0 +1,30 @@
+.list-row {
+  height: 150px;
+  overflow: hidden;
+  .list-profile-container {
+    height: 100%;
+    text-align: center;
+    .avatar-round {
+      margin-right: 0;
+      height: 100%;
+    }
+  }
+  .list-info {
+    span, p {
+      font-size: 12px;
+    }
+    .list-name {
+      color: $gray;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+  }
+  .list-ratings {
+    height: 100%;
+    margin-top: 50px;
+  }
+}
+
+.ratings {
+  color: $yellow;
+}

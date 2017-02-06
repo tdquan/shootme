@@ -1,20 +1,20 @@
 class PagesController < ApplicationController
   def home
-    @booking = Booking.new
     @user = User.new
+    @users = User.all
+    @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
   end
 
   def search
-    @users = User.near(params["user"]["address"], 20)
-    set_hash(@users)
-    render :index
-  end
+    if params["/search"]["email"].nil?
+      @users = []
+    else
+      @users = User.search params["/search"]["email"]
+    end
 
-  def set_hash(users)
-    @hash = Gmaps4rails.build_markers(@users) do |user, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
-      # marker.infowindow render_to_string(partial: "/users/map_box", locals: { user: user })
+    respond_to do |f|
+      f.html
+      f.js
     end
   end
 end

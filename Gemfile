@@ -61,4 +61,9 @@ gem 'sidekiq'
 #mails
 gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 
-#testing
+#search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+#responder
+gem 'responders'
