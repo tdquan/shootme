@@ -1,6 +1,6 @@
 <% if @users.empty? == false %>
   <% @users.each do |user| %>
-    <%= link_to "#", class: "card block" do %>
+    <%= link_to user_path(user.id), class: "card card-popup block" do %>
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
           <div class="avatar-round">

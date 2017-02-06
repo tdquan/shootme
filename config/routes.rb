@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get '/users/:id/show', to: "devise/registrations#show", as: :user
+    get '/users/:user_id', to: "devise/registrations#show", as: :user
   end
 
   resources :users, only: :index do
