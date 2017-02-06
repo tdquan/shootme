@@ -4,8 +4,5 @@
 //= require underscore
 //= require gmaps/google
 //= require moment
-//= require jquery.ui.datepicker
-//= require jquery.ui.datepicker-en
-//= require jquery.ui.datepicker-es
-//= require jquery.ui.datepicker-fr
+//= require bootstrap-datetimepicker
 //= require_tree .

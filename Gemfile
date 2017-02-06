@@ -37,7 +37,7 @@ source 'https://rails-assets.org' do
 end
 
 #calendar
-gem 'simple-form-datepicker'
+# gem 'simple-form-datepicker'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
