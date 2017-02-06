@@ -1,0 +1,201 @@
+.general-landing-page{
+  background-color: white !important;
+}
+
+.landing-banner{
+  background-image: url(photograph-landing.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+}
+
+.jumbotron {
+  margin-top: 14px;
+  background-color: transparent;
+  color: white;
+}
+
+.search-wrapper{
+  .card{
+    color: white;
+    background-color: $red-primary;
+  }
+  #search{
+    background-color: $red-light;
+    border: none;
+    width: 100%;
+    #search:hover{
+      background-color: $red-dark;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .landing-banner {
+    width: 100%;
+    height: 456px;
+  }
+  .search-wrapper{
+    position: relative;
+    .card {
+      position: absolute;
+      top: 240px;
+      right: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-banner {
+    width: 100%;
+    height: 100%;
+  }
+  .search-wrapper{
+  position: relative;
+    .card {
+      margin: 30px 0;
+    }
+  }
+}
+
+#create-account{
+  margin-top: 20px;
+}
+
+.description-wrapper {
+  .lens{
+    margin-top: 70px;
+    margin-bottom: 25px;
+    height: 56px;
+    width: 48px;
+  }
+  color: black;
+  h4 {
+    line-height: 190%;
+    font-weight: bold;
+    margin-bottom: 70px;
+  }
+}
+
+.packages-wrapper{
+  color: white;
+  .packages-title{
+    font-weight: bold;
+    color: $red-primary;
+    margin-bottom: 50px;
+  }
+  .dark-red{
+    background-color: $red-dark;
+    height: 720px;
+  }
+  .red {
+    background-color: $red-primary;
+    height: 720px;
+  }
+  .light-red{
+    background-color: $red-light;
+    height: 720px;
+  }
+  .image-account{
+    height: 290px;
+    max-width: 100%;
+    top: 0px;
+    left: 0px;
+  }
+  .account-title{
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .account-text{
+    line-height: 1.5em;
+    padding: 0 2em;
+    font-size: 18px;
+    text-align: left
+  }
+  .fa{
+    margin-top: 20px;
+  }
+  .card-account {
+    transition: 0.5s;
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+  }
+}
+
+.hr-landing-page{
+  border-top: 2px solid $light-gray;
+}
+
+.wrapper-join-us{
+  padding: 0 40px;
+  .join-us-title{
+    color: $red-primary;
+    margin-bottom: 50px;
+    font-weight: bold;
+  }
+  h4{
+    color: $red-primary;
+    font-weight: bold;
+  }
+  p{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.wrapper-contact-us{
+  .image-contact-us{
+    width: 75%;
+  }
+  #email{
+    margin: 10px 0;
+  }
+  #name{
+    margin-top: 80px;
+  }
+  #message{
+    margin-bottom:40px;
+  }
+  #submit{
+    width: 200px;
+  }
+}
+
+.wrapper-permission{
+  h3{
+    color: $red-primary;
+    font-weight: bold;
+    font-size: 35px;
+  }
+  #press{
+    width: 200px;
+  }
+  .row{
+    padding: 25px 0;
+  }
+}
+
+.wrapper-stay-connected{
+  background-color: $dark-gray;
+  color: $dark-gray-2x;
+  p{
+  font-size: 25px;
+  }
+  .row-stay-connected{
+    padding: 25px 0;
+  }
+}
+
+.wrapper-copyright{
+  background-color: $red-primary;
+  color: white;
+  padding: 20px 40px;
+  p{
+  font-size: 20px;
+  }
+}

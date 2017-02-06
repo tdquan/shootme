@@ -12,7 +12,7 @@
   </head>
   <body>
     <%= render 'layouts/navbar' %>
-    <div class="container-fluid">
+    <div>
       <%= yield %>
     </div>
 
@@ -21,8 +21,6 @@
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
 
     <%= javascript_include_tag 'application' %>
-<!--     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->
     <%= yield(:after_js) %>
   </body>
 </html>
