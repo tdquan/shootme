@@ -64,6 +64,7 @@ gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 #search
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'elasticsearch-dsl'
 
 #responder
 gem 'responders'

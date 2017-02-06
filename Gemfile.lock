@@ -81,6 +81,7 @@ GEM
       elasticsearch-transport (= 5.0.1)
     elasticsearch-api (5.0.1)
       multi_json
+    elasticsearch-dsl (0.1.5)
     elasticsearch-model (0.1.9)
       activesupport (> 3)
       elasticsearch (> 0.4)
@@ -255,6 +256,7 @@ DEPENDENCIES
   coffee-rails
   devise
   devise-i18n
+  elasticsearch-dsl
   elasticsearch-model
   elasticsearch-rails
   faker

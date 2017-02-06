@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="col-md-6 list-info">
-          <h4 class="list-name h4lock"><%= user.first_name %> <%= user.last_name %></h4>
+          <h4 class="list-name block"><%= user.first_name %> <%= user.last_name %></h4>
           <span class="block">Photographer</span>
           <br>
           <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
@@ -26,4 +26,7 @@
       </div>
     </div>
   <% end %>
+<% else %>
+  <%= @users.empty? %>
+  <%= params.inspect %>
 <% end %>
