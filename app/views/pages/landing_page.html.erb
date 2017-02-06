@@ -26,12 +26,10 @@
                 <li><i class="fa fa-map fa-2x" aria-hidden="true"></i></li>
                 <li><h3>Show locations</h3></li>
               </ul>
-
-              <%= simple_form_for :users, html: {id: "cities", class: "form-group"} do |f| %>
+              <%= simple_form_for :users, url: search_path, html: {id: "cities", class: "form-group"} do |f| %>
                 <%= f.input :location, as: :select,label: false, collection: @cities %>
+                <%= f.submit %>
               <% end %>
-
-              <p><a class="btn btn-primary" href="#" role="button" id="search">SEARCH</a></p>
             </div>
           </div>
         </div>

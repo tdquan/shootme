@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
   end
 
+  def landing_page
+    @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
+  end
+
   def search
     if params["/search"]["email"].nil?
       @users = []
