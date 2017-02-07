@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @user = User.new
-    @users = User.all
     @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
   end
 

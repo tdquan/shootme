@@ -117,11 +117,18 @@
   .fa{
     margin-top: 20px;
   }
-  .card-account {
-    transition: 0.5s;
+  .card-popup {
+    transition: 0.3s;
     &:hover {
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
+  }
+}
+
+.card-popup {
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 2px 2px 1px rgba(0,0,0,0.15);
   }
 }
 

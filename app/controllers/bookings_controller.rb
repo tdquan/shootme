@@ -16,6 +16,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = current_user.bookings.build(booking_params)
+    if @booking.save
+      puts "Hurray"
+    else
+      puts "GODDAMNIT!"
+    end
   end
 
   def update

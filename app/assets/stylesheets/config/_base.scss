@@ -21,6 +21,9 @@ a {
   &:hover, &:visited, &:focus {
     text-decoration: none;
   }
+  span, p {
+    color: #666;
+  }
 }
 
 hr {
