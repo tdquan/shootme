@@ -1,4 +1,4 @@
-class Booking < ApplicationRecord
+class Request < ApplicationRecord
   belongs_to :user, class_name: "User"
   belongs_to :client, class_name: "User"
 

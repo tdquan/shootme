@@ -12,28 +12,37 @@
       <h3>Select the date</h3>
       <hr>
       <div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+        <%= simple_form_for @request, url: user_requests_path, class: "row" do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                  <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <div class='input-group date' id='datetimepicker2'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                  <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
               </div>
             </div>
+            <div class="row">
+              <%= f.input :location, as: :select, label: false, input_html: {class: 'form-control'}, collection: @cities %>
+              <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
+              <%= f.input :client_id, as: :hidden, label: false, input_html: {class: 'form-control', value: current_user.id} %>
+            </div>
           </div>
-          <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button" id="Book-now">Book now!</a></p>
+            <%= f.button :submit, value: 'Request a booking', class: "btn btn-primary" %>
+        <% end %>
+
           <script type="text/javascript">
               $(function () {
                   $('#datetimepicker1').datetimepicker(

@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   root to: 'pages#landing_page'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do
-    get '/users/:user_id', to: "devise/registrations#show", as: :user
+    get '/users/:user_id', to: "users/registrations#show", as: :user
   end
 
   resources :users, only: :index do
     resources :bookings
+    resources :requests
   end
 
   get 'home', to: "pages#home"
