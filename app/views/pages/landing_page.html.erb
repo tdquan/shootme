@@ -28,7 +28,7 @@
               </ul>
               <%= simple_form_for :users, url: search_path, html: {id: "cities", class: "form-group"} do |f| %>
                 <%= f.input :location, as: :select,label: false, collection: @cities %>
-                <%= f.submit %>
+                <%= f.submit value: "SEARCH", id: "search-landing", class: "btn btn-primary btn-lg" %>
               <% end %>
             </div>
           </div>
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="description-wrapper">
+  <div class="description-wrapper text-center">
     <%= image_tag "lens.png", class: "lens"%>
     <div class="container">
       <div class="row">
