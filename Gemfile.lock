@@ -272,7 +272,11 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   bootstrap3-datetimepicker-rails (~> 4.14.30)
+<<<<<<< HEAD
   capistrano-rails
+=======
+  capistrano (~> 3.7)
+>>>>>>> c4891986c6840d6f74707a03710ec2441cd0c680
   coffee-rails
   devise
   devise-i18n

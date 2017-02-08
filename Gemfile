@@ -70,3 +70,6 @@ gem 'elasticsearch-dsl'
 
 #responder
 gem 'responders'
+
+#capistrano
+gem "capistrano", "~> 3.7"

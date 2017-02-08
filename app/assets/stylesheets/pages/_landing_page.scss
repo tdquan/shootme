@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  overflow-y: hidden;
 }
 
 .jumbotron {
@@ -20,11 +21,11 @@
     color: white;
     background-color: $red-primary;
   }
-  #search{
+  #search-landing{
     background-color: $red-light;
     border: none;
     width: 100%;
-    #search:hover{
+    &:hover{
       background-color: $red-dark;
     }
   }
