@@ -30,6 +30,8 @@ group :development, :test do
   gem 'letter_opener' # mails
   gem 'faker'
 
+  gem 'capistrano-rails'
+
 end
 
 source 'https://rails-assets.org' do
