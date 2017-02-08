@@ -34,11 +34,20 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <%= f.input :location, as: :select, label: false, input_html: {class: 'form-control'}, collection: @cities %>
-              <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
-              <%= f.input :client_id, as: :hidden, label: false, input_html: {class: 'form-control', value: current_user.id} %>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class='input-group date'>
+                  <%= f.input :location, as: :select, label: false, input_html: {class: 'form-control'}, collection: @cities %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
             </div>
+            <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
+            <%= f.input :client_id, as: :hidden, label: false, input_html: {class: 'form-control', value: current_user.id} %>
           </div>
             <%= f.button :submit, value: 'Request a booking', class: "btn btn-primary" %>
             <%= link_to 'Message', user_conversations_path, class: "btn btn-default" %>
