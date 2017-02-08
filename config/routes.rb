@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :users, only: :index do
     resources :bookings
     resources :requests
+    resources :conversations do
+      resources :messages
+    end
   end
 
   get 'home', to: "pages#home"
