@@ -1,4 +1,41 @@
-.user_picture {
-  width: 250px;
-  length: 250px;
+.date-selection {
+  margin-top: 40px;
+}
+
+.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
+  background-color: $brand-primary;
+}
+
+.user-picture {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.user-fullname {
+  margin-bottom: 10px;
+  b {
+    font-size: 18px;
+  }
+}
+
+.user-address {
+  color: #888;
+}
+
+.ratings {
+  .fa {
+    color: $yellow;
+  }
+}
+
+.greyed-out-link {
+  * {
+   color: #bbb;
+  }
+  &:hover {
+    * {
+      color: #888;
+    }
+  }
 }

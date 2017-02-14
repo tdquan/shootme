@@ -1,25 +1,36 @@
-<div class="container">
+<div class="container date-selection">
   <div class="row">
-    <div class="col-md-4 col-md-offset-1">
-      <%= image_tag "quan_avatar.jpg", class: "user_picture" %>
-      <div class="h4"><%= current_user.first_name %> <%= current_user.last_name%></div>
-      <ul class="list-inline">
-        <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-        <li><div class="h5"><%= current_user.address %></div></li>
-      </ul>
+    <div class="col-md-3 col-md-offset-1">
+      <div class="card clearfix">
+        <%= image_tag "quan_avatar.jpg", class: "user-picture" %>
+        <div class="text-center user-fullname"><b><%= User.find(params[:user_id]).first_name %> <%= User.find(params[:user_id]).last_name %></b></div>
+        <ul class="text-center">
+          <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= User.find(params[:user_id]).address %></li>
+          <li class="block ratings">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </li>
+          <li class="block review-link"><%= link_to "24 Reviews", "#" %></li>
+        </ul>
+        <br>
+        <div class="greyed-out-link float-right"><i class="fa fa-edit"></i><%= link_to "Edit Profile", edit_user_registration_path %></div>
+      </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7">
       <h3>Select the date</h3>
       <hr>
-      <div>
+      <div class="card">
         <%= simple_form_for @request, url: user_requests_path, class: "row" do |f| %>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                  <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+                  <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control', placeholder: "Start time"} %>
                   <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-calendar"></i>
                   </span>
                 </div>
               </div>
@@ -27,9 +38,9 @@
             <div class="col-md-6">
               <div class="form-group">
                 <div class='input-group date' id='datetimepicker2'>
-                  <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+                  <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control', placeholder: "End time"} %>
                   <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-calendar"></i>
                   </span>
                 </div>
               </div>
@@ -38,10 +49,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <div class='input-group date'>
+                <div class='input-group'>
                   <%= f.input :location, as: :select, label: false, input_html: {class: 'form-control'}, collection: @cities %>
                   <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-location-arrow"></i>
                   </span>
                 </div>
               </div>
@@ -56,9 +67,13 @@
           <% content_for(:after_js) do %>
             <script type="text/javascript">
               $(function () {
-                  $('#datetimepicker1').datetimepicker();
+                  $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD hh:mm A',
+                    debug: true
+                  });
                   $('#datetimepicker2').datetimepicker({
-                      useCurrent: false //Important! See issue #1075
+                    format: 'YYYY-MM-DD hh:mm A',
+                    useCurrent: false
                   });
                   $("#datetimepicker1").on("dp.change", function (e) {
                       $('#datetimepicker2').data("DateTimePicker").minDate(e.date);

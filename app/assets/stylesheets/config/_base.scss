@@ -2,6 +2,7 @@
   font-family: 'Nunito', sans-serif;
   list-style: none;
   font-size: 14px;
+  transition: all ease-in-out 0.3s;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   background-color: #F7F8F9;
+  color: #555;
 }
 
 h1, h2, h3, h4, h5 {
@@ -47,8 +49,8 @@ input[type="range"] {
   }
 }
 
-body > .container-fluid > * {
-  margin-top: 40px;
+ul {
+  padding: 0;
 }
 
 .fa {
@@ -70,6 +72,10 @@ body > .container-fluid > * {
   border: 2px solid #e9e9e9;
   height: 40px;
   line-height: 20px;
+}
+
+.input-group-addon {
+  border: 2px solid #e9e9e9;
 }
 
 .inline-block {

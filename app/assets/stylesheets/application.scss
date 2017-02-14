@@ -7,6 +7,7 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'bootstrap-datetimepicker';
 
 // Your CSS
 @import "config/base";
@@ -15,5 +16,3 @@
 @import "pages/index";
 @import "vendor/index";
 @import "user/index";
-
-@import 'bootstrap-datetimepicker';
