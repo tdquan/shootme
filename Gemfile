@@ -30,6 +30,11 @@ group :development, :test do
   gem 'letter_opener' # mails
   gem 'faker'
 
+  #capistrano
+  gem "capistrano", "~> 3.7"
+  gem 'capistrano-rails'
+
+
 end
 
 source 'https://rails-assets.org' do
@@ -69,5 +74,3 @@ gem 'elasticsearch-dsl'
 #responder
 gem 'responders'
 
-#capistrano
-gem "capistrano", "~> 3.7"
