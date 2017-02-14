@@ -1,3 +1,13 @@
+role :app, %w{shootme@cbm-groupe.fr}
+role :web, %w{shootme@cbm-groupe.fr}
+role :db,  %w{shootme@cbm-groupe.fr}
+set :rails_env, fetch(:stage)
+set :rbenv_ruby, '2.3.1'
+set :deploy_to, '/home/shootme/staging'
+set :branch, 'staging'
+set :unicorn_pid, File.join(shared_path, 'pids', 'unicorn.pid')
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
