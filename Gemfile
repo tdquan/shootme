@@ -74,3 +74,5 @@ gem 'elasticsearch-dsl'
 #responder
 gem 'responders'
 
+#facebook connect
+gem 'omniauth-facebook'
