@@ -77,3 +77,7 @@ gem 'responders'
 #stripe payment
 gem 'coffee-script'
 gem 'stripe'
+
+#facebook connect
+gem 'omniauth-facebook'
+
