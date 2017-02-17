@@ -20,4 +20,8 @@ class PagesController < ApplicationController
       f.js
     end
   end
+
+  def payment
+    @user = User.new
+  end
 end

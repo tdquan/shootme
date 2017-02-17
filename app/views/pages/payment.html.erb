@@ -1,0 +1,44 @@
+<div class="col-md-10 col-md-offset-1 payment-wrapper">
+  <h3>Payment</h3>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <h4>Personal Information</h4>
+          <hr>
+          <%= simple_form_for @user, url: '', class: "row" do |f| %>
+            <div class="form-inputs">
+              <div class="row">
+                <div class="col-md-6">
+                  <%= f.input :first_name, required: true, autofocus: true %>
+                </div>
+                <div class="col-md-6">
+                  <%= f.input :last_name, required: true %>
+                </div>
+                <div class="col-md-12">
+                  <%= f.input :address, required: true %>
+                </div>
+                <div class="col-md-6">
+                  <%= f.input :postal_code, required: true %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <h4>Payment Information</h4>
+          <hr>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <h4>Payment Summary</h4>
+          <hr>
+          <p>Sign-up fee</p>
+          <hr>
+          <h4>Total</h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
