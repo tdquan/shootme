@@ -17,5 +17,4 @@ Rails.application.routes.draw do
 
   get 'home', to: "pages#home"
   get 'search', to: "search#search"
-
 end

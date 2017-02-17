@@ -74,3 +74,6 @@ gem 'elasticsearch-dsl'
 #responder
 gem 'responders'
 
+#stripe payment
+gem 'coffee-script'
+gem 'stripe'
