@@ -27,15 +27,44 @@
           <% end %>
           <h4>Payment Information</h4>
           <hr>
+<!-- stripe -->
+            <%= form_tag charges_path do %>
+              <article>
+                <% if flash[:error].present? %>
+                  <div id="error_explanation">
+                    <p><%= flash[:error] %></p>
+                  </div>
+                <% end %>
+              </article>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      Stripe.setPublishableKey('pk_test_oqxcVbV2SGxUWqO8cEv8y1DV');
+                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                      data-description="Account Activation"
+                      data-amount="100"
+                      data-locale="auto"></script>
+            <% end %>
+<!-- end of stripe -->
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
           <h4>Payment Summary</h4>
           <hr>
-          <p>Sign-up fee</p>
-          <hr>
-          <h4>Total</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Sign-up fee:</p>
+            </div>
+            <div class="col-md-6" align='right'>
+              <p>1.00 €</p>
+            </div>
+            <div class="col-md-12"><hr></div>
+            <div class="col-md-6">
+              <h4>Total:</h4>
+            </div>
+            <div class="col-md-6" align='right'>
+              <h4>1.00 €</h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
