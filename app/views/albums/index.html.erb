@@ -1,0 +1,32 @@
+<div class="container date-selection">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <div class="card clearfix">
+        <% if @current_profile.avatar? %>
+          <%= cl_image_tag @current_profile.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% else %>
+          <%= image_tag "avatar_image.jpg", class: "user-picture" %>
+        <% end %>
+        <div class="text-center user-fullname"><b><%= @current_profile.first_name %> <%= @current_profile.last_name %></b></div>
+        <ul class="text-center">
+          <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @current_profile.address %></li>
+          <li class="block ratings">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </li>
+          <li class="block review-link"><%= link_to "24 Reviews", "#" %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <% if @current_profile != @current_user %>
+        <%= render "booking_calendar" %>
+      <% else %>
+        <%= render "self_profile" %>
+      <% end %>
+    </div>
+  </div>
+</div>
