@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  mount Attachinary::Engine => "/attachinary"
+
+  # ROOT
   root to: 'pages#landing_page'
 
+  # DEVISE
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
     resources :conversations do
       resources :messages
     end
+
+    resources :gallery, controller: :albums
   end
 
   get 'home', to: "pages#home"

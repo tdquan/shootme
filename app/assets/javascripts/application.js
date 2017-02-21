@@ -5,4 +5,7 @@
 //= require gmaps/google
 //= require moment
 //= require bootstrap-datetimepicker
+//= require jquery-fileupload/basic
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require_tree .

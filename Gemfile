@@ -81,3 +81,10 @@ gem 'stripe'
 #facebook connect
 gem 'omniauth-facebook'
 
+#cloudinary
+gem 'cloudinary'
+
+#attachinary
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+

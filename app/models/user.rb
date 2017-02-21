@@ -16,6 +16,12 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            dependent: :destroy
 
+  # Albums
+  has_many :albums
+
+  # Avatar
+  has_attachment :avatar, accept: [:jpg, :png, :gif]
+
   # Requests
   has_many :requests_to_others,
            class_name: "Request",
@@ -34,4 +40,4 @@ class User < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 end
 
-User.import force: true# for auto sync model with elastic search
+User.import force: true   # for auto sync model with elastic search

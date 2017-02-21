@@ -2,10 +2,14 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       <div class="card clearfix">
-        <%= image_tag "quan_avatar.jpg", class: "user-picture" %>
-        <div class="text-center user-fullname"><b><%= User.find(params[:user_id]).first_name %> <%= User.find(params[:user_id]).last_name %></b></div>
+        <% if @current_profile.avatar? %>
+          <%= cl_image_tag @current_profile.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% else %>
+          <%= image_tag "avatar_image.jpg", class: "user-picture" %>
+        <% end %>
+        <div class="text-center user-fullname"><b><%= @current_profile.first_name %> <%= @current_profile.last_name %></b></div>
         <ul class="text-center">
-          <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= User.find(params[:user_id]).address %></li>
+          <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @current_profile.address %></li>
           <li class="block ratings">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -19,6 +23,7 @@
     </div>
     <div class="col-md-6">
       <div class="card">
+        <% if @current_profile != @current_user %>
         <h3>Select the date</h3>
         <hr>
         <div>
@@ -59,12 +64,10 @@
               <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
               <%= f.input :client_id, as: :hidden, label: false, input_html: {class: 'form-control', value: current_user.id} %>
             </div>
-            <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
-            <%= f.input :client_id, as: :hidden, label: false, input_html: {class: 'form-control', value: current_user.id} %>
-          </div>
             <%= f.button :submit, value: 'Request a booking', class: "btn btn-primary" %>
             <%= link_to "Message", user_conversation_messages_path(params[:user_id], conversation_id: @conversation.id), class: "btn btn-default" %>
-        <% end %>
+          <% end %>
+        </div>
 
           <% content_for(:after_js) do %>
             <script type="text/javascript">
@@ -86,8 +89,7 @@
               });
             </script>
           <% end %>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
