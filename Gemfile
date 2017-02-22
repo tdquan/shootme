@@ -81,3 +81,5 @@ gem 'stripe'
 #facebook connect
 gem 'omniauth-facebook'
 
+#google connect
+gem "omniauth-google-oauth2"
