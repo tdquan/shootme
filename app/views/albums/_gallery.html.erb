@@ -1,0 +1,8 @@
+<div class="card" id="gallery">
+  <ul id="light-slider">
+    <% 10.times do %>
+      <% url = "http://lorempixel.com/800/500/people/#{[*1..10].sample}" %>
+      <li data-thumb=<%= url %>><%= image_tag url, width: "100%" %></li>
+    <% end %>
+  </ul>
+</div>

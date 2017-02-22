@@ -1,0 +1,17 @@
+<h3>Photo Gallery</h3>
+<hr>
+<div class="card">
+  <div class="row">
+    <% n = 0 %>
+    <% 6.times do %>
+      <% topics = ["abstract", "city", "sports", "fashion", "people", "nature"] %>
+      <%= link_to render_gallery_path(topic_name: topics[n]), remote: true do %>
+        <div class="col-md-3 col-xs-6">
+          <%= image_tag "http://lorempixel.com/200/100/#{topics[n]}", width: "100%" %>
+          <p class="text-center"><%= topics[n] %></p>
+        </div>
+      <% end %>
+      <% n = n+1 %>
+    <% end %>
+  </div>
+</div>

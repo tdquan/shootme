@@ -1,0 +1,4 @@
+<% 10.times do %>
+  <% url = "http://lorempixel.com/800/500/#{params[:topic_name]}/#{[*1..10].sample}" %>
+  <li data-thumb=<%= url %>><%= image_tag url, width: "100%" %></li>
+<% end %>
