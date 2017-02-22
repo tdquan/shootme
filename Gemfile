@@ -83,3 +83,9 @@ gem 'omniauth-facebook'
 
 #google connect
 gem "omniauth-google-oauth2"
+#cloudinary
+gem 'cloudinary'
+
+#attachinary
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'

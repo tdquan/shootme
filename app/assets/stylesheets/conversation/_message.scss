@@ -1,0 +1,52 @@
+.chat {
+  .chat-window {
+    max-height: 60vh;
+    overflow: scroll;
+  }
+}
+
+.message {
+  margin-bottom: 10px;
+  .message-time {
+    color: #bbb;
+    font-size: 0.6em;
+  }
+}
+
+.bubble {
+  border-radius: 5px;
+  position:relative;
+}
+
+.bubble:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+}
+
+.bubble.me:after {
+  top: 7px;
+  left: -5px;
+  bottom: auto;
+  border-color: transparent $yellow;
+  border-width: 3px 5px 3px 0;
+}
+
+.bubble.others:after {
+  top: 7px;
+  right: -5px;
+  border-color: transparent $green;
+  border-width: 3px 0 3px 5px;
+}
+
+.bubble.me {
+  background-color: $yellow;
+  padding: 5px 7px;
+}
+
+.bubble.others {
+  background-color: $green;
+  padding: 5px 7px;
+}

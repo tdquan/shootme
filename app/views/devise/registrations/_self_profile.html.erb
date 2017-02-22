@@ -1,0 +1,20 @@
+<h3>My profile</h3>
+<hr>
+<div class="card">
+  <div class="row">
+    <div class="col-sm-6">
+      <b>Full name</b>
+      <p><%= @current_user.first_name %> <%= @current_user.last_name %></p>
+      <b>Email</b>
+      <p><%= @current_user.email %></p>
+      <b>Address</b>
+      <p><%= @current_user.address %></p>
+    </div>
+    <div class="col-sm-6">
+      <b>Description</b>
+      <p><%= @current_user.description %></p>
+    </div>
+  </div>
+  <br>
+  <div class="text-center"><%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %></div>
+</div>

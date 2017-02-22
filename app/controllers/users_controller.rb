@@ -11,4 +11,10 @@ class UsersController < ApplicationController
     @requests_to_others = current_user.requests_to_others
     # @conversations = current_user.conversations
   end
+
+  private
+
+  def avatar_params
+    params.require(:user).permit(:name, :avatar)
+  end
 end

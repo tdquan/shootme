@@ -21,12 +21,9 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-6">
-      <% if @current_profile != @current_user %>
-        <%= render "booking_calendar" %>
-      <% else %>
-        <%= render "self_profile" %>
-      <% end %>
+    <div class="col-md-7">
+      <%= render "gallery" %>
+      <%= render "galleries" %>
     </div>
   </div>
 </div>

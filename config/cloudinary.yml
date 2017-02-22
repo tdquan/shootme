@@ -1,0 +1,27 @@
+# CLOUDINARY_API_KEY:      933628517297783
+# CLOUDINARY_API_SECRET:   abcdefghijklmnopqrsuvwxyz
+# CLOUDINARY_CLOUD_NAME:   dcdptzw5a
+# CLOUDINARY_URL:          CLOUDINARY_URL=cloudinary://933628517297783:hfIeYes7kfjNoWPCM7kbt5GoHMg@dcdptzw5a
+# RACK_ENV:                staging
+# RAILS_ENV:               staging
+
+# development:
+#   cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+#   api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+#   api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
+#   enhance_image_tag: true
+#   static_image_support: false
+# production:
+#   cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+#   api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+#   api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
+#   enhance_image_tag: true
+#   static_image_support: true
+# staging:
+#   <<: *production
+# test:
+#   cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+#   api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+#   api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
+#   enhance_image_tag: true
+#   static_image_support: false
