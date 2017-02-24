@@ -1,11 +1,50 @@
-<p>hello there! inbox</p>
+ <div class="inbox-wrapper">
+   <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-2">
+      <div class="nav nav-pills float-left">
+        <div class="active"><a class="btn btn-primary" data-toggle="pill" href="#messages">Messages</a></div>
+        <div><a class="btn btn-primary" data-toggle="pill" href="#requests">Requests</a></div>
+        <div><a class="btn btn-primary" data-toggle="pill" href="#bookings">Bookings</a></div>
+      </div>
+    </div>
 
-<p>request to self</p>
-<% @requests_to_self.each do |request| %>
-  <%= request %>
-<% end %>
-
-<p>request to others</p>
-<% @requests_to_others.each do |request| %>
-  <%= request %>
-<% end %>
+    <div class="col-md-8">
+      <div class="tab-content">
+        <div id="messages" class="tab-pane fade in active">
+          <h3>Inbox</h3>
+<!--           <%= @conversations_user %>
+ -->          <%= @messages_client.first.body %>
+        </div>
+        <div id="requests" class="tab-pane fade">
+          <h3>Requests</h3>
+<!--           <p>request to self</p>
+          <% @requests_to_self.each do |request| %>
+            <%= request %>
+          <% end %> -->
+          <h4>Your request to others</h4>
+          <% @requests_to_others.each_with_index do |request, index| %>
+            <div class="card">
+              <div class="row">
+                <div class="col-md-2">
+                  <% if request.user.avatar != nil %>
+                    <%= cl_image_tag request.user.avatar.path, width: 100, height: 100, crop: :fill, gravity: :face %>
+                  <% else %>
+                    <%= image_tag "avatar_image.jpg", width: 100, height: 100, radius: 100 %>
+                  <% end %>
+                </div>
+                <div class="col-md-10">
+                  <p>#<%= index + 1 %> You have booked the photographer <%= request.user.first_name %> <%= request.user.last_name %> from <%= request.start_time.to_formatted_s(:long) %> to <%= request.end_time.to_formatted_s(:long) %> in <%= request.location %></p>
+                  <%= link_to edit_user_request_url(request.user, request) do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %>
+                  <%= link_to user_request_url(request.client, request), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %><i class="fa fa-trash" aria-hidden="true"></i><% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div id="bookings" class="tab-pane fade">
+          <h3>Bookings</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

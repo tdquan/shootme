@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'home', to: "pages#home"
   get 'search', to: "search#search"
   get 'payment', to: "pages#payment"
-  get '/users/:user_id/inbox', to: "users#inbox"
+  get 'inbox', to: "users#inbox", as: :inbox
 
   resources :charges
 end
