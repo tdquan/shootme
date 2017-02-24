@@ -1,3 +1,8 @@
 a .slider-control {
   color: #fff;
 }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: $brand-primary;
+  color: #fff;
+}

@@ -20,6 +20,12 @@
           <li class="block review-link"><%= link_to "24 Reviews", "#" %></li>
         </ul>
       </div>
+      <% if @current_profile != current_user %>
+        <ul class="card nav nav-pills nav-stacked">
+          <li role="presentation"><%= link_to "Profile", user_path(@current_profile) %></li>
+          <li role="presentation"><%= link_to "View galllery", user_gallery_index_path(@current_profile) %></li>
+        </ul>
+      <% end %>
     </div>
     <div class="col-md-7">
       <%= render "gallery" %>

@@ -46,12 +46,27 @@
   <% end %>
 </div>
 
+<h3 id="<%= @current_profile.first_name %>-reviews">Reviews</h3>
+<hr>
+  <% n = 1 %>
+  <% 5.times do %>
+    <div class="card media">
+      <div class="media-left">
+        <img class="media-object" src="http://lorempixel.com/80/80/people/<%= n %>" alt="...">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></h4>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi nemo quae, aspernatur soluta obcaecati deserunt perferendis mollitia libero quibusdam? Distinctio, recusandae.
+      </div>
+    </div>
+    <% n = n + 1 %>
+  <% end %>
+
 <% content_for(:after_js) do %>
   <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
           format: 'DD-MM-YYYY hh:mm A',
-          // debug: true
         });
         $('#datetimepicker2').datetimepicker({
           format: 'DD-MM-YYYY hh:mm A',
