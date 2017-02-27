@@ -6,10 +6,4 @@
     width: 100px;
     margin: 2px 0;
   }
-  .card{
-    transition: 0.3s;
-    &:hover {
-      box-shadow: 0 10px 10px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
-    }
-  }
 }
