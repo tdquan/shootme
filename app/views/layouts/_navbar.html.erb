@@ -1,11 +1,13 @@
 <nav class="navbar">
   <div class="navbar-content">
+    <!-- LOGO -->
     <div class="logo-group text-center">
       <%= link_to root_path do %>
         <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
       <% end %>
     </div>
 
+    <!-- SIGN IN / AVATAR -->
     <div class="avatar-group">
       <% if user_signed_in? %>
         <div class="avatar-round">
@@ -21,21 +23,23 @@
           <p class="avatar-name"><%= current_user.email %></p>
         <% end %>
       <% end %>
+
+      <!-- SIGN IN DROP DOWN -->
       <div class="dropdown inline-block float-right">
         <a class="avatar-dropdown dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-sort-down"></i>
         </a>
-      </div>
 
-      <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
-        <% if user_signed_in? %>
-          <%= link_to('My profile', user_path(current_user)) %>
-          <%= link_to('My inbox', inbox_path(current_user), :class => "dropdown-item") %>
-          <%= link_to('Log out', destroy_user_session_path, :method => :delete, :class => "dropdown-item") %>
-        <% else %>
-          <%= link_to('Log in', new_user_session_path, :class => "dropdown-item")  %>
-          <%= link_to("Sign up", new_user_registration_path, :class => "dropdown-item") %>
-        <% end %>
+        <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
+          <% if user_signed_in? %>
+            <%= link_to('My profile', user_path(current_user)) %>
+            <%= link_to('My inbox', inbox_path(current_user), class: "dropdown-item") %>
+            <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+          <% else %>
+            <%= link_to('Log in', new_user_session_path, class: "dropdown-item")  %>
+            <%= link_to("Sign up", new_user_registration_path, class: "dropdown-item") %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

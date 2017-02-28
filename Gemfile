@@ -82,7 +82,7 @@ gem 'stripe'
 gem 'omniauth-facebook'
 
 #google connect
-gem "omniauth-google-oauth2"
+gem "omniauth-google-oauth2", git: 'https://github.com/zquestz/omniauth-google-oauth2', :branch => 'master'
 #cloudinary
 gem 'cloudinary'
 

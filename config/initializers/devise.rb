@@ -9,15 +9,14 @@ Devise.setup do |config|
   secure_image_url: true
 
   # Google
-  config.omniauth :google_oauth2, "418750971108-nrqeimj82s3mk9n2bok3l5oa4929o0qc.apps.googleusercontent.com",
-  "Ebo_fcAabPG4q6Mq1gqo5qzt",
-    {
-      :name => "google",
-      :scope => "email, profile, plus.me, http://gdata.youtube.com",
-      :prompt => "select_account",
-      :image_aspect_ratio => "square",
-      :image_size => 50
-    }
+  config.omniauth :google_oauth2, "225387760736-19g0t2aouavah1ol8rhqmv0bpdqj6m90.apps.googleusercontent.com",
+  "yqMHJwiXwDSFeU5NGv9yULH8",
+  name: 'google_oauth2',
+  scope: 'email',
+  redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback',
+  prompt: 'select_account',
+  image_aspect_ratio: 'square',
+  image_size: 50
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

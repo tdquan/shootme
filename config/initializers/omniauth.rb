@@ -1,4 +1,4 @@
-OmniAuth.config.logger = Rails.logger
+OmniAuth.config.full_host = Rails.env.development? ? 'https://domain.com' : 'http://localhost:3000'
 
 # Rails.application.config.middleware.use OmniAuth::Builder do
 #   provider :google_oauth2, '418750971108-nrqeimj82s3mk9n2bok3l5oa4929o0qc.apps.googleusercontent.com',
@@ -11,4 +11,3 @@ OmniAuth.config.logger = Rails.logger
 #     :image_size => 50
 #   }
 # end
-
