@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
   def index
     @requests = Request.all
   end
@@ -30,6 +30,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
+    redirect_to :back, notice: 'Request was successfully deleted.'
   end
 
   private

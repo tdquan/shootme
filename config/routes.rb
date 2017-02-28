@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   # ROOT
   root to: 'pages#landing_page'
 
-  # DEVISE
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  # devise_for :users, controllers: { registrations: 'users/registrations' }
+  # devise_for :users, only: [:omniauth_callbacks, :registrations], controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   devise_scope :user do
     get '/users/:user_id', to: "users/registrations#show", as: :user
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get 'home', to: "pages#home"
   get 'search', to: "search#search"
   get 'payment', to: "pages#payment"
+  get 'inbox', to: "users#inbox", as: :inbox
 
   resources :charges
 end

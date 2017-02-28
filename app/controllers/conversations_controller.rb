@@ -19,6 +19,10 @@ class ConversationsController < ApplicationController
     redirect_to user_conversation_messages_path(@conversation, conversation_id: @conversation.id)
   end
 
+  # def conversations
+  #   @conversations = Conversation.find_by client_id: current_user.id
+  # end
+
   private
 
   def conversation_params

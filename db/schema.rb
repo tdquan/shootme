@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221144252) do
+ActiveRecord::Schema.define(version: 20170222133212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 20170221144252) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "comment"
     t.integer  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+    t.integer  "booking_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -119,6 +119,11 @@ ActiveRecord::Schema.define(version: 20170221144252) do
     t.float    "latitude"
     t.float    "price"
     t.text     "avatar"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "facebook_picture_url"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -127,5 +132,5 @@ ActiveRecord::Schema.define(version: 20170221144252) do
   add_foreign_key "bookings", "users"
   add_foreign_key "conversations", "users"
   add_foreign_key "requests", "users"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "bookings"
 end

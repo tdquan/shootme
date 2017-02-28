@@ -195,6 +195,9 @@ GEM
       rack (>= 1.6.2, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.2.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -342,6 +345,7 @@ DEPENDENCIES
   mailchimp-api (~> 2.0, >= 2.0.6)
   momentjs-rails (>= 2.9.0)
   omniauth-facebook
+  omniauth-google-oauth2
   pg
   pry-byebug
   pry-rails

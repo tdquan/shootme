@@ -25,16 +25,17 @@
         <a class="avatar-dropdown dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-sort-down"></i>
         </a>
+      </div>
 
-        <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
-          <% if user_signed_in? %>
-            <%= link_to('My profile', user_path(current_user)) %>
-            <%= link_to('Log out', destroy_user_session_path, :method => :delete, :class => "dropdown-item") %>
-          <% else %>
-            <%= link_to('Log in', new_user_session_path, :class => "dropdown-item")  %>
-            <%= link_to("Sign up", new_user_registration_path, :class => "dropdown-item") %>
-          <% end %>
-        </div>
+      <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
+        <% if user_signed_in? %>
+          <%= link_to('My profile', user_path(current_user)) %>
+          <%= link_to('My inbox', inbox_path(current_user), :class => "dropdown-item") %>
+          <%= link_to('Log out', destroy_user_session_path, :method => :delete, :class => "dropdown-item") %>
+        <% else %>
+          <%= link_to('Log in', new_user_session_path, :class => "dropdown-item")  %>
+          <%= link_to("Sign up", new_user_registration_path, :class => "dropdown-item") %>
+        <% end %>
       </div>
     </div>
   </div>
