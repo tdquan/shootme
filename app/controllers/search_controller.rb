@@ -24,7 +24,6 @@ class SearchController < ApplicationController
                 query location
                 type "most_fields"
                 fields ["address"]
-                operator "or"
               end
             end
           end
