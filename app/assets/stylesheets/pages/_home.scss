@@ -4,30 +4,22 @@
  * ------------------------------------- */
 .home-page-wrapper {
   margin-top: 40px;
+  height: calc(100% - 100px);
 }
 
 .fullscreen-wrapper {
-  display: table;
   height: 100%;
-  width: 100%;
   .fullscreen-scroll {
-    display: table-cell;
-    width: 60%;
   }
 
   .fullscreen-map {
-    display: table-cell;
-    width: 40%;
-    position: relative;
     overflow: hidden;
     height: 100%;
-    .map {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-    }
   }
+}
+
+#map {
+  position: fixed !important;
 }
 
 .search-bar-link {
@@ -37,4 +29,16 @@
   }
 }
 
+// Media queries
 
+@media (max-width: 575px) {
+  #map {
+    position: relative !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  #map {
+    position: relative !important;
+  }
+}

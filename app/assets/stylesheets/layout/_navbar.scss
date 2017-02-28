@@ -1,8 +1,17 @@
 .navbar {
   height: 60px;
+  margin-bottom: 0;
+  z-index: 999;
+}
+
+.navbar-content {
+  height: 60px;
+  position: fixed;
+  width: 100%;
   background-color: #fff;
   box-shadow: 1px 1px 1px #bbb;
-  margin-bottom: 0;
+  top: 0;
+  left: 0;
   z-index: 999;
 }
 

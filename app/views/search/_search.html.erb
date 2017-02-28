@@ -4,7 +4,11 @@
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
           <div class="avatar-round">
-            <img src="/assets/quan_avatar-d292a60832ea464f736694efe4c00902a3ee42c40ca90b566b3a7a71632f6e14.jpg" alt="Quan avatar">
+            <% if user.avatar? %>
+              <%= cl_image_tag user.avatar.path, width: 100, height: 100, crop: :fill, gravity: :face %>
+            <% else %>
+              <%= image_tag "avatar_image.jpg" %>
+            <% end %>
           </div>
         </div>
         <div class="col-md-6 list-info">

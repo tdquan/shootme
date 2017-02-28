@@ -19,8 +19,17 @@ class SearchController < ApplicationController
                 operator "or"
               end
             end
+            should do
+              multi_match do
+                query location
+                type "most_fields"
+                fields ["address"]
+                operator "or"
+              end
+            end
           end
         end
+
       end
 
       @users = User.search query

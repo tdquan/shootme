@@ -1,7 +1,15 @@
 <main class="home-page-wrapper">
   <!-- Search and results -->
-  <div class="fullscreen-wrapper">
-    <div class="fullscreen-scroll container-fluid">
+  <div class="fullscreen-wrapper container-fluid row">
+
+    <!-- Map -->
+    <div class="fullscreen-map col-md-5 col-md-push-7">
+      <div id="map" style='width: 100%; height: 100%;'></div>
+    </div>
+
+    <!-- Search filters -->
+
+    <div class="fullscreen-scroll col-md-7 col-md-pull-5">
       <div class="card clearfix">
         <%= simple_form_for :user, url: search_path, method: :get, remote: true do |f| %>
           <div class="row">
@@ -26,15 +34,8 @@
 
       <!-- Search results -->
 
-      <div>
-        <div id="search-result-wrapper"></div>
-      </div>
+      <div id="search-result-wrapper"></div>
 
-    </div>
-
-    <!-- Map -->
-    <div class="fullscreen-map">
-      <div id="map" style='width: 100%; height: 100%;'></div>
     </div>
   </div>
 </main>
@@ -49,8 +50,8 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         if (markers.length == 0) {
-          handler.map.centerOn([48.8566, 2.3522]);
-          handler.getMap().setZoom(11);
+          handler.map.centerOn([48.862181, 2.3382383]);
+          handler.getMap().setZoom(12);
         } else if (markers.length == 1) {
           handler.getMap().setZoom(17);
         }
