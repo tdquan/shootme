@@ -9,7 +9,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.save
       sign_in_and_redirect user, event: :authentication
     end
-    raise
   end
 
 
@@ -21,8 +20,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication
     else
       session['devise.google_data'] = request.env['omniauth.auth'] #Removing extra as it can overflow some session stores
-      # @user.save
-      # redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
       sign_in_and_redirect user, event: :authentication
     end
   end

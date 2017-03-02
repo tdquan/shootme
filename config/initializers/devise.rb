@@ -4,6 +4,7 @@ Devise.setup do |config|
   # Facebook
   config.omniauth :facebook, "1102591063204013", "fd85e7ad4a02ff4756617e6cdca9c5c5",
   scope: 'email',
+  callback_url: 'http://localhost:3000/users/auth/facebook',
   info_fields: 'email, first_name, last_name',
   image_size: 'square',  # 50x50, guaranteed ratio
   secure_image_url: true

@@ -2,11 +2,13 @@ require 'elasticsearch/dsl'
 
 class SearchController < ApplicationController
   def search
-    if params[:user][:q].nil?
+    if params[:user][:q].nil? && params[:user][:location].nil?
       @users = []
     else
       term = params[:user][:q]
       location = params[:user][:location]
+      profession = params[:user][:profession]
+      distance = params[:user][:distance]
 
       query = Elasticsearch::DSL::Search.search do
         query do
@@ -19,19 +21,14 @@ class SearchController < ApplicationController
                 operator "or"
               end
             end
-            should do
-              multi_match do
-                query location
-                type "most_fields"
-                fields ["address"]
-              end
-            end
+            filter :terms, :address, location
           end
         end
 
       end
 
-      @users = User.search query
+      @users = User.search(query)
+      puts @users.first
     end
 
     respond_to do |f|
