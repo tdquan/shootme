@@ -118,12 +118,12 @@ ActiveRecord::Schema.define(version: 20170222133212) do
     t.float    "longitude"
     t.float    "latitude"
     t.float    "price"
-    t.text     "avatar"
     t.string   "provider"
     t.string   "uid"
     t.string   "facebook_picture_url"
     t.string   "token"
     t.datetime "token_expiry"
+    t.text     "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
