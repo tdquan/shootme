@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.save
       sign_in_and_redirect user, event: :authentication
     end
-    raise
+    # raise
   end
 
 

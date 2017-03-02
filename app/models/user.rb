@@ -71,10 +71,21 @@ class User < ApplicationRecord
       user = User.create(first_name: data["first_name"],
         last_name: data["last_name"],
         email: data["email"],
-        password: Devise.friendly_token[0,20]
+        password: Devise.friendly_token[0,20],
+        photo: "https://www.google.com/s2/photos/profile/{user.id}"
       )
     end
     user
+  end
+
+  def self.user_picture
+    user = User.find(self.id)
+    if user.facebook_picture_url
+      user.avatar = user.facebook_picture_url
+    elsif user.photo
+     user.avatar = user.photo
+    end
+    user.avatar
   end
 end
 

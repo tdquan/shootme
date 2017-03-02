@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   # ROOT
   root to: 'pages#landing_page'
 
-  # devise_for :users, controllers: { registrations: 'users/registrations' }
-  # devise_for :users, only: [:omniauth_callbacks, :registrations], controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   devise_scope :user do

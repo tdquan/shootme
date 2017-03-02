@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     # @messages_client = @conversations_client.messages
   end
 
+  def new
+  end
+
   private
 
   def avatar_params
