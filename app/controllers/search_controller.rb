@@ -3,8 +3,8 @@ require 'elasticsearch/dsl'
 class SearchController < ApplicationController
   def search
     @users = []
-    if params[:user][:q].nil? && params[:user][:location].nil?
-      return @users
+    if params[:user][:q].blank? && params[:user][:location].blank?
+      @users = User.all
     else
       term = params[:user][:q]
       location = params[:user][:location]
