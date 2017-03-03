@@ -21,13 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    # user = User.find(params[:user_id])
-    # if user.facebook_picture_url
-    #   user.avatar = user.facebook_picture_url
-    # elsif user.google_photo
-    #  user.avatar = user.google_photo
-    # end
-    # user.avatar
+
   end
 
   def update

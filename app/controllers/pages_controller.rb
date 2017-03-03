@@ -24,4 +24,11 @@ class PagesController < ApplicationController
   def payment
     @user = User.new
   end
+
+  def contact_mailer
+    user = User.new(first_name: params[:mailer][:name], email: params[:mailer][:email])
+    message = params[:mailer][:message]
+    HomePageMailer.contact_mailer(user, message).deliver_now
+    redirect_to :root
+  end
 end
