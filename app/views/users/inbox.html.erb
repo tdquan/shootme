@@ -6,87 +6,78 @@
       <li role="presentation"><a data-toggle="pill" href="#requests">Requests</a></li>
       <li role="presentation"><a data-toggle="pill" href="#bookings">Bookings</a></li>
     </ul>
-    </div>
+  </div>
 
-    <div class="col-md-8">
-      <div class="tab-content">
-        <div id="messages" class="tab-pane fade in active">
-          <h3>Inbox</h3>
-          <% if @conversations %>
-          <h4>Conversation with: </h4>
-          <div class="ui segment">
-            <div class="ui list">
-              <div class="item">
-                <% @conversations.each do |conversation| %>
-                  <% if conversation.client_id == current_user.id || conversation.user_id == current_user.id %>
-                    <% if conversation.client_id == current_user.id %>
-                      <% user = User.find(conversation.user_id) %>
-                    <% else %>
-                      <% user = User.find(conversation.client_id) %>
-                    <% end %>
-                    <div class="card">
+  <div class="col-md-8">
+    <div class="tab-content">
+      <div id="messages" class="tab-pane fade in active">
+        <h3>Inbox</h3>
+        <% if @conversations %>
+        <div class="ui segment">
+          <div class="ui list">
+            <div class="item">
+              <% @conversations.each do |conversation| %>
+                <% if conversation.client_id == current_user.id || conversation.user_id == current_user.id %>
+                  <% if conversation.client_id == current_user.id %>
+                    <% user = User.find(conversation.user_id) %>
+                  <% else %>
+                    <% user = User.find(conversation.client_id) %>
+                  <% end %>
+                  <%= link_to user_conversation_messages_path(conversation, conversation_id:conversation.id) do %>
+                    <div class="card margin-bottom">
                       <div class="row">
                         <div class="col-md-2">
                           <% if conversation.user.avatar != nil %>
-                            <%= cl_image_tag conversation.user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
+                          <%= cl_image_tag conversation.user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
                           <% else %>
-                            <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
+                          <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
                           <% end %>
                         </div>
                         <div class="col-md-10">
-                          <h4><%= link_to user.first_name, user_conversation_messages_path(conversation, conversation_id: conversation.id)%></h4>
+                          <h4><%= user.first_name %></h4>
+                          <% if conversation.messages.last != nil %>
+                            <p><%= conversation.messages.last.body %></p>
+                          <% end %>
                         </div>
                       </div>
                     </div>
                   <% end %>
                 <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
-          <% else %>
-            <h4>You don't have conversations yet!</h4>
-          <% end %>
         </div>
-        <div id="requests" class="tab-pane fade">
-          <h3>Requests</h3>
-          <% if current_user.photographer == true %>
+        <% else %>
+        <h4>You don't have conversations yet!</h4>
+        <% end %>
+      </div>
 
-          <p>request to self</p>
-          <% @requests_to_self.each_with_index do |request, index| %>
-            <p>#<%= index + 1 %> You have a new request from <%= request.client.first_name %> <%= request.client.last_name %> from <%= request.start_time.to_formatted_s(:long) %> to <%= request.end_time.to_formatted_s(:long) %> in <%= request.location %></p>
-          <% end %>
-          <% end %>
-          <h4>Your request to others</h4>
-          <% @requests_to_others.each_with_index do |request, index| %>
-            <div class="card">
-              <div class="row">
-                <div class="col-md-2">
-                  <% if request.user.avatar != nil %>
-                    <%= cl_image_tag request.user.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
-                  <% else %>
-                    <%= image_tag "avatar_image.jpg", width: 85, height: 85, radius: 85, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
-                  <% end %>
-                </div>
-                <div class="col-md-8">
-                  <p>#<%= index + 1 %> You have booked the photographer <%= request.user.first_name %> <%= request.user.last_name %> from <%= request.start_time.to_formatted_s(:long) %> to <%= request.end_time.to_formatted_s(:long) %> in <%= request.location %></p>
-                </div>
-                <div class="col-md-2">
-                <% if request.confirmed %>
-                  <%= link_to user_request_url(request.client, request), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %><button type="button" class="btn btn-primary status-accepted">Accepted</button><% end %>
-                <% else %>
-                  <%= link_to user_request_url(request.client, request), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %><button type="button" class="btn btn-primary status-pending">Pending</button><% end %>
-                <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+      <div id="requests" class="tab-pane fade">
+        <h3>Requests</h3>
+        <% if current_user.photographer == true %>
+        <ul class="nav nav-tabs margin-bottom">
+          <li class="active"><a data-toggle="tab" href="#received">Received</a></li>
+          <li><a data-toggle="tab" href="#sent">Sent</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="received" class="tab-pane fade in active">
+            <%= render 'inbox_requests_self' %>
+          </div>
+          <div id="sent" class="tab-pane fade">
+            <%= render 'inbox_requests_others'  %>
+          </div>
         </div>
-        <div id="bookings" class="tab-pane fade">
-          <h3>Bookings</h3>
-        </div>
+        <% else %>
+        <%= render 'inbox_requests_others'  %>
+        <% end %>
+      </div>
+
+      <div id="bookings" class="tab-pane fade">
+        <h3>Bookings</h3>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>

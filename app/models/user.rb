@@ -56,7 +56,7 @@ class User < ApplicationRecord
       user.update(user_params)
     else
       user = User.new(user_params)
-      user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.password = "123456"  # Fake password for validation
       user.save
     end
     user
@@ -71,7 +71,7 @@ class User < ApplicationRecord
       user = User.create(first_name: data["first_name"],
         last_name: data["last_name"],
         email: data["email"],
-        password: Devise.friendly_token[0,20],
+        password: "123456",
         photo: "https://www.google.com/s2/photos/profile/{user.id}"
       )
     end

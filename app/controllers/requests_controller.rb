@@ -36,7 +36,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:user_id, :client_id, :start_time, :end_time, :location)
+    params.require(:request).permit(:user_id, :client_id, :start_time, :end_time, :location, :confirmed)
   end
 
   def set_request

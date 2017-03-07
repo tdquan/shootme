@@ -1,0 +1,67 @@
+<% @requests_to_self.each_with_index do |request, index| %>
+  <% @request = request %>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <% if request.client.avatar != nil %>
+          <%= cl_image_tag request.client.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% else %>
+          <%= image_tag "avatar_image.jpg", width: 85, height: 85, radius: 85, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% end %>
+        <b><%= request.client.first_name %> <%= request.client.last_name %></b>
+      </div>
+      <div class="col-md-8">
+        <p><b>From</b> <%= request.start_time.to_formatted_s(:long) %></p>
+        <p><b>To</b> <%= request.end_time.to_formatted_s(:long) %></p>
+        <p><b>In</b> <%= request.location %></p>
+      </div>
+      <div class="col-md-2">
+      <% if request.confirmed == nil %>
+        <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "accept-form", data: request.id } ) do |f| %>
+          <div class="form-actions">
+            <%= f.input :confirmed, as: :hidden, :input_html => { :value => true } %>
+            <%= button_tag type: 'submit', class: "btn btn-success accept-button icon-button" do %>
+              <i class="fa fa-check" aria-hidden="true"></i>Accept
+            <% end %>
+          </div>
+        <% end %>
+        <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "reject-form", data: request.id } ) do |f| %>
+          <div class="form-actions">
+            <%= f.input :confirmed, as: :hidden, :input_html => { :value => false } %>
+            <%= button_tag type: 'submit', class: "btn btn-primary reject-button icon-button" do %>
+              <i class="fa fa-times" aria-hidden="true"></i>Reject
+            <% end %>
+            </div>
+        <% end %>
+      <% end %>
+        <div class="request-status" data="<%= request.id %>">
+          <% if request.confirmed == true %>
+            <span class="label label-success">Accepted</span>
+          <% end %>
+          <% if request.confirmed == false %>
+            <span class="label label-primary">Rejected</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% content_for(:after_js) do %>
+    <script type="text/javascript">
+      $(".accept-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
+        e.preventDefault(); // don't submit multiple times
+        this.submit(); // use the native submit method of the form element
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Accepted');
+        $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
+        $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
+      });
+      $(".reject-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
+        e.preventDefault(); // don't submit multiple times
+        this.submit(); // use the native submit method of the form element
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Rejected');
+        $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
+        $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
+      });
+    </script>
+  <% end %>
+<% end %>

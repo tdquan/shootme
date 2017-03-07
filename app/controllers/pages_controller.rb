@@ -2,6 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:landing_page]
   def home
     @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
+    @users_marker = User.where.not(latitude: nil, longitude: nil)
+    @hash = set_map_hash(@users_marker)
   end
 
   def landing_page
@@ -23,5 +25,20 @@ class PagesController < ApplicationController
 
   def payment
     @user = User.new
+  end
+
+  private
+
+  def set_map_hash(users)
+    map_hash = []
+    users.where.not(latitude: nil, longitude: nil).each do |user|
+      map_hash << {
+        lat: user.latitude,
+        lng: user.longitude,
+        label: user.first_name,
+        picture: user.avatar
+      }
+    end
+    map_hash
   end
 end
