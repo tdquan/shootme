@@ -16,32 +16,32 @@
         <p><b>In</b> <%= request.location %></p>
       </div>
       <div class="col-md-2">
-      <% if request.confirmed == nil %>
-        <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "accept-form", data: request.id } ) do |f| %>
-          <div class="form-actions">
-            <%= f.input :confirmed, as: :hidden, :input_html => { :value => true } %>
-            <%= button_tag type: 'submit', class: "btn btn-success accept-button icon-button" do %>
-              <i class="fa fa-check" aria-hidden="true"></i>Accept
-            <% end %>
-          </div>
-        <% end %>
-        <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "reject-form", data: request.id } ) do |f| %>
-          <div class="form-actions">
-            <%= f.input :confirmed, as: :hidden, :input_html => { :value => false } %>
-            <%= button_tag type: 'submit', class: "btn btn-primary reject-button icon-button" do %>
-              <i class="fa fa-times" aria-hidden="true"></i>Reject
-            <% end %>
+        <% if request.confirmed == nil %>
+          <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "accept-form", data: request.id } ) do |f| %>
+            <div class="form-actions">
+              <%= f.input :confirmed, as: :hidden, :input_html => { :value => true } %>
+              <%= button_tag type: 'submit', class: "btn btn-success accept-button icon-button" do %>
+                <i class="fa fa-check" aria-hidden="true"></i>Accept
+              <% end %>
             </div>
+          <% end %>
+          <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "reject-form", data: request.id } ) do |f| %>
+            <div class="form-actions">
+              <%= f.input :confirmed, as: :hidden, :input_html => { :value => false } %>
+              <%= button_tag type: 'submit', class: "btn btn-primary reject-button icon-button" do %>
+                <i class="fa fa-times" aria-hidden="true"></i>Reject
+              <% end %>
+              </div>
+          <% end %>
         <% end %>
-      <% end %>
-        <div class="request-status" data="<%= request.id %>">
-          <% if request.confirmed == true %>
-            <span class="label label-success">Accepted</span>
-          <% end %>
-          <% if request.confirmed == false %>
-            <span class="label label-primary">Rejected</span>
-          <% end %>
-        </div>
+        <span class="request-status" data="<%= request.id %>">
+        </span>
+        <% if request.confirmed == true %>
+          <span class="label label-success">Accepted</span>
+        <% end %>
+        <% if request.confirmed == false %>
+          <span class="label label-primary">Rejected</span>
+        <% end %>
       </div>
     </div>
   </div>
@@ -51,14 +51,14 @@
       $(".accept-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
         e.preventDefault(); // don't submit multiple times
         this.submit(); // use the native submit method of the form element
-        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Accepted');
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Accepted').addClass('label label-success');
         $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
         $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
       });
       $(".reject-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
         e.preventDefault(); // don't submit multiple times
         this.submit(); // use the native submit method of the form element
-        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Rejected');
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text('Rejected').addClass('label label-primary');
         $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
         $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
       });

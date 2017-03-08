@@ -9,15 +9,15 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
 
-  # Bookings
-  has_many :bookings_to_others,
-           class_name: "Booking",
-           foreign_key: :client_id,
-           dependent: :destroy
-  has_many :bookings_to_self,
-           class_name: "Booking",
-           foreign_key: :user_id,
-           dependent: :destroy
+  # # Bookings
+  # has_many :bookings_to_others,
+  #          class_name: "Booking",
+  #          foreign_key: :client_id,
+  #          dependent: :destroy
+  # has_many :bookings_to_self,
+  #          class_name: "Booking",
+  #          foreign_key: :user_id,
+  #          dependent: :destroy
 
   # Albums
   has_many :albums

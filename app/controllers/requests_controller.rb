@@ -26,6 +26,9 @@ class RequestsController < ApplicationController
 
   def update
     @request.update(request_params)
+    if @request.confirmed == true
+      @booking = Booking.create(request_id: @request.id, location: @request.location, start_time: @request.start_time, end_time: @request.end_time, price: @request.price)
+    end
   end
 
   def destroy

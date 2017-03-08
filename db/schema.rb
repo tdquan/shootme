@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222133212) do
+ActiveRecord::Schema.define(version: 20170307140346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,17 +39,15 @@ ActiveRecord::Schema.define(version: 20170222133212) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer  "user_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "paid"
-    t.integer  "client_id"
     t.float    "price"
-    t.index ["client_id"], name: "index_bookings_on_client_id", using: :btree
-    t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
+    t.integer  "request_id"
+    t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -129,7 +127,7 @@ ActiveRecord::Schema.define(version: 20170222133212) do
   end
 
   add_foreign_key "albums", "users"
-  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "requests"
   add_foreign_key "conversations", "users"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "bookings"
