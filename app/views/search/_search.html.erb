@@ -13,7 +13,15 @@
         </div>
         <div class="col-md-6 list-info">
           <h4 class="list-name block"><%= user.first_name %> <%= user.last_name %></h4>
-          <span class="block">Photographer</span>
+          <div class="role-div">
+            <% if user.role == "Photographer" %>
+              <span class=" label label-primary"><%= user.role %></span>
+            <% elsif user.role == "Videographer" %>
+              <span class="label label-success"><%= user.role %></span>
+            <% else %>
+              <span class="label label-info"><%= user.role %></span>
+            <% end %>
+          </div>
           <br>
           <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
         </div>

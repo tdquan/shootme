@@ -15,12 +15,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = current_user.bookings.build(booking_params)
-    if @booking.save
-      puts "Hurray"
-    else
-      puts "GODDAMNIT!"
-    end
+    # @booking = @request.bookings.build(booking_params)
+    # if @booking.save
+    #   puts "Hurray"
+    # else
+    #   puts "GODDAMNIT!"
+    # end
   end
 
   def update
@@ -34,7 +34,8 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :start_time, :end_time, :location)
+    params.require(:booking).permit(:user_id, :start_time, :end_time, :location,
+      :client_id, :paid, :price)
   end
 
   def set_booking

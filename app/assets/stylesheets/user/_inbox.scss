@@ -6,4 +6,16 @@
     width: 100px;
     margin: 2px 0;
   }
+  .btn-success{
+    width: 100px;
+  }
+  .margin-bottom{
+    margin-bottom: 10px;
+  }
+  .status-accepted{
+    color: $green;
+  }
+  .status-rejected{
+    color: $red-primary;
+  }
 }

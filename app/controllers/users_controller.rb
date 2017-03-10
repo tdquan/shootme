@@ -5,14 +5,20 @@ class UsersController < ApplicationController
   end
 
   def inbox
+    # messages
     @conversations = Conversation.all
-    # @bookings = current_user.bookings
+    # request to others:
+    # request client is the current user
+    # request user is the pro
     @requests_to_self = current_user.requests_to_self
     @requests_to_others = current_user.requests_to_others
-    # @conversations_client = Conversation.find_by client_id: current_user.id
-    # @conversations_user = Conversation.find_by user_id: current_user.id
-    # @messages_user = @conversations_user.messages
-    # @messages_client = @conversations_client.messages
+    # bookings
+    @bookings_to_others = []
+    @bookings_to_self = []
+    Booking.all.each do |booking|
+      @bookings_to_others << booking if booking.request.client_id == current_user.id
+      @bookings_to_self << booking if booking.request.user_id == current_user.id
+    end
   end
 
   def new
@@ -25,7 +31,3 @@ class UsersController < ApplicationController
   end
 end
 
-
-# request to others:
-# request client is the current user
-# request user is the photographer

@@ -1,0 +1,35 @@
+<% if @requests_to_others.first == nil %>
+  <div class="card">
+    <p>No sent requests yet!</p>
+  </div>
+<% end %>
+<% @requests_to_others.each do |request| %>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-2">
+        <% if request.user.avatar != nil %>
+          <%= cl_image_tag request.user.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% else %>
+          <%= image_tag "avatar_image.jpg", width: 85, height: 85, radius: 85, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+        <% end %>
+        <b><%= request.user.first_name %> <%= request.user.last_name %></b>
+      </div>
+      <div class="col-md-8">
+        <p><b>From</b> <%= request.start_time.to_formatted_s(:long) %></p>
+        <p><b>To</b> <%= request.end_time.to_formatted_s(:long) %></p>
+        <p><b>In</b> <%= request.location %></p>
+      </div>
+      <div class="col-md-2">
+      <% if request.confirmed == true %>
+        <span class="label label-success">Accepted</span>
+      <% end %>
+      <% if request.confirmed == false %>
+        <span class="label label-primary">Rejected</span>
+      <% end %>
+      <% if request.confirmed == nil %>
+        <span class="label label-info">Pending</span>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
