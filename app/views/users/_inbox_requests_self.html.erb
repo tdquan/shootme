@@ -1,3 +1,8 @@
+<% if @requests_to_self.first == nil %>
+  <div class="card">
+    <p>No received requests yet!</p>
+  </div>
+<% end %>
 <% @requests_to_self.each do |request| %>
   <% @request = request %>
   <div class="card">

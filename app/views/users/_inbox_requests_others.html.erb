@@ -1,3 +1,8 @@
+<% if @requests_to_others.first == nil %>
+  <div class="card">
+    <p>No sent requests yet!</p>
+  </div>
+<% end %>
 <% @requests_to_others.each do |request| %>
   <div class="card">
     <div class="row">

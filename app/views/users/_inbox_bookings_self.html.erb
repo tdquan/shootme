@@ -1,3 +1,8 @@
+<% if @bookings_to_self.first == nil %>
+  <div class="card">
+    <p>No received bookings yet!</p>
+  </div>
+<% end %>
 <% @bookings_to_self.each do |booking| %>
   <% if booking.request.confirmed == true %>
     <div class="card">
