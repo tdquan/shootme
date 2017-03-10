@@ -1,0 +1,17 @@
+<div class="map_box">
+  <div class="row card">
+    <div class="col-sm-6">
+      <h4><%= user.first_name %></h4>
+      <p><%= user.address %></p>
+    </div>
+    <div class="col-sm-6 text-center">
+      <% if user.avatar != nil %>
+        <%= cl_image_tag user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
+      <% else %>
+        <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

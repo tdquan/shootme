@@ -7,8 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          ##facebook & google
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-
-
+  # # geocoding
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
   # # Bookings
   # has_many :bookings_to_others,
   #          class_name: "Booking",

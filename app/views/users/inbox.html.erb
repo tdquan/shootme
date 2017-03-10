@@ -28,9 +28,9 @@
                         <div class="row">
                           <div class="col-md-2">
                             <% if conversation.user.avatar != nil %>
-                            <%= cl_image_tag conversation.user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
+                              <%= cl_image_tag conversation.user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
                             <% else %>
-                            <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
+                              <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
                             <% end %>
                           </div>
                           <div class="col-md-10">
@@ -71,7 +71,6 @@
             <%= render 'inbox_requests_others' %>
           <% end %>
         </div>
-
         <div id="bookings" class="tab-pane fade">
           <h3>Bookings</h3>
         <% if current_user.photographer == true %>
@@ -91,8 +90,6 @@
             <%= render 'inbox_bookings_others' %>
           <% end %>
         </div>
-
-
       </div>
     </div>
   </div>
