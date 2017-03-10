@@ -11,9 +11,9 @@
   user.first_name = Faker::Name.first_name
   user.last_name = Faker::Name.last_name
   user.password = "123456"
-  user.address = Faker::Address.street_address + " " + Faker::Address.city
+  # user.address = "Paris"
   user.email = Faker::Internet.email
-  user.latitude = Faker::Address.latitude
-  user.longitude = Faker::Address.longitude
+  user.latitude = rand(48.83..48.88)
+  user.longitude = rand(2.3..2.38)
   user.save
 }
