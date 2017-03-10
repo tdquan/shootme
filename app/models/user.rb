@@ -37,7 +37,10 @@ class User < ApplicationRecord
            dependent: :destroy
 
   # Requests
-  has_many :reviews, dependent: :destroy
+  # has_many :reviews, dependent: :destroy
+
+  # Conversations
+  has_many :conversations, dependent: :destroy
 
   # Elasticsearch
   include Elasticsearch::Model
@@ -51,7 +54,7 @@ class User < ApplicationRecord
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
 
-    user = User.where(provider: auth.provider, uid: auth.uid).first
+    user = User.find_or_create_by(provider: auth.provider, uid: auth.uid)
     user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
     if user
       user.update(user_params)
