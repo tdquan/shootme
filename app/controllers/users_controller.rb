@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @conversations = Conversation.all
     # request to others:
     # request client is the current user
-    # request user is the photographer
+    # request user is the pro
     @requests_to_self = current_user.requests_to_self
     @requests_to_others = current_user.requests_to_others
     # bookings

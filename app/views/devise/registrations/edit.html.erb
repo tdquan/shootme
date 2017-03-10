@@ -51,11 +51,18 @@
               <div class="col-md-12">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"><p class="title-edit-page">Are you a photographer?</p>
+                    <input type="checkbox"><p class="title-edit-page">Are you a profesionnal?</p>
                   </label>
                 </div>
               </div>
-              <div class="hidden_photographer">
+              <div class="hidden_pro">
+                <div class="col-md-12">
+                  <ul class="list-inline">
+                    <li><input type="checkbox"><p>Protographer</p></li>
+                    <li><input type="checkbox"><p>Videographer</p></li>
+                    <li><input type="checkbox"><p>Drone Pilot</p></li>
+                  </ul>
+                </div>
                 <div class="col-md-6">
                   <%= f.input :price, required: true %>
                 </div>
@@ -64,7 +71,7 @@
                 </div>
                 <div class="col-md-12">
                   <%= f.input :description, required: true, as: :text %>
-                  <%= f.input :photographer, value: true, as: :hidden %>
+                  <%= f.input :pro, value: true, as: :hidden %>
                 </div>
               </div>
             </div>
@@ -88,20 +95,20 @@
   <script type="text/javascript">
     //when the page is loaded
     $(document).ready(function () {
-       $('.hidden_photographer').hide();
+       $('.hidden_pro').hide();
     });
     //upon check
     var checkbox = $('.checkbox');
-    var hidden_photographer = $('.hidden_photographer');
-    // check for default status (when checked, show the hidden_photographer)
+    var hidden_pro = $('.hidden_pro');
+    // check for default status (when checked, show the hidden_pro)
     if (checkbox.attr('checked') !== undefined){
-        hidden_photographer.show();
+        hidden_pro.show();
     } else {
-        hidden_photographer.hide();
+        hidden_pro.hide();
     }
-    // then simply toggle the hidden_photographer on every change
+    // then simply toggle the hidden_pro on every change
     checkbox.change(function(){
-        hidden_photographer.toggle();
+        hidden_pro.toggle();
     });
   </script>
 <% end %>

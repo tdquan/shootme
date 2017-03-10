@@ -15,5 +15,7 @@
   user.email = Faker::Internet.email
   user.latitude = rand(48.83..48.88)
   user.longitude = rand(2.3..2.38)
+  user.pro = true
+  user.role = ["Photographer", "Videographer", "Drone Pilot"].sample
   user.save
 }

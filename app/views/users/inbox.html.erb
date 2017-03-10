@@ -54,7 +54,7 @@
 
         <div id="requests" class="tab-pane fade">
           <h3>Requests</h3>
-          <% if current_user.photographer == true %>
+          <% if current_user.pro == true %>
           <ul class="nav nav-tabs margin-bottom">
             <li class="active"><a data-toggle="tab" href="#received_request">Received</a></li>
             <li><a data-toggle="tab" href="#sent_request">Sent</a></li>
@@ -73,7 +73,7 @@
         </div>
         <div id="bookings" class="tab-pane fade">
           <h3>Bookings</h3>
-        <% if current_user.photographer == true %>
+        <% if current_user.pro == true %>
           <ul class="nav nav-tabs margin-bottom">
             <li class="active"><a data-toggle="tab" href="#received_booking">Received</a></li>
             <li><a data-toggle="tab" href="#sent_booking">Sent</a></li>
