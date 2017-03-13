@@ -185,6 +185,16 @@ GEM
     minitest (5.10.1)
     momentjs-rails (2.17.1)
       railties (>= 3.1)
+    monetize (1.6.0)
+      money (~> 6.8)
+    money (6.8.2)
+      i18n (>= 0.6.4, < 0.9)
+      sixarm_ruby_unaccent (>= 1.1.1, < 2)
+    money-rails (1.8.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.6.0)
+      money (~> 6.8.1)
+      railties (>= 3.0)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -286,6 +296,7 @@ GEM
       actionmailer (>= 3.2.6, < 6)
       actionpack (>= 3.2.6, < 6)
       devise (>= 3.2, < 6)
+    sixarm_ruby_unaccent (1.1.1)
     slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -352,6 +363,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mailchimp-api (~> 2.0, >= 2.0.6)
   momentjs-rails (>= 2.9.0)
+  money-rails
   omniauth-facebook
   omniauth-google-oauth2!
   pg

@@ -6,4 +6,6 @@ class Request < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :location, presence: true
+
+  monetize :price_cents
 end

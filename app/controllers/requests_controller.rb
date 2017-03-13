@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
     @request.update(request_params)
     if @request.confirmed == true
       @booking = Booking.create(request_id: @request.id, location: @request.location,
-        start_time: @request.start_time, end_time: @request.end_time, price: @request.price)
+        start_time: @request.start_time, end_time: @request.end_time, price_cents: @request.price_cents)
     end
   end
 
@@ -41,7 +41,7 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:user_id, :client_id, :start_time, :end_time,
-      :location, :confirmed, :price)
+      :location, :confirmed, :price_cents)
   end
 
   def set_request

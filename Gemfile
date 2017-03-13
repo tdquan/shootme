@@ -89,3 +89,6 @@ gem 'cloudinary'
 #attachinary
 gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
+
+#money
+gem 'money-rails'
