@@ -1,11 +1,21 @@
-role :app, %w{shootme@cbm-groupe.fr}
-role :web, %w{shootme@cbm-groupe.fr}
-role :db,  %w{shootme@cbm-groupe.fr}
-set :rails_env, fetch(:stage)
-set :rbenv_ruby, '2.3.1'
+role :app, %w{shootme@188.226.135.92}
+role :web, %w{shootme@188.226.135.92}
+role :db,  %w{shootme@188.226.135.92}
+
+set :application, "shootme"
+set :repo_url, "git@git.cbm-groupe.fr:internal/SHOUTME.git"
+
+set :rails_env, :production
 set :deploy_to, '/home/shootme/staging'
-set :branch, 'staging'
-set :unicorn_pid, File.join(shared_path, 'pids', 'unicorn.pid')
+
+set :branch, 'staging2'
+
+set :ssh_options, {
+    forward_agent: true,
+    keys: %w(/home/shootme/.ssh/id_rsa),
+    auth_methods: %w(publickey password),
+    password: 'shootmepass'
+  }
 
 
 # server-based syntax
