@@ -8,7 +8,7 @@ set :repo_url, "git@git.cbm-groupe.fr:internal/SHOUTME.git"
 set :rails_env, :production
 set :deploy_to, '/home/shootme/staging'
 
-set :branch, 'staging'
+set :branch, 'staging2'
 
 set :ssh_options, {
     forward_agent: true,
