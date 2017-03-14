@@ -38,12 +38,16 @@
               <div class="col-md-6">
                 <%= f.input :last_name, required: true %>
               </div>
-              <div class="col-md-6">
-                <%= f.input :address, required: false %>
+              <div class="col-md-6 user_address">
+                <%= f.input :address, required: true %>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 user_postal_code">
                 <%= f.input :postal_code, required: false %>
               </div>
+              <div class="col-md-6 user_city">
+                <%= f.input :city, required: false %>
+              </div>
+
               <div class="col-md-12">
                 <p class="title-edit-page">Upload avatar:</p>
               </div>
@@ -58,7 +62,7 @@
                   <%= f.input :role, as: :check_boxes, label: false, collection: ["Photographer", "Videographer", "Drone Pilot"] %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :price, required: true %>
+                  <%= f.input :fee_cents, required: true, label: 'Fee' %>
                 </div>
                 <div class="col-md-12">
                   <%= f.input :photo, required: false, as: :file %>
