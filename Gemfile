@@ -3,8 +3,8 @@ ruby '>=2.3.1'
 
 gem 'rails', '5.0.0.1'
 gem 'devise'
-gem 'puma'
-gem 'pg'
+gem 'unicorn'
+gem 'sqlite3'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
@@ -29,12 +29,16 @@ group :development, :test do
 
   gem 'letter_opener' # mails
   gem 'faker'
+end
 
-  #capistrano
+group :production do
+  gem 'pg'
+  # capistrano
   gem "capistrano", "~> 3.7"
-  gem 'capistrano-rails'
-
-
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-unicorn',   require: false
 end
 
 source 'https://rails-assets.org' do
