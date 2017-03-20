@@ -1,18 +1,18 @@
-role :app, %w{shootme@188.226.135.92}
-role :web, %w{shootme@188.226.135.92}
-role :db,  %w{shootme@188.226.135.92}
+role :app, %w{shootme2@95.85.20.211}
+role :web, %w{shootme2@95.85.20.211}
+role :db,  %w{shootme2@95.85.20.211}
 
 set :application, "shootme"
 set :repo_url, "git@git.cbm-groupe.fr:internal/SHOUTME.git"
 
 set :rails_env, :production
-set :deploy_to, '/home/shootme/staging'
+set :deploy_to, '/home/shootme2/staging'
 
 set :branch, 'staging2'
 
 set :ssh_options, {
     forward_agent: true,
-    keys: %w(/home/shootme/.ssh/id_rsa),
+    keys: %w(/home/shootme2/.ssh/id_rsa),
     auth_methods: %w(publickey password),
     password: 'shootmepass'
   }
