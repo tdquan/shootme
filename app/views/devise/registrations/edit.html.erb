@@ -38,40 +38,37 @@
               <div class="col-md-6">
                 <%= f.input :last_name, required: true %>
               </div>
-              <div class="col-md-6">
-                <%= f.input :address, required: false %>
+              <div class="col-md-6 user_address">
+                <%= f.input :address, required: true %>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 user_postal_code">
                 <%= f.input :postal_code, required: false %>
               </div>
+              <div class="col-md-6 user_city">
+                <%= f.input :city, required: false %>
+              </div>
+
               <div class="col-md-12">
                 <p class="title-edit-page">Upload avatar:</p>
               </div>
               <div class="col-md-12"><%= f.input :avatar, as: :attachinary, label: false, class: "attachinary-input" %></div>
               <div class="col-md-12">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"><p class="title-edit-page">Are you a profesionnal?</p>
-                  </label>
+                <div class="checkbox_pro title-edit-page">
+                  <%= f.input :pro, as: :boolean, label: "Are you a professional?" %>
                 </div>
               </div>
               <div class="hidden_pro">
                 <div class="col-md-12">
-                  <ul class="list-inline">
-                    <li><input type="checkbox"><p>Protographer</p></li>
-                    <li><input type="checkbox"><p>Videographer</p></li>
-                    <li><input type="checkbox"><p>Drone Pilot</p></li>
-                  </ul>
+                  <%= f.input :role, as: :check_boxes, label: false, collection: ["Photographer", "Videographer", "Drone Pilot"] %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :price, required: true %>
+                  <%= f.input :fee_cents, required: true, label: 'Fee' %>
                 </div>
                 <div class="col-md-12">
                   <%= f.input :photo, required: false, as: :file %>
                 </div>
                 <div class="col-md-12">
                   <%= f.input :description, required: true, as: :text %>
-                  <%= f.input :pro, value: true, as: :hidden %>
                 </div>
               </div>
             </div>
@@ -93,21 +90,26 @@
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">
+    var checkbox_pro = $('.checkbox_pro');
+    var hidden_pro = $('.hidden_pro');
     //when the page is loaded
     $(document).ready(function () {
-       $('.hidden_pro').hide();
-    });
+      <% if current_user.pro == true %>
+        hidden_pro.show();
+      <% else %>
+        hidden_pro.hide();
+      <% end %>
+        });
     //upon check
-    var checkbox = $('.checkbox');
-    var hidden_pro = $('.hidden_pro');
+
     // check for default status (when checked, show the hidden_pro)
-    if (checkbox.attr('checked') !== undefined){
+    if (checkbox_pro.attr('checked') !== undefined){
         hidden_pro.show();
     } else {
         hidden_pro.hide();
     }
     // then simply toggle the hidden_pro on every change
-    checkbox.change(function(){
+    checkbox_pro.change(function(){
         hidden_pro.toggle();
     });
   </script>
