@@ -63,13 +63,15 @@ gem 'devise-i18n'
 
 gem 'sidekiq'
 
-#mails
+# mails
 gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 
-#search
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-dsl'
+# search
+# gem 'elasticsearch-model'
+# gem 'elasticsearch-rails'
+# gem 'elasticsearch-dsl'
+
+gem "pg_search"
 
 #responder
 gem 'responders'
