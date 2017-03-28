@@ -1,5 +1,10 @@
 class User < ApplicationRecord
-  require 'elasticsearch/model'
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  # require 'elasticsearch/model'
+  include PgSearch
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -43,8 +48,8 @@ class User < ApplicationRecord
   has_many :conversations, dependent: :destroy
 
   # Elasticsearch
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
 
   # Facebook
   def self.find_for_facebook_oauth(auth)
@@ -93,4 +98,4 @@ class User < ApplicationRecord
   end
 end
 
-User.import force: true   # for auto sync model with elastic search
+# User.import force: true   # for auto sync model with elastic search

@@ -35,19 +35,11 @@ class PagesController < ApplicationController
     @user = User.new
   end
 
-  private
+  def contact_mailer
+    user = User.new(first_name: params[:mailer][:name], email: params[:mailer][:email])
+    message = params[:mailer][:message]
+    HomePageMailer.contact_mailer(user, message).deliver_now
+    redirect_to :root
+  end
 
-  # def set_map_hash(users)
-  #   map_hash = []
-  #   users.where.not(latitude: nil, longitude: nil).each do |user|
-  #     map_hash << {
-  #       lat: user.latitude,
-  #       lng: user.longitude,
-  #       label: user.first_name,
-  #       picture: user.avatar
-  #       infowindow: render_to_string(partial: "/users/map_box", locals: { user: user })
-  #     }
-  #   end
-  #   map_hash
-  # end
 end

@@ -103,16 +103,16 @@
   <div class="wrapper-contact-us">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
           <%= image_tag "contact_us.png", class: "image-contact-us"%>
         </div>
         <div class="col-md-6">
-          <div class="form-group text-center">
-            <input type="text" class="form-control" id="name" placeholder="Name">
-            <input type="text" class="form-control" id="email" placeholder="Email">
-            <textarea class="form-control" rows="5" id="message" placeholder="Message"></textarea>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button" id="submit">Submit</a></p>
-          </div>
+          <%= simple_form_for :mailer, html: { class: "text-center" }, url: contact_path do |f| %>
+            <%= f.input :name, placeholder: "Name", input_html: { id: "name" }, label: false %>
+            <%= f.input :email, placeholder: "Email", input_html: { id: "email" }, label: false %>
+            <%= f.input :message, as: :text, placeholder: "Your message", input_html: { id: "message", rows: 5 }, label: false %>
+            <%= f.submit 'Send', class: "btn btn-primary btn-lg", id: "submit" %>
+          <% end %>
         </div>
       </div>
     </div>

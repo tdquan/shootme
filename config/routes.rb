@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'search', to: "search#search"
   get 'payment', to: "pages#payment"
   get 'inbox', to: "users#inbox", as: :inbox
+  post 'mailer', to: "pages#contact_mailer", as: :contact
 
   resources :charges
 end
