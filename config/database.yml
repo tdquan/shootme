@@ -7,19 +7,19 @@ default: &default
 development:
   adapter: sqlite3
   encoding: utf8
-  database: db/development
+  database: db/development.db
   pool: 5
 
 test: &TEST
   adapter: sqlite3
   encoding: utf8
-  database: db/test
+  database: db/test.db
   pool: 5
 
 production:
   adapter: sqlite3
   encoding: utf8
-  database: db/shoot-me
+  database: db/shoot-me.db
   pool: 5
-  username: shootme2
-  password: <%= ENV['shootme_database_password'] %>
+  # username: shootme2
+  # password: <%= ENV['shootme_database_password'] %>

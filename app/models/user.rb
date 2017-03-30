@@ -6,6 +6,8 @@ class User < ApplicationRecord
   # require 'elasticsearch/model'
   include PgSearch
 
+  multisearchable :against => [:first_name, :last_name, :email, :address, :longitude, :latitude, :role]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

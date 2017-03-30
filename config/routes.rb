@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   get 'home', to: "pages#home"
-  get 'search', to: "search#search"
+  get 'search', to: "search#search", as: :search
   get 'payment', to: "pages#payment"
   get 'inbox', to: "users#inbox", as: :inbox
   post 'mailer', to: "pages#contact_mailer", as: :contact
