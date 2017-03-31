@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.boolean  "paid"
-    t.float    "price"
     t.integer  "request_id"
+    t.integer  "price_cents", default: 0, null: false
     t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
   end
 
@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
-    t.float    "price"
     t.boolean  "confirmed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "price_cents", default: 0, null: false
     t.index ["client_id"], name: "index_requests_on_client_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.integer  "postal_code"
     t.float    "longitude"
     t.float    "latitude"
-    t.float    "price"
     t.string   "provider"
     t.string   "uid"
     t.string   "facebook_picture_url"
@@ -132,6 +131,9 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.text     "avatar"
     t.string   "role"
     t.boolean  "pro"
+    t.integer  "fee_cents",              default: 0,  null: false
+    t.string   "city"
+    t.string   "country"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

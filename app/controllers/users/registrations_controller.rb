@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
     super
+    @role = ["Photographer", "Videographer", "Drone Pilot"]
   end
 
   def create

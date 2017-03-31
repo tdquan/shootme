@@ -11,16 +11,16 @@
             <div class="form-inputs">
               <div class="row">
                 <div class="col-md-6">
-                  <%= f.input :first_name, required: true, autofocus: true %>
+                  <%= f.input :first_name, required: true, autofocus: true, input_html: {value: current_user.first_name} %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :last_name, required: true %>
+                  <%= f.input :last_name, required: true, input_html: {value: current_user.last_name}  %>
                 </div>
                 <div class="col-md-12">
-                  <%= f.input :address, required: true %>
+                  <%= f.input :address, required: true, input_html: {value: current_user.address}  %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :postal_code, required: true %>
+                  <%= f.input :postal_code, required: true, input_html: {value: current_user.postal_code}  %>
                 </div>
               </div>
             </div>
