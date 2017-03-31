@@ -1,5 +1,6 @@
 <% if @users.empty? == false %>
   <% @users.each do |user| %>
+    <% @roles = user.role.split(" - ").sort %>
     <%= link_to user_path(user.id), class: "card card-popup block" do %>
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
@@ -14,12 +15,14 @@
         <div class="col-md-6 list-info">
           <h4 class="list-name block"><%= user.first_name %> <%= user.last_name %></h4>
           <div class="role-div">
-            <% if user.role == "Photographer" %>
-              <span class=" label label-primary"><%= user.role %></span>
-            <% elsif user.role == "Videographer" %>
-              <span class="label label-success"><%= user.role %></span>
-            <% else %>
-              <span class="label label-info"><%= user.role %></span>
+            <% @roles.each do |role| %>
+              <% if role == "Photographer" %>
+                <span class=" label label-primary"><%= role %></span>
+              <% elsif role == "Videographer" %>
+                <span class="label label-success"><%= role %></span>
+              <% else %>
+                <span class="label label-info"><%= role %></span>
+              <% end %>
             <% end %>
           </div>
           <br>
@@ -39,7 +42,9 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= params.inspect %>
-  <br>
-  <%= params[:user][:profession].count %>
+  <div class="card block">
+    <h4 class="text-center">No results found.</h4>
+  </div>
+  <%# flash[:notice] = "No results found." %>
+  <%#= params.inspect %>
 <% end %>
