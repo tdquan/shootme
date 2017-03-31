@@ -17,10 +17,14 @@
             <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, collection: @cities, label: 'Location' %>
             <%= f.input :profession, wrapper_html: { class: 'col-sm-4' }, as: :check_boxes, collection: ["Photographer", "Drone Pilot", "Videographer"], label: 'Professions' %>
           </div>
-          <div class="row">
-            <%= f.input :distance, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0', max: '20', min: '0', id: 'range-slider' }, label: 'Range (km)' %>
+
+          <!-- Range slider : currently not in use -->
+          <!-- <div class="row">
+            <#%= f.input :distance, as: :range, wrapper_html: { class: 'col-sm-4' }, input_html: { value: '0', max: '20', min: '0', id: 'range-slider' }, label: 'Range (km)' %>
             <span id="range-value"></span>
-          </div>
+          </div> -->
+          <!-- End of range slider -->
+
           <hr>
           <%= link_to '#', class: 'search-bar-link reset' do %>
             <i class="fa fa-close"></i>Reset Filter
