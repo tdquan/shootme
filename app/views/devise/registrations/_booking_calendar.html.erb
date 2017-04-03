@@ -50,8 +50,8 @@
 <hr>
 
 <% @requests.each do |request| %>
-  <% if request.booking.review %>
-    <%= request.booking.review.comment %>
+  <% if request.get_review %>
+    <%= request.get_review.comment %>
     <%= request.client.first_name %>
   <% end %>
 <% end %>
