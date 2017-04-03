@@ -4,7 +4,8 @@ ruby '>=2.3.1'
 gem 'rails', '5.0.0.1'
 gem 'devise'
 gem 'unicorn'
-gem 'sqlite3'
+gem 'unicorn-rails'
+gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
@@ -32,7 +33,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   # capistrano
   gem "capistrano", "~> 3.7"
   gem 'capistrano-rbenv', '~> 2.0'
@@ -74,8 +74,8 @@ gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 # gem 'elasticsearch-model'
 # gem 'elasticsearch-rails'
 # gem 'elasticsearch-dsl'
-
-gem "pg_search"
+# gem 'searchkick'
+gem 'pg_search'
 
 #responder
 gem 'responders'

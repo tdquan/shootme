@@ -13,11 +13,10 @@
       <% end %>
       <% n = n+1 %>
     <% end %>
-    <% @galleries.each do |g| %>
+    <% @albums.each do |g| %>
       <%= link_to render_gallery_path(topic_name: g.name) %>
-        <% g.photos.each do |p| %>
-          <%= cl_image_tag p.path, width: 800, height: 500, crop: :fill %>
-        <% end %>
+      <% g.photos.each do |p| %>
+        <%= cl_image_tag p.path, width: 800, height: 500, crop: :fill %>
       <% end %>
     <% end %>
   </div>

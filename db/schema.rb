@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314103609) do
+ActiveRecord::Schema.define(version: 20170327133617) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
     t.string  "name"
     t.string  "tags"
     t.text    "description"
     t.integer "user_id"
-    t.index ["user_id"], name: "index_albums_on_user_id"
+    t.index ["user_id"], name: "index_albums_on_user_id", using: :btree
   end
 
   create_table "attachinary_files", force: :cascade do |t|
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -44,7 +47,11 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.boolean  "paid"
     t.integer  "request_id"
     t.integer  "price_cents", default: 0, null: false
+<<<<<<< HEAD
     t.index ["request_id"], name: "index_bookings_on_request_id"
+=======
+    t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
+>>>>>>> 7c69176366237ace3eaa7a7d670c5e17a41503bc
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -52,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_conversations_on_client_id"
-    t.index ["user_id"], name: "index_conversations_on_user_id"
+    t.index ["client_id"], name: "index_conversations_on_client_id", using: :btree
+    t.index ["user_id"], name: "index_conversations_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -63,8 +70,17 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.boolean  "read",            default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
 
   create_table "requests", force: :cascade do |t|
@@ -77,8 +93,13 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "price_cents", default: 0, null: false
+<<<<<<< HEAD
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
+=======
+    t.index ["client_id"], name: "index_requests_on_client_id", using: :btree
+    t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
+>>>>>>> 7c69176366237ace3eaa7a7d670c5e17a41503bc
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -87,7 +108,7 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "booking_id"
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,6 +145,13 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.string   "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "albums", "users"
+  add_foreign_key "bookings", "requests"
+  add_foreign_key "conversations", "users"
+  add_foreign_key "requests", "users"
+  add_foreign_key "reviews", "bookings"
 end

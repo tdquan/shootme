@@ -9,14 +9,17 @@
         <% end %>
         <div class="text-center user-fullname"><b><%= @current_profile.first_name %> <%= @current_profile.last_name %></b></div>
         <div class="role-profile text-center">
-          <% if @current_profile.role == "Photographer" %>
-            <span class=" label label-primary"><%= @current_profile.role %></span>
-          <% elsif @current_profile.role == "Videographer" %>
-            <span class="label label-success"><%= @current_profile.role %></span>
-          <% else %>
-            <span class="label label-info"><%= @current_profile.role %></span>
+          <% @roles.each do |role| %>
+            <% if role == "Photographer" %>
+              <span class=" label label-primary"><%= role %></span>
+            <% elsif role == "Videographer" %>
+              <span class="label label-success"><%= role %></span>
+            <% else %>
+              <span class="label label-info"><%= role %></span>
+            <% end %>
           <% end %>
         </div>
+        <br>
         <ul class="text-center">
           <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @current_profile.address %></li>
           <li class="block ratings">

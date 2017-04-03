@@ -1,65 +1,29 @@
-require 'elasticsearch/dsl'
+# require 'elasticsearch/dsl'
 
 class SearchController < ApplicationController
   def search
     @users = []
-    if params[:user][:q].blank? && params[:user][:location].blank?
+    if params[:user][:q].blank? && params[:user][:location].blank? && params[:user][:profession].count <= 1
       @users = User.all
-    else
-      term = params[:user][:q]
-      location = params[:user][:location]
-      profession = params[:user][:profession]
-      distance = params[:user][:distance]
-
-      query = Elasticsearch::DSL::Search.search do
-        query do
-          bool do
-            # General query string search
-            if !term.blank?
-              must do
-                multi_match do
-                  query term
-                  type "most_fields"
-                  fields ["email", "first_name", "last_name"]
-                  operator "or"
-                end
-              end
-            end
-
-            # Search by address
-            if !location.blank?
-              should do
-                multi_match do
-                  query location
-                  type "most_fields"
-                  fields ["address"]
-                  operator "or"
-                end
-              end
-            end
-
-            # Search by profession
-            if !profession.blank?
-              should do
-                multi_match do
-                  query location
-                  type "most_fields"
-                  fields ["profession"]
-                  operator "or"
-                end
-              end
-            end
-
-          end
-        end
-      end
-
-      results = User.search(query)
-      results.each do |user|
-        if user.address == location
-          @users << user
-        end
-      end
+    elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count > 1
+      @users = User.query_search(params[:user][:q])
+      @users = @users.select { |user| (user.address && user.address.include?(params[:user][:location])) }
+      @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+    elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count <= 1
+      @users = User.query_search(params[:user][:q])
+    elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count <= 1
+      @users = User.query_search(params[:user][:q])
+      @users = @users.select { |user| (user.address && user.address.include?(params[:user][:location])) }
+    elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count > 1
+      @users = User.query_search(params[:user][:q])
+      @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+    elsif params[:user][:q].blank? && params[:user][:location].present? && params[:user][:profession].count <= 1
+      @users = User.search_by_location(params[:user][:location])
+    elsif params[:user][:q].blank? && params[:user][:location].present? && params[:user][:profession].count > 1
+      @users = User.search_by_location(params[:user][:location])
+      @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+    elsif params[:user][:q].blank? && params[:user][:location].blank? && params[:user][:profession].count > 1
+      @users = User.search_by_profession(params[:user][:profession].join(" "))
     end
 
     respond_to do |f|
