@@ -31,7 +31,7 @@ class User < ApplicationRecord
                   }
 
   pg_search_scope :search_by_location,
-                  against: :address,
+                  against: :city,
                   using: {
                     tsearch: {
                       prefix: true
