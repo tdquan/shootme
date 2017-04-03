@@ -43,12 +43,8 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.datetime "updated_at",              null: false
     t.boolean  "paid"
     t.integer  "request_id"
-<<<<<<< HEAD
     t.integer  "price_cents", default: 0, null: false
-    t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
-=======
     t.index ["request_id"], name: "index_bookings_on_request_id"
->>>>>>> 4082697c0baccec7619f01a17b160f974e1da0f9
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -78,18 +74,11 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.datetime "end_time"
     t.string   "location"
     t.boolean  "confirmed"
-<<<<<<< HEAD
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "price_cents", default: 0, null: false
-    t.index ["client_id"], name: "index_requests_on_client_id", using: :btree
-    t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
-=======
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
->>>>>>> 4082697c0baccec7619f01a17b160f974e1da0f9
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -133,8 +122,6 @@ ActiveRecord::Schema.define(version: 20170314103609) do
     t.integer  "fee_cents",              default: 0,  null: false
     t.string   "city"
     t.string   "country"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
