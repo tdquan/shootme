@@ -47,11 +47,8 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.boolean  "paid"
     t.integer  "request_id"
     t.integer  "price_cents", default: 0, null: false
-<<<<<<< HEAD
     t.index ["request_id"], name: "index_bookings_on_request_id"
-=======
     t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
->>>>>>> 7c69176366237ace3eaa7a7d670c5e17a41503bc
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -93,13 +90,10 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "price_cents", default: 0, null: false
-<<<<<<< HEAD
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
-=======
     t.index ["client_id"], name: "index_requests_on_client_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
->>>>>>> 7c69176366237ace3eaa7a7d670c5e17a41503bc
   end
 
   create_table "reviews", force: :cascade do |t|
