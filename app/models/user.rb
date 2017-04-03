@@ -102,8 +102,8 @@ class User < ApplicationRecord
       user = User.create(first_name: data["first_name"],
         last_name: data["last_name"],
         email: data["email"],
-        password: "123456",
-        photo: "https://www.google.com/s2/photos/profile/#{user.id}"
+        password: "123456"
+        # photo: "https://www.google.com/s2/photos/profile/#{user.id}"
       )
     end
     user
