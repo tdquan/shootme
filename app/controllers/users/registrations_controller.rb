@@ -4,7 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @request = Request.new
     @cities = ["Paris", "London"]
     @current_profile = User.find(params[:user_id])
-    @roles = @current_profile.role.split(" - ").sort
+    unless @current_profile.role == nil
+      @roles = @current_profile.role.split(" - ").sort
+    end
 
     # Chat
     if Conversation.between(params[:user_id],current_user.id).present?

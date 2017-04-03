@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.boolean  "paid"
     t.integer  "request_id"
     t.integer  "price_cents", default: 0, null: false
-    t.index ["request_id"], name: "index_bookings_on_request_id"
     t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
   end
 
@@ -90,8 +89,6 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "price_cents", default: 0, null: false
-    t.index ["client_id"], name: "index_requests_on_client_id"
-    t.index ["user_id"], name: "index_requests_on_user_id"
     t.index ["client_id"], name: "index_requests_on_client_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -137,8 +134,6 @@ ActiveRecord::Schema.define(version: 20170327133617) do
     t.integer  "fee_cents",              default: 0,  null: false
     t.string   "city"
     t.string   "country"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
