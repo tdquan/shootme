@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/users/:user_id/gallery/:topic_name', to: "albums#render_gallery", as: :render_gallery
 
   resources :users, only: :index do
-    resources :bookings
+    resources :bookings do
+      resources :reviews
+    end
     resources :requests
     resources :conversations do
       resources :messages

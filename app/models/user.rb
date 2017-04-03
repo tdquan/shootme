@@ -121,3 +121,5 @@ class User < ApplicationRecord
 end
 
 # User.import force: true   # for auto sync model with elastic search
+
+

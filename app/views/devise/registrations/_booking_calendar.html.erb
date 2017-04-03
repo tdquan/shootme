@@ -48,19 +48,13 @@
 
 <h3 id="<%= @current_profile.first_name %>-reviews">Reviews</h3>
 <hr>
-  <% n = 1 %>
-  <% 5.times do %>
-    <div class="card media">
-      <div class="media-left">
-        <img class="media-object" src="http://lorempixel.com/80/80/people/<%= n %>" alt="...">
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></h4>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi nemo quae, aspernatur soluta obcaecati deserunt perferendis mollitia libero quibusdam? Distinctio, recusandae.
-      </div>
-    </div>
-    <% n = n + 1 %>
+
+<% @requests.each do |request| %>
+  <% if request.booking.review %>
+    <%= request.booking.review.comment %>
+    <%= request.client.first_name %>
   <% end %>
+<% end %>
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">

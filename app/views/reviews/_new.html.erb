@@ -1,0 +1,4 @@
+<%= simple_form_for [user, booking, @review] do |f| %>
+  <%= f.input :comment, label: false, as: :text, class: 'review_form' %>
+  <%= f.submit "Leave Review", class: "btn btn-primary center-block" %>
+<% end %>

@@ -42,7 +42,7 @@
     </div>
     <div class="col-md-7">
       <% if @current_profile != @current_user %>
-        <%= render "booking_calendar" %>
+        <%= render "booking_calendar", requests: @requests %>
       <% else %>
         <%= render "self_profile" %>
       <% end %>
