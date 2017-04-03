@@ -64,7 +64,7 @@ class User < ApplicationRecord
            dependent: :destroy
 
   ## Conversations
-  has_many :conversations, dependent: :destroy
+  has_many :conversations
 
   ## Elasticsearch
   # include Elasticsearch::Model
