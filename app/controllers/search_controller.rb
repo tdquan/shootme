@@ -7,13 +7,13 @@ class SearchController < ApplicationController
       @users = User.all
     elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count > 1
       @users = User.query_search(params[:user][:q])
-      @users = @users.select { |user| (user.address && user.address.include?(params[:user][:location])) }
+      @users = @users.select { |user| (user.city && user.city.include?(params[:user][:location])) }
       @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
     elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count <= 1
       @users = User.query_search(params[:user][:q])
     elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count <= 1
       @users = User.query_search(params[:user][:q])
-      @users = @users.select { |user| (user.address && user.address.include?(params[:user][:location])) }
+      @users = @users.select { |user| (user.city && user.city.include?(params[:user][:location])) }
     elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count > 1
       @users = User.query_search(params[:user][:q])
       @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }

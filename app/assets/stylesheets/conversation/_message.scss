@@ -2,6 +2,12 @@
   .chat-window {
     height: 60vh;
     overflow: scroll;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .chat-bg {
+      padding: 25px;
+      background-color: white;
+    }
   }
 }
 

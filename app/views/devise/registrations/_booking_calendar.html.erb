@@ -41,7 +41,7 @@
     <br>
     <div class="text-center">
         <%= f.button :submit, value: 'Request a booking', class: "btn btn-primary" %>
-        <%= link_to "Message", user_conversation_messages_path(params[:user_id], conversation_id: @conversation.id), class: "btn btn-default" %>
+        <%= link_to "Message", user_conversations_url, method: :post, class: "btn btn-default" %>
     </div>
   <% end %>
 </div>

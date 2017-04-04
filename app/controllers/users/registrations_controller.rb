@@ -4,18 +4,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @request = Request.new
     @cities = ["Paris", "London"]
     @current_profile = User.find(params[:user_id])
-    @roles = @current_profile.role.split(" - ").sort
     @requests = Request.where(user: @current_profile)
 
-
-    # Chat
-    if Conversation.between(params[:user_id],current_user.id).present?
-      @conversation = Conversation.between(params[:user_id], current_user.id).first
-    elsif Conversation.between(current_user.id, params[:user_id]).present?
-      @conversation = Conversation.between(current_user.id, params[:user_id]).first
+    if @current_profile.role
+      @roles = @current_profile.role.split(" - ").sort
     else
-      @conversation = Conversation.create!(user_id: params[:user_id], client_id: current_user.id)
+      @roles = []
     end
+    # Chat
+    # unless params[:user_id].to_i == current_user.id
+    #   if Conversation.between(params[:user_id],current_user.id).present?
+    #     @conversation = Conversation.between(params[:user_id], current_user.id).first
+    #   elsif Conversation.between(current_user.id, params[:user_id]).present?
+    #     @conversation = Conversation.between(current_user.id, params[:user_id]).first
+    #   else
+    #     @conversation = Conversation.create!(user_id: params[:user_id], client_id: current_user.id)
+    #   end
+    # end
   end
 
   def new

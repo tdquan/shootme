@@ -31,7 +31,7 @@ class User < ApplicationRecord
                   }
 
   pg_search_scope :search_by_location,
-                  against: :address,
+                  against: :city,
                   using: {
                     tsearch: {
                       prefix: true
@@ -64,7 +64,7 @@ class User < ApplicationRecord
            dependent: :destroy
 
   ## Conversations
-  has_many :conversations, dependent: :destroy
+  has_many :conversations
 
   ## Elasticsearch
   # include Elasticsearch::Model
