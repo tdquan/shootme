@@ -121,7 +121,6 @@ class User < ApplicationRecord
     user.avatar
   end
 
-<<<<<<< HEAD
   def count_reviews
     requests = Request.where(user: self)
     review_count = 0
