@@ -118,6 +118,22 @@ class User < ApplicationRecord
     end
     user.avatar
   end
+
+  def count_reviews
+    requests = Request.where(user: self)
+    review_count = 0
+    if requests
+      requests.each do |r|
+        if r.booking
+          if r.booking.review
+            review_count += 1
+          end
+        end
+      end
+    end
+    review_count
+  end
+
 end
 
 

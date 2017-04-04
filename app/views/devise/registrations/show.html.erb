@@ -29,7 +29,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </li>
-          <li class="block review-link"><%= link_to "24 Reviews", "#" %></li>
+          <li class="block review-link"><%= pluralize(@current_profile.count_reviews, 'review') %></li>
         </ul>
       </div>
       <% if @current_profile != current_user %>
