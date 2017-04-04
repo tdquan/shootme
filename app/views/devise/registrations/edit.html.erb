@@ -51,7 +51,11 @@
               <div class="col-md-12">
                 <p class="title-edit-page">Upload avatar:</p>
               </div>
+              <!-- Upload avatar -->
               <div class="col-md-12"><%= f.input :avatar, as: :attachinary, label: false, class: "attachinary-input" %></div>
+
+              <!-- Pro users section -->
+
               <div class="col-md-12">
                 <div class="checkbox_pro title-edit-page">
                   <%= f.input :pro, as: :boolean, label: "Are you a professional?" %>
@@ -65,15 +69,29 @@
                   <%= f.input :fee_cents, required: true, label: 'Fee' %>
                 </div>
                 <div class="col-md-12">
-                  <%= f.input :photo, required: false, as: :file %>
-                </div>
-                <div class="col-md-12">
                   <%= f.input :description, required: true, as: :text %>
                 </div>
+
+                <!-- Album upload -->
+                <div class="col-md-12">
+                  <h3>Upload an album</h3>
+                </div>
+                <%= f.fields_for @album do |f_album|%>
+                  <div class="col-md-12">
+                    <%= f_album.input :name, label: "Album name", required: true %>
+                  </div>
+                  <div class="col-md-12">
+                    <p class="title-edit-page">Upload album photos:</p>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="col-md-12"><%= f_album.input :photos, as: :attachinary, input_html: { multiple: true }, label: false, class: "attachinary-input" %></div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
-          <div class="form-actions text-center">
+          <br>
+          <div class="form-actions text-center col-md-12">
             <%= f.button :submit, "Update", class: "btn btn-primary" %>
             <br>
             <%= link_to "Back", :back %>

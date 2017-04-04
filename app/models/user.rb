@@ -16,6 +16,8 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+
+  ## Search
   include PgSearch
   pg_search_scope :query_search,
                   against: [:first_name, :last_name, :email],
@@ -49,6 +51,7 @@ class User < ApplicationRecord
 
   ## Albums
   has_many :albums
+  accepts_nested_attributes_for :albums
 
   ## Avatar
   has_attachment :avatar, accept: [:jpg, :png, :gif]

@@ -9,16 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       @roles = []
     end
-    # Chat
-    # unless params[:user_id].to_i == current_user.id
-    #   if Conversation.between(params[:user_id],current_user.id).present?
-    #     @conversation = Conversation.between(params[:user_id], current_user.id).first
-    #   elsif Conversation.between(current_user.id, params[:user_id]).present?
-    #     @conversation = Conversation.between(current_user.id, params[:user_id]).first
-    #   else
-    #     @conversation = Conversation.create!(user_id: params[:user_id], client_id: current_user.id)
-    #   end
-    # end
+  end
+
+  def edit
+    @album = current_user.albums.new
+    super
   end
 
   def new
@@ -28,10 +23,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-
   end
 
   def update
+    @album = current_user.albums.create(name: params[:user][:album][:name], photos: params[:user][:album][:photos])
     super
   end
 
