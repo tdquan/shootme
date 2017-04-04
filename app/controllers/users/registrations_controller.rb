@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @request = Request.new
     @cities = ["Paris", "London"]
     @current_profile = User.find(params[:user_id])
+
     if @current_profile.role
       @roles = @current_profile.role.split(" - ").sort
     else
@@ -17,8 +18,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    super
     @role = ["Photographer", "Videographer", "Drone Pilot"]
+    super
   end
 
   def create
