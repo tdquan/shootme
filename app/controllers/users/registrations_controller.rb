@@ -28,9 +28,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @role = ["Photographer", "Videographer", "Drone Pilot"]
   end
 
+  def edit
+    super
+    @role = ["Photographer", "Videographer", "Drone Pilot"]
+  end
+
   def create
     super
-
   end
 
   def update

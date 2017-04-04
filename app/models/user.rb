@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # mailer
+    after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -119,6 +121,7 @@ class User < ApplicationRecord
     user.avatar
   end
 
+<<<<<<< HEAD
   def count_reviews
     requests = Request.where(user: self)
     review_count = 0
@@ -151,6 +154,13 @@ class User < ApplicationRecord
     av_rating
   end
 
+=======
+  private
+
+  def send_welcome_email
+    HomePageMailer.welcome(self).deliver_now
+  end
+>>>>>>> 02314a56b0ce98c6ace4586dae69201e4cfedde8
 end
 
 
