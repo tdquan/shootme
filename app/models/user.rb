@@ -118,6 +118,7 @@ class User < ApplicationRecord
     end
     user.avatar
   end
+end
 
 
 # User.import force: true   # for auto sync model with elastic search
