@@ -1,0 +1,22 @@
+.card-review {
+  position: relative;
+  height: 150px;
+}
+
+.review-comment {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.review-rating {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.review-author {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

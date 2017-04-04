@@ -51,15 +51,16 @@
 
 <% @requests.each do |request| %>
   <% if request.get_review %>
-  <div class="review">
+  <div class=" card card-review review">
     <div class="review-comment">
+      <p>Comment:</p>
       <%= request.get_review.comment %>
     </div>
     <div class="review-rating">
-      <%= request.get_review.rating %>
+      <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
     </div>
     <div class="review-author">
-      <%= request.client.first_name %>
+      <%= link_to "#{request.client.first_name}" %>
     </div>
   </div>
   <% end %>

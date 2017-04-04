@@ -1,5 +1,8 @@
 <%= simple_form_for [user, booking, @review] do |f| %>
-  <%= f.input :comment, label: false, as: :text, class: 'review_form' %>
-  <%= f.select :rating, [1, 2, 3, 4, 5 ]%>
-  <%= f.submit "Leave Review", class: "btn btn-primary center-block", id: "close-review" %>
+  <div class="form-actions">
+    <%= f.input :comment, label: false, as: :text, class: 'review_form' %>
+    <i class='fa fa-star star-review'></i><%= f.select :rating, [1, 2, 3, 4, 5 ], prompt: "Select your rating" %>
+    <%= f.submit "Leave Review", class: "btn btn-sm btn-primary center-block", id: "close-review" %>
+  </div>
 <% end %>
+
