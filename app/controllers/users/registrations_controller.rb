@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @request = Request.new
     @cities = ["Paris", "London"]
     @current_profile = User.find(params[:user_id])
-      @requests = Request.where(user: @current_profile)
+    @requests = Request.where(user: @current_profile)
 
     if @current_profile.role
       @roles = @current_profile.role.split(" - ").sort
