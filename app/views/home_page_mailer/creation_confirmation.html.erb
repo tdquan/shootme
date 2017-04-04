@@ -5,6 +5,6 @@
   </head>
   <body>
     <h1>Hi <%= @request.client.first_name %> <%= @request.client.last_name %></h1>
-    <p>Your request to <%= @request.user.first_name %> <%= @request.user.last_name %> on <%= @request.start_time %> to <%= @request.end_time %> at <%= @request.location %> was successfully sent! </p>
+    <p>Your request to <%= @request.user.first_name %> <%= @request.user.last_name %> from <%= @request.start_time.to_formatted_s(:long) %> to <%= @request.end_time.to_formatted_s(:long) %> in <%= @request.location %> was successfully sent! </p>
   </body>
 </html>

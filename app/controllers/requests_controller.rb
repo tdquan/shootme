@@ -28,8 +28,10 @@ class RequestsController < ApplicationController
   def update
     @request.update(request_params)
     if @request.confirmed == true
+      HomePageMailer.request_confirmation(@request).deliver_now
       @booking = Booking.create(request_id: @request.id, location: @request.location,
         start_time: @request.start_time, end_time: @request.end_time, price_cents: @request.price_cents)
+      HomePageMailer.booking_confirmation(@booking).deliver_now
     end
   end
 
