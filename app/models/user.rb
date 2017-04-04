@@ -134,6 +134,23 @@ class User < ApplicationRecord
     review_count
   end
 
+  def average_rating
+    requests = Request.where(user: self)
+    ratings = []
+    av_rating = 0
+    if requests
+      requests.each do |r|
+        if r.booking
+          if r.booking.review
+            ratings << r.booking.review.rating
+            av_rating = ratings.sum / ratings.size.to_i
+          end
+        end
+      end
+    end
+    av_rating
+  end
+
 end
 
 

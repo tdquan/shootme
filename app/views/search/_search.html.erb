@@ -33,13 +33,7 @@
         <div class="col-md-3 list-ratings text-center">
           <% if user.count_reviews == 0 %>
           <% else %>
-          <span class="ratings block">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-          </span>
+            <%= render "reviews/stars", user: user %>
             <span class="block"><i href="#"><%= pluralize(user.count_reviews, 'review') %></i></span>
           <% end %>
         </div>

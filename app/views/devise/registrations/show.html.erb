@@ -24,13 +24,7 @@
           <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @current_profile.address %></li>
           <% if @current_profile.count_reviews == 0 %>
           <% else %>
-          <li class="block ratings">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-          </li>
+            <%= render "reviews/stars", user: @current_profile %>
             <li class="block review-link"><%= pluralize(@current_profile.count_reviews, 'review') %></li>
           <% end %>
         </ul>
