@@ -154,13 +154,11 @@ class User < ApplicationRecord
     av_rating
   end
 
-=======
   private
 
   def send_welcome_email
     HomePageMailer.welcome(self).deliver_now
   end
->>>>>>> 02314a56b0ce98c6ace4586dae69201e4cfedde8
 end
 
 
