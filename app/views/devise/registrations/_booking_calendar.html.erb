@@ -56,11 +56,13 @@
       <p>Comment:</p>
       <%= request.get_review.comment %>
     </div>
-    <div class="review-rating">
-      <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
-    </div>
+  </div>
+  <div class="review-info">
     <div class="review-author">
       <%= link_to "#{request.client.first_name}" %>
+    </div>
+    <div class="review-rating">
+      <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
     </div>
   </div>
   <% end %>
