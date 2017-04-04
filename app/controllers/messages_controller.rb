@@ -31,6 +31,11 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to user_conversation_messages_path(user_id: params[:user_id], conversation_id: @conversation.id)
     end
+
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   private
