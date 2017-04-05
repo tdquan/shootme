@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
   def landing_page
     @cities = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes"]
+    @user = User.new
   end
 
   def payment

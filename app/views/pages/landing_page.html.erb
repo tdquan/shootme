@@ -8,14 +8,15 @@
             <p>Create your free account</p>
             <p>today on Shoot-me.</p>
             <div class="row">
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="name" placeholder="Name">
-              </div>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="email" placeholder="Email">
-              </div>
+              <%= simple_form_for(:user, url: user_registration_path) do |f| %>
+                <%= f.error_notification %>
+                <div class="form-inputs">
+                  <%= f.input :email, label: false, placeholder: "Email", required: true, wrapper_html: { class: 'col-sm-6' } %>
+                  <%= f.input :password, label: false, placeholder: "Password", required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), wrapper_html: { class: 'col-sm-6' } %>
+                </div>
+                <%= f.button :submit, "Create account", class: "btn btn-primary btn-lg", id: "create-account", wrapper_html: { class: 'col-sm-6'} %>
+              <% end %>
             </div>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button" id="create-account">Create account</a></p>
           </div>
         </div>
 
@@ -27,7 +28,6 @@
                 <li><h3>Show locations</h3></li>
               </ul>
               <%= link_to "Search", home_path, class: "btn btn-primary btn-lg", id: "search-landing" %>
-
             </div>
           </div>
         </div>
