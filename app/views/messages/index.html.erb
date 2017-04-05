@@ -3,51 +3,21 @@
     <% if @over_ten %>
       <%= link_to 'Show Previous', '?m=all' %>
     <% end %>
-    <div class="col-md-6 col-md-offset-3 chat-window">
-      <% @messages.each do |message| %>
-        <% if message.body %>
-          <% user = User.find(message.user_id) %>
-          <% if message.user_id == current_user.id %>
-            <div class="message clearfix">
-              <div class="float-left">
-                <div class="header"><strong><%= user.first_name %></strong></div>
-                <span class="message-time"><%= message.message_time %></span>
-                <div class="list">
-                  <div class="bubble me">
-                    <i class="left-triangle"></i>
-                    <%= message.body %>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <div class="message clearfix">
-                <div class="float-right">
-                  <div class="header"><strong><%= user.first_name %></strong></div>
-                  <span class="message-time"><%= message.message_time %></span>
-                  <div class="list">
-                    <div class="bubble others">
-                      <i class="right-triangle"></i>
-                      <%= message.body %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-          </div>
-        <% end %>
-      <% end %>
+    <h2 class="text-center">Chat</h2>
+    <div id="chat">
+      <%= render "chat_window" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for [@user, @conversation, @message], html: {class: "form-group text-center"} do |f| %>
+      <%= form_for [@user, @conversation, @message], html: {class: "form-group text-center"}, remote: true do |f| %>
         <div>
           <%= f.text_field :body, class: "form-control" %>
         </div>
-
         <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
         <br>
-        <%= f.submit "Send", class: "btn btn-primary" %>
+        <%= f.submit "Send", class: "btn btn-primary", id: "send-message" %>
       <% end %>
     </div>
   </div>

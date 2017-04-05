@@ -9,6 +9,7 @@
         <% end %>
         <div class="text-center user-fullname"><b><%= @current_profile.first_name %> <%= @current_profile.last_name %></b></div>
         <div class="role-profile text-center">
+        <% unless @roles == nil %>
           <% @roles.each do |role| %>
             <% if role == "Photographer" %>
               <span class=" label label-primary"><%= role %></span>
@@ -18,6 +19,7 @@
               <span class="label label-info"><%= role %></span>
             <% end %>
           <% end %>
+        <% end %>
         </div>
         <br>
         <ul class="text-center">

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # mailer
+    after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,7 +33,7 @@ class User < ApplicationRecord
                   }
 
   pg_search_scope :search_by_location,
-                  against: :address,
+                  against: :city,
                   using: {
                     tsearch: {
                       prefix: true
@@ -64,7 +66,7 @@ class User < ApplicationRecord
            dependent: :destroy
 
   ## Conversations
-  has_many :conversations, dependent: :destroy
+  has_many :conversations
 
   ## Elasticsearch
   # include Elasticsearch::Model
@@ -117,6 +119,12 @@ class User < ApplicationRecord
      user.avatar = user.photo
     end
     user.avatar
+  end
+
+  private
+
+  def send_welcome_email
+    HomePageMailer.welcome(self).deliver_now
   end
 end
 

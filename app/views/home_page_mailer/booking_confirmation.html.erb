@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @booking.request.client.first_name %> <%= @booking.request.client.last_name %></h1>
+    <p>Your request to <%= @booking.request.user.first_name %> <%= @booking.request.user.last_name %> from <%= @booking.request.start_time.to_formatted_s(:long) %> to <%= @booking.request.end_time.to_formatted_s(:long) %> in <%= @booking.request.location %> was successfully sent! </p>
+  </body>
+</html>

@@ -59,7 +59,7 @@
               </div>
               <div class="hidden_pro">
                 <div class="col-md-12">
-                  <%= f.input :role, as: :check_boxes, label: false, collection: ["Photographer", "Videographer", "Drone Pilot"] %>
+                  <%= f.input :role, label: 'Select your role:', collection: ["Photographer", "Videographer", "Drone Pilot"] %>
                 </div>
                 <div class="col-md-6">
                   <%= f.input :fee_cents, required: true, label: 'Fee' %>
@@ -99,18 +99,24 @@
       <% else %>
         hidden_pro.hide();
       <% end %>
-        });
+    });
     //upon check
 
     // check for default status (when checked, show the hidden_pro)
     if (checkbox_pro.attr('checked') !== undefined){
-        hidden_pro.show();
+      hidden_pro.show();
     } else {
-        hidden_pro.hide();
+      hidden_pro.hide();
     }
     // then simply toggle the hidden_pro on every change
     checkbox_pro.change(function(){
-        hidden_pro.toggle();
+      hidden_pro.toggle();
     });
+
+    // //checkboxes
+    // var roleArray = <%= escape_javascript @role %>;
+    // $("input:checkbox[name=type]:checked").each(function(){
+    //   roleArray.push($(this).val());
+    // });
   </script>
 <% end %>

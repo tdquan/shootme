@@ -1,0 +1,38 @@
+<div class="col-md-6 col-md-offset-3 chat-window">
+  <div class="chat-bg">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+        <% if message.user_id == current_user.id %>
+          <div class="message clearfix">
+            <div class="float-left">
+              <% unless @messages[@messages.to_a.index(message) - 1].user_id == message.user_id %>
+                <div class="header"><strong><%= user.first_name %> <%= user.last_name %></strong></div>
+              <% end %>
+              <span class="message-time"><%= message.message_time %></span>
+              <div class="list">
+                <div class="bubble me">
+                  <i class="left-triangle"></i>
+                  <%= message.body %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="message clearfix">
+            <div class="float-right">
+              <div class="header"><strong><%= user.first_name %> <%= user.last_name %></strong></div>
+              <span class="message-time"><%= message.message_time %></span>
+              <div class="list">
+                <div class="bubble others">
+                  <i class="right-triangle"></i>
+                  <%= message.body %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

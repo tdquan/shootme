@@ -27,8 +27,8 @@
                       <div class="card margin-bottom">
                         <div class="row">
                           <div class="col-md-2">
-                            <% if conversation.user.avatar != nil %>
-                              <%= cl_image_tag conversation.user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
+                            <% if user.avatar != nil %>
+                              <%= cl_image_tag user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
                             <% else %>
                               <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
                             <% end %>
