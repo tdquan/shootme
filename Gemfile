@@ -29,7 +29,6 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener' # mails
-  gem 'faker'
 end
 
 group :production do
@@ -66,7 +65,7 @@ gem 'rails-i18n', '~> 5.0.0'
 gem 'devise-i18n'
 
 gem 'sidekiq'
-
+gem 'faker'
 # mails
 gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 
