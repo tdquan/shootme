@@ -14,6 +14,7 @@ set :ssh_options, {
     forward_agent: true,
     keys: %w(/home/shootme/.ssh/id_rsa),
     auth_methods: %w(publickey),
+    user: fetch(:user),
     password: 'shootmepass'
   }
 
