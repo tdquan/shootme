@@ -13,7 +13,7 @@ set :branch, 'staging2'
 set :ssh_options, {
     forward_agent: true,
     keys: %w(/home/shootme/.ssh/id_rsa),
-    auth_methods: %w(publickey password),
+    auth_methods: %w(publickey),
     password: 'shootmepass'
   }
 
