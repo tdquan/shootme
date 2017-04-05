@@ -23,6 +23,7 @@ preload_app true
 before_fork do |server, worker|
   # needed if preload_app
   ActiveRecord::Base.connection.disconnect! if defined?(ActiveRecord::Base)
+  server.logger.info("worker=#{worker.nr} spawning in #{Dir.pwd}")
 
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
   # immediately start loading up a new version of itself (loaded with a new
@@ -31,10 +32,12 @@ before_fork do |server, worker|
   # see if an .oldbin pidfile exists. If so, this means we've just booted up
   # a new Unicorn and need to tell the old one that it can now die. To do so
   # we send it a QUIT. Using this method we get 0 downtime deploys.
-  old_pid = "#{server.config[:pid]}.oldbin"
-  if File.exists?(old_pid) && server.pid != old_pid
+  old_pid_file = "#{cap_path}/shared/pids/unicorn.pid.oldbin"
+  if File.exists?(old_pid_file) && server.pid != old_pid_file
     begin
-      Process.kill("QUIT", File.read(old_pid).to_i)
+      old_pid = File.read(old_pid_file).to_i
+      server.logger.info("sending QUIT to #{old_pid}")
+      Process.kill("QUIT", old_pid)
     rescue Errno::ENOENT, Errno::ESRCH
       # someone else did our job for us
     end
