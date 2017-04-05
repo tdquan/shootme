@@ -23,9 +23,16 @@
   color: #888;
 }
 
+.reviews {
+  display: flex;
+  .add-review {
+    margin-top: 15px;
+  }
+}
+
 .ratings {
   .fa {
-    color: $yellow;
+    color: $red-primary;
   }
 }
 

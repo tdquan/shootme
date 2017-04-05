@@ -24,14 +24,11 @@
         <br>
         <ul class="text-center">
           <li class="block user-address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @current_profile.address %></li>
-          <li class="block ratings">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-          </li>
-          <li class="block review-link"><%= link_to "24 Reviews", "#" %></li>
+          <% if @current_profile.count_reviews == 0 %>
+          <% else %>
+            <%= render "reviews/stars", user: @current_profile %>
+            <li class="block review-link"><%= pluralize(@current_profile.count_reviews, 'review') %></li>
+          <% end %>
         </ul>
       </div>
       <% if @current_profile != current_user %>
@@ -44,7 +41,7 @@
     </div>
     <div class="col-md-7">
       <% if @current_profile != @current_user %>
-        <%= render "booking_calendar" %>
+        <%= render "booking_calendar", bookings_to_others: @bookings_to_others, requests: @requests %>
       <% else %>
         <%= render "self_profile" %>
       <% end %>

@@ -121,6 +121,38 @@ class User < ApplicationRecord
     user.avatar
   end
 
+  def count_reviews
+    requests = Request.where(user: self)
+    review_count = 0
+    if requests
+      requests.each do |r|
+        if r.booking
+          if r.booking.review
+            review_count += 1
+          end
+        end
+      end
+    end
+    review_count
+  end
+
+  def average_rating
+    requests = Request.where(user: self)
+    ratings = []
+    av_rating = 0
+    if requests
+      requests.each do |r|
+        if r.booking
+          if r.booking.review
+            ratings << r.booking.review.rating
+            av_rating = ratings.sum / ratings.size.to_i
+          end
+        end
+      end
+    end
+    av_rating
+  end
+
   private
 
   def send_welcome_email
@@ -128,4 +160,6 @@ class User < ApplicationRecord
   end
 end
 
+
 # User.import force: true   # for auto sync model with elastic search
+

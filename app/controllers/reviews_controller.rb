@@ -17,7 +17,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @booking.reviews.build(review_params)
+    @review = Review.new(review_params)
+    @review.booking = @booking
     if @review.save
       puts 'review saved'
     else

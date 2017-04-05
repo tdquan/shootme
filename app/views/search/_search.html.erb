@@ -31,14 +31,11 @@
           <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
         </div>
         <div class="col-md-3 list-ratings text-center">
-          <span class="ratings block">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-          </span>
-          <span class="block"><i href="#">262 reviews</i></span>
+          <% if user.count_reviews == 0 %>
+          <% else %>
+            <%= render "reviews/stars", user: user %>
+            <span class="block"><i href="#"><%= pluralize(user.count_reviews, 'review') %></i></span>
+          <% end %>
         </div>
       </div>
     <% end %>

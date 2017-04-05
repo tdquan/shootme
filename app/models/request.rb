@@ -8,4 +8,13 @@ class Request < ApplicationRecord
   validates :location, presence: true
 
   monetize :price_cents
+
+  def get_review
+    if self
+      if booking
+        self.booking.review
+      end
+    end
+  end
+
 end
