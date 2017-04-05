@@ -1,0 +1,21 @@
+.card-review {
+  position: relative;
+  height: 150px;
+   overflow: auto;
+}
+
+.review-comment {
+  margin: 10px 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  p {
+    font-weight: bold;
+    margin: 0px;
+  }
+}
+
+.review-info {
+  display: flex;
+  justify-content: space-between;
+}

@@ -5,7 +5,7 @@
 <% end %>
 <% @bookings_to_others.each do |booking| %>
   <% if booking.request.confirmed == true %>
-    <div class="card">
+    <div class="card" id="card-booking">
       <div class="row">
         <div class="col-md-2">
           <% if booking.request.user.avatar != nil %>
@@ -26,6 +26,23 @@
           <% else %>
             <span class="label label-primary">Unpaid</span>
           <% end %>
+        </div>
+        <div class="add-review">
+          <%= button_tag "Add a review", type: 'button', data: { target: "#newReview", toggle: "modal"}, class: "btn btn-sm btn-primary btn-review" %>
+          <!-- Modal -->
+          <div class="modal fade" id="newReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title text-center" id="myModalLabel">Write your review to <%= booking.request.user.first_name %></h4>
+                </div>
+                <div class="modal-body">
+                  <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

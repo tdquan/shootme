@@ -2,13 +2,6 @@
   .nav{
     margin-top: 20px;
   }
-  .btn-primary{
-    width: 100px;
-    margin: 2px 0;
-  }
-  .btn-success{
-    width: 100px;
-  }
   .margin-bottom{
     margin-bottom: 10px;
   }
@@ -18,4 +11,16 @@
   .status-rejected{
     color: $red-primary;
   }
+}
+
+#card-booking{
+  position: relative;
+}
+
+#review_rating {
+  padding: 5px;
+}
+
+.star-review {
+  color: $red-primary;
 }

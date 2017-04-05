@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       @bookings_to_others << booking if booking.request.client_id == current_user.id
       @bookings_to_self << booking if booking.request.user_id == current_user.id
     end
+    @review = Review.new
   end
 
   def new
