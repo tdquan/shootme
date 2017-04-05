@@ -45,49 +45,35 @@
     </div>
   <% end %>
 </div>
-<div class="reviews">
   <h3 id="<%= @current_profile.first_name %>-reviews">Reviews</h3>
   <hr>
-  <% @bookings_to_others.each do |booking| %>
-    <% if booking.request.client == @current_user %>
-      <div class="add-review">
-        <%= button_tag "Add a review", type: 'button', data: { target: "#newReview", toggle: "modal"}, class: "btn btn-sm btn-primary btn-review" %>
-        <!-- Modal -->
-        <div class="modal fade" id="newReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center" id="myModalLabel">Write your review to <%= booking.request.user.first_name %></h4>
-              </div>
-              <div class="modal-body">
-                <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
-              </div>
-            </div>
-          </div>
-        </div>
+<% @bookings_to_others.each do |booking| %>
+  <% if booking.request.client == @current_user %>
+    <div class="add-review">
+      <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
+    </div>
+  <% end %>
+<% end %>
+<div id="reviews">
+  <% @requests.each do |request| %>
+    <% if request.get_review %>
+    <div class=" card card-review review" id="reviews">
+      <div class="review-comment">
+        <p>Comment:</p>
+        <%= request.get_review.comment %>
       </div>
+    </div>
+    <div class="review-info">
+      <div class="review-author">
+        <%= link_to "#{request.client.first_name}" %>
+      </div>
+      <div class="review-rating">
+        <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
+      </div>
+    </div>
     <% end %>
   <% end %>
 </div>
-<% @requests.each do |request| %>
-  <% if request.get_review %>
-  <div class=" card card-review review">
-    <div class="review-comment">
-      <p>Comment:</p>
-      <%= request.get_review.comment %>
-    </div>
-  </div>
-  <div class="review-info">
-    <div class="review-author">
-      <%= link_to "#{request.client.first_name}" %>
-    </div>
-    <div class="review-rating">
-      <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
-    </div>
-  </div>
-  <% end %>
-<% end %>
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">
