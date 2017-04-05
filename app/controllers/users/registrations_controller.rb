@@ -5,6 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @cities = ["Paris", "London"]
     @current_profile = User.find(params[:user_id])
     @requests = Request.where(user: @current_profile)
+    @review = Review.new
+    @bookings_to_others = []
+    Booking.all.each do |booking|
+      @bookings_to_others << booking if booking.request.client_id == current_user.id
+    end
 
     if @current_profile.role
       @roles = @current_profile.role.split(" - ").sort
