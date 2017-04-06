@@ -15,6 +15,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
 # SEED
+
 namespace :deploy do
   desc "reload the database with seed data"
   task :seed do
