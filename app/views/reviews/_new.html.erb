@@ -1,4 +1,5 @@
 <%= simple_form_for([user, booking, @review], remote: true) do |f| %>
+  <%= f.error_notification %>
   <div class="form-actions">
     <%= f.input :comment, label: false, as: :text, class: 'review_form' %>
     <i class='fa fa-star star-review'></i><%= f.select :rating, [1, 2, 3, 4, 5 ], prompt: "Select your rating" %>

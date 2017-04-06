@@ -53,10 +53,10 @@
       <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
     </div>
   <% end %>
-<% end %>
-<% @requests.each do |request| %>
-  <% if request.get_review %>
-    <%= render 'reviews/show', request: request %>
+  <% @requests.each do |request| %>
+    <% if request.get_review %>
+      <%= render 'reviews/show', request: request, booking: booking %>
+    <% end %>
   <% end %>
 <% end %>
 

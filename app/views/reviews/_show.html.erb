@@ -2,7 +2,7 @@
   <div class=" card card-review review">
     <div class="review-comment">
       <p>Comment:</p>
-      <%= request.get_review.comment %>
+      <%= request.booking.review.comment %>
     </div>
   </div>
   <div class="review-info">
@@ -10,7 +10,7 @@
       <%= link_to "#{request.client.first_name}" %>
     </div>
     <div class="review-rating">
-      <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
+      <i class="fa fa-star star-review"></i> <%= request.booking.review.rating %>
     </div>
   </div>
 </div>
