@@ -1,3 +1,5 @@
-$('#send-message').on('click', function() {
-  $('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
-});
+$('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+$cont = $('.chat-window');
+$cont[0].scrollTop = $cont[0].scrollHeight;
+
+$('#message_body').val('').focus();
