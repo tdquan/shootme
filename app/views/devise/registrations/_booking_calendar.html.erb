@@ -54,26 +54,11 @@
     </div>
   <% end %>
 <% end %>
-<div id="reviews">
-  <% @requests.each do |request| %>
-    <% if request.get_review %>
-    <div class=" card card-review review" id="reviews">
-      <div class="review-comment">
-        <p>Comment:</p>
-        <%= request.get_review.comment %>
-      </div>
-    </div>
-    <div class="review-info">
-      <div class="review-author">
-        <%= link_to "#{request.client.first_name}" %>
-      </div>
-      <div class="review-rating">
-        <i class="fa fa-star star-review"></i> <%= request.get_review.rating %>
-      </div>
-    </div>
-    <% end %>
+<% @requests.each do |request| %>
+  <% if request.get_review %>
+    <%= render 'reviews/show', request: request %>
   <% end %>
-</div>
+<% end %>
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">
