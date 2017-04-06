@@ -8,6 +8,9 @@ class AlbumsController < ApplicationController
   def show
   end
 
+  def create
+  end
+
   def render_gallery
     respond_to do |format|
       format.js

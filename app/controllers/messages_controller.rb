@@ -27,14 +27,12 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @messages = @conversation.messages
     @message = @conversation.messages.new(message_params)
     if @message.save
-      redirect_to user_conversation_messages_path(user_id: params[:user_id], conversation_id: @conversation.id)
-    end
-
-    respond_to do |f|
-      f.html
-      f.js
+      respond_to do |f|
+        f.js
+      end
     end
   end
 
