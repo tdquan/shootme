@@ -17,13 +17,6 @@ set :ssh_options, {
     user: fetch(:user),
     password: 'shootmepass'
   }
-
-namespace :deploy do
-  desc "reload the database with seed data"
-  task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=production"
-  end
-end
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
