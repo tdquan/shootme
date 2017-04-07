@@ -47,18 +47,20 @@
 </div>
   <h3 id="<%= @current_profile.first_name %>-reviews">Reviews</h3>
   <hr>
-<% @bookings_to_others.each do |booking| %>
-  <% if booking.request.client == @current_user %>
-    <div class="add-review">
-      <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
-    </div>
-  <% end %>
-  <% @requests.each do |request| %>
-    <% if request.get_review %>
-      <%= render 'reviews/show', request: request, booking: booking %>
+  <div id="reviews">
+    <% @bookings_to_others.each do |booking| %>
+      <% if booking.request.client == @current_user %>
+        <div class="add-review">
+          <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
+        </div>
+      <% end %>
+      <% @requests.each do |request| %>
+        <% if request.get_review %>
+          <%= render 'reviews/show', request: request, booking: booking %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">
