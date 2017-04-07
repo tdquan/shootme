@@ -12,6 +12,7 @@ console.log('in');
   $('#reviews').append(new_review);
   // Show the new review with an animation!
   new_review.slideDown();
+  $( ".add-review" ).remove();
   // Reset the form
   $('#new_review').html("<%= j render 'reviews/new', user: current_user, booking: @booking, review: Review.new %>");
 <% end %>

@@ -1,4 +1,5 @@
 <%= simple_form_for([user, booking, @review], remote: true) do |f| %>
+  <%= f.error :base %>
   <%= f.error_notification %>
   <div class="form-actions">
     <%= f.input :comment, label: false, as: :text, class: 'review_form' %>
