@@ -49,7 +49,7 @@
   <hr>
   <div id="reviews">
     <% @bookings_to_others.each do |booking| %>
-      <% if booking.request.client == @current_user %>
+      <% if booking.request.client == @current_user && booking.review == false %>
         <div class="add-review">
           <%= render 'reviews/new', user: current_user, booking: booking, review: @review %>
         </div>
