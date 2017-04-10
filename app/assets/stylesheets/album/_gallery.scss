@@ -8,7 +8,13 @@ a .slider-control {
 }
 
 .album-thumbnail {
-  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  margin: 10px 0;
+  padding: 0;
+  img {
+    padding: 10px;
+  }
 }
 
 .album-photos-thumbnail {
@@ -20,7 +26,6 @@ a .slider-control {
     padding: 10px;
   }
   &.add-photo-link {
-    height: 130px;
     .add-photo-card {
       height: 100px;
       background-color: #F7F8F9;
@@ -35,3 +40,5 @@ a .slider-control {
     }
   }
 }
+
+

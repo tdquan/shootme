@@ -6,8 +6,8 @@
       <div class="row">
         <% @albums.each do |g| %>
           <%= link_to render_gallery_path(album_id: g.id), remote: true do %>
-            <div class="col-md-3 col-xs-6">
-              <%= cl_image_tag g.photos[0].path, crop: "fill", height: 100, gravity: "center", class: "album-thumbnail" %>
+            <div class="col-md-3 col-xs-6 album-thumbnail">
+              <%= cl_image_tag g.photos[0].path, crop: "lpad", height: 100, gravity: "center" %>
               <p class="text-center"><%= g.name %></p>
             </div>
           <% end %>

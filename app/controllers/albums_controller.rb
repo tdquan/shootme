@@ -1,6 +1,5 @@
 class AlbumsController < ApplicationController
   before_action :set_user
-  skip_before_filter  :verify_authenticity_token, only: :add_photo
 
   def index
     @albums = @current_profile.albums.all

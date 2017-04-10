@@ -1,3 +1,4 @@
+// Refresh slider
 $('#gallery').html('').append('<ul id="light-slider"></ul>');
 
 $('#light-slider').html("<%= escape_javascript (render partial: 'albums/slider', locals: { album: @current_album }) %>").lightSlider({
@@ -13,6 +14,24 @@ $('#light-slider').html("<%= escape_javascript (render partial: 'albums/slider',
   responsive : []
 });
 
+// Show all gallery photos when a gallery is selected
 $('#galleries').remove();
 $('#gallery').parent().append("<%= escape_javascript (render partial: 'albums/gallery_photos') %>");
+
+// Activate attachinary file upload
 $('.attachinary-input').attachinary();
+
+// Re-enable upload button only when valid files are selected to upload
+$(document).ready(
+  function(){
+    $('.attachinary_container input').change(
+      function(){
+        if ($('.attachinary_container input').val()) {
+          $('input:submit').attr('disabled',false);
+        }
+        else if ($('.attachinary_container input').val() == '') {
+          $('input:submit').attr('disabled',true);
+        }
+      }
+    );
+  });
