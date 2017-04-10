@@ -1,8 +1,5 @@
 <div class="container-fluid chat">
   <div class="row">
-    <% if @over_ten %>
-      <%= link_to 'Show Previous', '?m=all' %>
-    <% end %>
     <h2 class="text-center">Chat</h2>
     <div id="chat">
       <%= render "chat_window" %>

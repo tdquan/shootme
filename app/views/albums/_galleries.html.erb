@@ -1,23 +1,18 @@
-<h3>Photo Gallery</h3>
-<hr>
-<div class="card">
-  <div class="row">
-    <% n = 0 %>
-    <% 6.times do %>
-      <% topics = ["abstract", "city", "sports", "fashion", "people", "nature"] %>
-      <%= link_to render_gallery_path(topic_name: topics[n]), remote: true do %>
-        <div class="col-md-3 col-xs-6">
-          <%= image_tag "http://lorempixel.com/200/100/#{topics[n]}", width: "100%" %>
-          <p class="text-center"><%= topics[n] %></p>
-        </div>
-      <% end %>
-      <% n = n+1 %>
-    <% end %>
-    <% @albums.each do |g| %>
-      <%= link_to render_gallery_path(topic_name: g.name) %>
-      <% g.photos.each do |p| %>
-        <%= cl_image_tag p.path, width: 800, height: 500, crop: :fill %>
-      <% end %>
-    <% end %>
+<% if @albums.exists? %>
+  <div id="galleries">
+    <h3>Photo Galleries</h3>
+    <hr>
+    <div class="card">
+      <div class="row">
+        <% @albums.each do |g| %>
+          <%= link_to render_gallery_path(album_id: g.id), remote: true do %>
+            <div class="col-md-3 col-xs-6">
+              <%= cl_image_tag g.photos[0].path, crop: "fill", height: 100, gravity: "center", class: "album-thumbnail" %>
+              <p class="text-center"><%= g.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>

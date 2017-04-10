@@ -1,6 +1,6 @@
 $('#gallery').html('').append('<ul id="light-slider"></ul>');
 
-$('#light-slider').html("<%= j (render 'albums/slider') %>").lightSlider({
+$('#light-slider').html("<%= escape_javascript (render partial: 'albums/slider', locals: { album: @current_album }) %>").lightSlider({
   item: 1,
   mode: "fade",
   gallery: true,
@@ -12,3 +12,7 @@ $('#light-slider').html("<%= j (render 'albums/slider') %>").lightSlider({
   nextHtml: '<i class="fa fa-arrow-circle-o-right fa-3x slider-control"></i>',
   responsive : []
 });
+
+$('#galleries').remove();
+$('#gallery').parent().append("<%= escape_javascript (render partial: 'albums/gallery_photos') %>");
+$('.attachinary-input').attachinary();

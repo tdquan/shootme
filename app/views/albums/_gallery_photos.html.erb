@@ -1,0 +1,22 @@
+<div id="gallery_photos">
+  <h3>Photos of <%= @current_album.name %></h3>
+  <hr>
+  <div class="card">
+    <%= link_to all_galleries_path, class:"btn btn-primary", remote: true do %>
+      <i class="fa fa-angle-left"></i>Back
+    <% end %>
+    <br><br>
+    <div class="row">
+      <% @current_album.photos.each do |p| %>
+        <div class="col-md-3 col-xs-6 album-photos-thumbnail" data-public-id="<%= p.public_id %>">
+          <%= cl_image_tag p.path, crop: "lpad", height: 100, gravity: "center" %>
+          <p class="text-center delete-photo-link"><%= link_to "Delete", delete_photo_path(public_id: p.public_id), method: :patch, remote: true %></p>
+        </div>
+      <% end %>
+      <%= simple_form_for @album, url: {action: 'add_photo', controller: 'albums'}, method: :put, remote: :true, class: "col-md-3 col-xs-6 album-photos-thumbnail add-photo-link" do |f| %>
+        <%= f.input :photos, as: :attachinary, input_html: { multiple: true }, label: false, class: "attachinary-input" %>
+        <%= f.button :submit, "Upload photos", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div

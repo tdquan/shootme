@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404110338) do
+ActiveRecord::Schema.define(version: 20170410125327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170404110338) do
     t.string  "tags"
     t.text    "description"
     t.integer "user_id"
-    t.text    "photos"
     t.index ["user_id"], name: "index_albums_on_user_id", using: :btree
   end
 
@@ -118,7 +117,6 @@ ActiveRecord::Schema.define(version: 20170404110338) do
     t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "photo"
     t.string   "description"
     t.string   "address"
     t.integer  "postal_code"
@@ -129,7 +127,6 @@ ActiveRecord::Schema.define(version: 20170404110338) do
     t.string   "facebook_picture_url"
     t.string   "token"
     t.datetime "token_expiry"
-    t.text     "avatar"
     t.string   "role"
     t.boolean  "pro"
     t.integer  "fee_cents",              default: 0,  null: false

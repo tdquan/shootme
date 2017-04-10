@@ -1,8 +1,37 @@
 a .slider-control {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.1);
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: $brand-primary;
   color: #fff;
+}
+
+.album-thumbnail {
+  width: 100%;
+}
+
+.album-photos-thumbnail {
+  text-align: center;
+  background-color: transparent;
+  margin: 10px 0;
+  padding: 0;
+  img {
+    padding: 10px;
+  }
+  &.add-photo-link {
+    height: 130px;
+    .add-photo-card {
+      height: 100px;
+      background-color: #F7F8F9;
+    }
+  }
+  .delete-photo-link {
+    visibility: hidden;
+  }
+  &:hover {
+    .delete-photo-link {
+      visibility: visible;
+    }
+  }
 }
