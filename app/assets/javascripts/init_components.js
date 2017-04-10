@@ -11,6 +11,7 @@ $(document).ready(function() {
     galleryMargin: 10,
     thumbMargin: 10,
     currentPagerPosition: 'middle',
+    adaptiveHeight: true,
     prevHtml: '<i class="fa fa-arrow-circle-o-left fa-3x slider-control"></i>',
     nextHtml: '<i class="fa fa-arrow-circle-o-right fa-3x slider-control"></i>',
     responsive : []

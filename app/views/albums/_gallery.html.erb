@@ -1,8 +1,13 @@
-<div class="card" id="gallery">
-  <ul id="light-slider">
-    <% 10.times do %>
-      <% url = "http://lorempixel.com/800/500/people/#{[*1..10].sample}" %>
-      <li data-thumb=<%= url %>><%= image_tag url, width: "100%" %></li>
-    <% end %>
-  </ul>
-</div>
+<% if @albums.exists? %>
+  <div class="card" id="gallery">
+    <ul id="light-slider">
+      <% @albums.first.photos.each do |photo| %>
+        <li data-thumb=<%= cl_image_path(photo.public_id) %>><%= cl_image_tag photo.path, aspect_ratio: "16:9", crop: "lpad", gravity: "center", height: 350 %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class="card" id="gallery">
+    <h4 class="text-center">This user has no galleries.</h4>
+  </div>
+<% end %>
