@@ -1,0 +1,16 @@
+<div class=" card card-review review">
+  <div class="review-comment">
+    <p>Comment:</p>
+    <%= booking.review.comment %>
+  </div>
+</div>
+<div class="review-info">
+  <div class="review-author">
+    <%= link_to "#{booking.request.client.first_name}" %>
+  </div>
+  <div class="review-rating">
+    <i class="fa fa-star star-review"></i> <%= booking.review.rating %>
+  </div>
+</div>
+
+

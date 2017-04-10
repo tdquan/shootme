@@ -22,6 +22,9 @@ module ShootMe
     # Use the responders controller from the responders gem
     config.app_generators.scaffold_controller :responders_controller
 
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+
+
     config.generators do |generate|
       generate.assets false
     end

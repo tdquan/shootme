@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :set_booking, only: [:new, :create, :edit, :update]
+  before_action :set_booking, only: [:new, :create, :edit, :update, :show]
 
   def index
     @reviews = Review.all
   end
 
   def show
+    @review = Review.new
   end
 
   def new
@@ -20,9 +21,13 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.booking = @booking
     if @review.save
-      puts 'review saved'
+      respond_to do |format|
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      puts 'review not saved'
+      respond_to do |format|
+        format.js  # <-- idem
+      end
     end
   end
 
