@@ -33,7 +33,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    @album = current_user.albums.create(name: params[:user][:album][:name], photos: params[:user][:album][:photos])
+    unless params[:user][:album][:name].empty? || params[:user][:album][:photos].empty?
+      @album = current_user.albums.create(name: params[:user][:album][:name], photos: params[:user][:album][:photos])
+    end
     super
   end
 
