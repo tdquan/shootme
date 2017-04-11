@@ -1,0 +1,8 @@
+$('.messages.index')ready(function() {
+  var updateChat = function() {
+    $('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+  };
+
+  var timer = setInterval(updateChat, 5000);
+  timer();
+});

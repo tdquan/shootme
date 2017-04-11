@@ -1,0 +1,4 @@
+$('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+
+$cont = $('.chat-window');
+$cont[0].scrollTop = $cont[0].scrollHeight;

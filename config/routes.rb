@@ -11,10 +11,15 @@ Rails.application.routes.draw do
     get '/users/:user_id', to: "users/registrations#show", as: :user
   end
 
+  # Edit and modify galleries
+
   get '/users/:user_id/gallery/:album_id', to: "albums#render_gallery", as: :render_gallery
   get '/users/:user_id/all_galleries', to: "albums#all_galleries", as: :all_galleries
   put '/users/:user_id/gallery/:album_id/delete_photo', to: "albums#delete_photo", as: :delete_photo
   put '/users/:user_id/gallery/:album_id/add_photo', to: "albums#add_photo", as: :add_photo
+
+  # User routes
+  get '/users/:user_id/conversations/:conversation_id/refresh_chat', to: "messages#refresh_chat"
 
   resources :users, only: :index do
     resources :bookings do
