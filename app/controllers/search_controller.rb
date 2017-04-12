@@ -3,28 +3,34 @@
 class SearchController < ApplicationController
   def search
     # Search filtering
-    @users = []
     if params[:user][:q].blank? && params[:user][:location].blank? && params[:user][:profession].count <= 1
-      @users = User.all
+      @users = User.where(pro: true)
     elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count > 1
       @users = User.query_search(params[:user][:q])
       @users = @users.select { |user| (user.city && user.city.include?(params[:user][:location])) }
       @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count <= 1
       @users = User.query_search(params[:user][:q])
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].present? && params[:user][:location].present? && params[:user][:profession].count <= 1
       @users = User.query_search(params[:user][:q])
       @users = @users.select { |user| (user.city && user.city.include?(params[:user][:location])) }
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].present? && params[:user][:location].blank? && params[:user][:profession].count > 1
       @users = User.query_search(params[:user][:q])
       @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].blank? && params[:user][:location].present? && params[:user][:profession].count <= 1
       @users = User.search_by_location(params[:user][:location])
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].blank? && params[:user][:location].present? && params[:user][:profession].count > 1
       @users = User.search_by_location(params[:user][:location])
       @users = @users.select { |user| !(user.role.split(" - ") & params[:user][:profession]).empty? }
+      @users = @users.select { |user| user.pro == true }
     elsif params[:user][:q].blank? && params[:user][:location].blank? && params[:user][:profession].count > 1
       @users = User.search_by_profession(params[:user][:profession].join(" "))
+      @users = @users.select { |user| user.pro == true }
     end
 
     # Get user with location
