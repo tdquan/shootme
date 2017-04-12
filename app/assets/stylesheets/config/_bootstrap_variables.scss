@@ -23,21 +23,3 @@ $brand-warning:   $orange;
 $border-radius-base:  2px;
 $border-radius-large: 2px;
 $border-radius-small: 2px;
-
-// Kill Bootstrap blue borders
-textarea:hover,
-input:hover,
-textarea:active,
-input:active,
-textarea:focus,
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
-{
-   outline:0px !important;
-   -webkit-appearance:none;
-}
