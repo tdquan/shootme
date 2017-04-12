@@ -10,7 +10,7 @@
       <% @current_album.photos.each do |p| %>
         <div class="col-md-3 col-xs-6 album-photos-thumbnail" data-public-id="<%= p.public_id %>">
           <%= cl_image_tag p.path, crop: "lpad", height: 100, gravity: "center" %>
-          <p class="text-center delete-photo-link"><%= link_to "Delete", delete_photo_path(public_id: p.public_id), method: :patch, remote: true %></p>
+          <p class="text-center delete-photo-link"><%= link_to "Delete", delete_photo_path(public_id: p.public_id), method: :put, remote: true %></p>
         </div>
       <% end %>
     </div>
