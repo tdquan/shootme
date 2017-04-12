@@ -6,7 +6,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <div class='input-group date' id='datetimepicker1'>
-            <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+            <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time started" %>
             <span class="input-group-addon">
               <span class="fa fa-calendar"></span>
             </span>
@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <div class='input-group date' id='datetimepicker2'>
-            <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'} %>
+            <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time end" %>
             <span class="input-group-addon">
               <span class="fa fa-calendar"></span>
             </span>
@@ -27,12 +27,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <div class='input-group date'>
-            <%= f.input :location, as: :select, label: false, input_html: {class: 'form-control'}, collection: @cities %>
-            <span class="input-group-addon">
-              <span class="fa fa-map-marker"></span>
-            </span>
-          </div>
+          <%= f.input :location, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Location" %>
         </div>
       </div>
       <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
@@ -67,11 +62,21 @@
     $(function () {
         $('#datetimepicker1').datetimepicker({
           format: 'DD-MM-YYYY hh:mm A',
-        });
-        $('#datetimepicker2').datetimepicker({
-          format: 'DD-MM-YYYY hh:mm A',
+          debug: true,
           useCurrent: false
         });
+
+        $('#datetimepicker2').datetimepicker({
+          format: 'DD-MM-YYYY hh:mm A',
+          debug: true,
+          useCurrent: false
+        });
+
+        $(".input-group-addon").each(function() {
+          $(this).trigger('click');
+        });
+        $("#request_end_time").blur();
+
         $("#datetimepicker1").on("dp.change", function (e) {
             $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
         });

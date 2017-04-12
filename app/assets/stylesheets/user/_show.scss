@@ -3,6 +3,25 @@
   margin-bottom: 40px;
 }
 
+.input-group.date {
+  width: 100%;
+  .input-group-addon {
+    display: none;
+  }
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom {
+  position: static;
+  box-shadow: none;
+  border: 2px solid #e9e9e9;
+  border-radius: 0;
+  width: 100%;
+  &:before {
+    display: none;
+    border: none;
+  }
+}
+
 .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
   background-color: $brand-primary;
 }
