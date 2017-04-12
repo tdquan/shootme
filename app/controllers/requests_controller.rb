@@ -18,7 +18,6 @@ class RequestsController < ApplicationController
     @request = current_user.requests_to_others.build(request_params)
     if @request.save
       HomePageMailer.creation_confirmation(@request).deliver_now
-      puts "Hurray"
     else
       puts "GODDAMNIT!"
     end

@@ -9,6 +9,15 @@ class Request < ApplicationRecord
 
   monetize :price_cents
 
+  # Geocoding
+  geocoded_by :address
+  after_validation :geocode, if: :location_changed?
+
+  # return location as adrress to fix geocoding problem
+  def address
+    self.location
+  end
+
   def get_review
     if self
       if booking

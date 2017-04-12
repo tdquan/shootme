@@ -1,10 +1,21 @@
 $(document).ready(function() {
   var user_address = $('#user_address').get(0);
+  var request_location = $('#request-location').get(0);
 
   if (user_address) {
     var autocomplete = new google.maps.places.Autocomplete(user_address, { types: ['geocode'] });
     google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
     google.maps.event.addDomListener(user_address, 'keydown', function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault(); // Do not submit the form on Enter.
+      }
+    });
+  }
+
+  if (request_location) {
+    var autocomplete = new google.maps.places.Autocomplete(request_location, { types: ['geocode'] });
+    google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+    google.maps.event.addDomListener(request_location, 'keydown', function(e) {
       if (e.keyCode == 13) {
         e.preventDefault(); // Do not submit the form on Enter.
       }
@@ -19,9 +30,7 @@ function onPlaceChanged() {
   $('#user_address').trigger('blur').val(components.address);
   $('#user_postal_code').val(components.zip_code);
   $('#user_city').val(components.city);
-  // if (components.country_code) {
-  //   $('#flat_country').val(components.country_code);
-  // }
+  $('#request-location').trigger('blur').val(components.address);
 }
 
 function getAddressComponents(place) {
@@ -48,14 +57,16 @@ function getAddressComponents(place) {
         city = component.long_name;
       } else if (type == 'country') {
         country_code = component.short_name;
+        country = component.long_name;
       }
     }
   }
 
   return {
-    address: street_number == null ? route : (street_number + ' ' + route),
+    address: street_number == null ? route : (street_number + ' ' + route + ', ' + city + ', ' + country),
     zip_code: zip_code,
     city: city,
-    country_code: country_code
+    country_code: country_code,
+    country: country
   };
 }

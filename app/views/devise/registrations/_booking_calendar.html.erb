@@ -6,7 +6,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <div class='input-group date' id='datetimepicker1'>
-            <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time started" %>
+            <%= f.input :start_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time started", required: true %>
             <span class="input-group-addon">
               <span class="fa fa-calendar"></span>
             </span>
@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <div class='input-group date' id='datetimepicker2'>
-            <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time end" %>
+            <%= f.input :end_time, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Time end", required: true %>
             <span class="input-group-addon">
               <span class="fa fa-calendar"></span>
             </span>
@@ -25,9 +25,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group">
-          <%= f.input :location, as: :string, label: false, input_html: {class: 'form-control'}, placeholder: "Location" %>
+          <%= f.input :location, as: :string, label: false, input_html: {class: 'form-control', id: 'request-location'}, placeholder: "Location", required: true %>
         </div>
       </div>
       <%= f.input :user_id, as: :hidden, label: false, input_html: {class: 'form-control', value: params[:user_id]}  %>
