@@ -1,10 +1,12 @@
 $('.messages.index').ready(function() {
-  var updateChat = function() {
-    $.ajax({
-      url: "refresh_chat",
-      dataType: "script"
-    });
-  };
+  if ($('.messages.index').length > 0) {
+    var updateChat = function() {
+      $.ajax({
+        url: "refresh_chat",
+        dataType: "script"
+      });
+    };
 
-  setInterval(updateChat, 5000);
+    setInterval(updateChat, 10000);
+  }
 });

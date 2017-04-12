@@ -1,4 +1,14 @@
-$('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+var refreshChat = function() {
+  // get old scrolling position
+  var $cont = $('.chat-window');
+  var scrollPos = $cont.scrollTop();
 
-$cont = $('.chat-window');
-$cont[0].scrollTop = $cont[0].scrollHeight;
+  $('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+
+  // return old scrolling position
+  var $cont = $('.chat-window');
+  $cont[0].scrollTop = scrollPos;
+};
+
+refreshChat();
+

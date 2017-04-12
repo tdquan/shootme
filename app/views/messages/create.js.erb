@@ -1,5 +1,9 @@
-$('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
-$cont = $('.chat-window');
-$cont[0].scrollTop = $cont[0].scrollHeight;
+var chat = function() {
+  $('#chat').html("<%= escape_javascript(render partial: 'chat_window') %>");
+  var $cont = $('.chat-window');
+  $cont[0].scrollTop = $cont[0].scrollHeight;
 
-$('#message_body').val('').focus();
+  $('#message_body').val('').focus();
+};
+
+chat();

@@ -2,7 +2,7 @@
 
 $(document).on('ready', function() {
   $('.messages.index').ready(function(){
-    $cont = $('.chat-window');
+    var $cont = $('.chat-window');
     if ($cont.length > 0) {
       $cont[0].scrollTop = $cont[0].scrollHeight;
       $('#message_body').focus();

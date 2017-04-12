@@ -17,7 +17,7 @@
         <div class="dropdown inline-block float-right">
           <%= link_to inbox_path(current_user) do %>
             <span>Inbox</span>
-            <span class="badge bg-red">5</span>
+            <span class="badge bg-red"><%= Conversation.unread_count(current_user) %></span>
           <% end %>
           &nbsp;
 

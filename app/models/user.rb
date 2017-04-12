@@ -69,7 +69,9 @@ class User < ApplicationRecord
            dependent: :destroy
 
   ## Conversations
-  has_many :conversations
+  has_many :conversations_as_user, class_name: 'Conversation', foreign_key: 'user_id'
+  has_many :conversations_as_client, class_name: 'Conversation', foreign_key: 'client_id'
+  has_many :messages
 
   ## Elasticsearch
   # include Elasticsearch::Model
