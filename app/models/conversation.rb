@@ -10,7 +10,7 @@ class Conversation < ApplicationRecord
   def self.unread_count(user)
     i = 0
     Conversation.where(user_id: user.id).or(Conversation.where(client_id: user.id)).each do |c|
-      if c.messages.last.user_id != user.id && c.messages.last.read == false
+      if !c.messages.last.nil? && c.messages.last.user_id != user.id && c.messages.last.read == false
         i += 1
       end
     end
