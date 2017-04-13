@@ -14,7 +14,7 @@ Devise.setup do |config|
   "yqMHJwiXwDSFeU5NGv9yULH8",
   name: 'google_oauth2',
   scope: 'email',
-  redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback',
+  redirect_uri: '/users/auth/google_oauth2/callback',
   prompt: 'select_account',
   image_aspect_ratio: 'square',
   image_size: 50
