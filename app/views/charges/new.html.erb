@@ -6,8 +6,9 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: 1.00 €</span>
+      <span>Amount: <%= '%.2f' % (params[:amount]/100) %> €</span>
     </label>
+    <% raise %>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :bookings do
       resources :reviews
     end
+    get 'payment', to: "pages#payment"
+    resources :charges
     resources :requests
     resources :conversations do
       resources :messages
@@ -35,9 +37,6 @@ Rails.application.routes.draw do
 
   get 'home', to: "pages#home"
   get 'search', to: "search#search", as: :search
-  get 'payment', to: "pages#payment"
   get 'inbox', to: "users#inbox", as: :inbox
   post 'mailer', to: "pages#contact_mailer", as: :contact
-
-  resources :charges
 end

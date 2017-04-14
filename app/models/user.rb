@@ -86,6 +86,7 @@ class User < ApplicationRecord
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    user_params[:password] = "123456"  # Fake password for validation
 
     user = User.find_or_create_by(provider: auth.provider, uid: auth.uid)
     user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
@@ -93,7 +94,6 @@ class User < ApplicationRecord
       user.update(user_params)
     else
       user = User.new(user_params)
-      user.password = "123456"  # Fake password for validation
       user.save
     end
     user

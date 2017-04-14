@@ -3,19 +3,21 @@ class ChargesController < ApplicationController
   end
 
   def create
-    # Amount in cents
-    @amount = 100
-
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
     )
 
-    charge = Stripe::Charge.create(
+    if charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => @amount,
+      :amount      => params[:amount],
       :currency    => 'eur',
     )
+      booking = Booking.find(params[:booking])
+      booking.paid = true
+      booking.save
+    end
+    redirect_to inbox_path(current_user)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

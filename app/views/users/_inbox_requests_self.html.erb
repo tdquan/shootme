@@ -19,6 +19,13 @@
         <p><b>From</b> <%= request.start_time.to_formatted_s(:long) %></p>
         <p><b>To</b> <%= request.end_time.to_formatted_s(:long) %></p>
         <p><b>In</b> <%= request.location %></p>
+        <span class="request-status" data="<%= request.id %>">
+        </span>
+        <% if request.confirmed == true %>
+          <span class="label label-success">Accepted</span>
+        <% elsif request.confirmed == false %>
+          <span class="label label-primary">Rejected</span>
+        <% end %>
       </div>
       <div class="col-md-2">
         <% if request.confirmed == nil %>
@@ -30,6 +37,7 @@
               <% end %>
             </div>
           <% end %>
+          <br>
           <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "reject-form", data: request.id } ) do |f| %>
             <div class="form-actions">
               <%= f.input :confirmed, as: :hidden, :input_html => { :value => false } %>
@@ -38,14 +46,6 @@
               <% end %>
               </div>
           <% end %>
-        <% end %>
-        <span class="request-status" data="<%= request.id %>">
-        </span>
-        <% if request.confirmed == true %>
-          <span class="label label-success">Accepted</span>
-        <% end %>
-        <% if request.confirmed == false %>
-          <span class="label label-primary">Rejected</span>
         <% end %>
       </div>
     </div>

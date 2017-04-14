@@ -13,99 +13,96 @@
         <div id="messages" class="tab-pane fade in active">
           <h3>Inbox</h3>
           <% if @conversations %>
-          <div class="ui segment">
-            <div class="ui list">
-              <div class="item">
-                <% @conversations.each do |conversation| %>
-                  <% if conversation.client_id == current_user.id || conversation.user_id == current_user.id %>
-                    <% if conversation.client_id == current_user.id %>
-                      <% user = User.find(conversation.user_id) %>
-                    <% else %>
-                      <% user = User.find(conversation.client_id) %>
-                    <% end %>
-                    <%= link_to user_conversation_messages_path(conversation, conversation_id:conversation.id) do %>
-                      <div class="card margin-bottom">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <% if user.avatar != nil %>
-                              <%= cl_image_tag user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
-                            <% else %>
-                              <%= image_tag "avatar_image.jpg", width: 75, height: 75, radius: 75, crop: :fill, gravity: :face %>
-                            <% end %>
-                          </div>
-                          <div class="col-md-10">
-                            <h4><%= user.first_name %></h4>
-                            <% if conversation.messages.last != nil %>
-                              <p><%= conversation.messages.last.body %></p>
-                            <% end %>
+            <div class="ui segment">
+              <div class="ui list">
+                <div class="item">
+                  <% @conversations.each do |conversation| %>
+                    <% if conversation.client_id == current_user.id || conversation.user_id == current_user.id %>
+                      <% if conversation.client_id == current_user.id %>
+                        <% user = User.find(conversation.user_id) %>
+                      <% else %>
+                        <% user = User.find(conversation.client_id) %>
+                      <% end %>
+                      <%= link_to user_conversation_messages_path(conversation, conversation_id:conversation.id) do %>
+                        <div class="card margin-bottom">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <% if user.avatar != nil %>
+                                <%= cl_image_tag user.avatar.path, width: 75, height: 75, crop: :fill, gravity: :face %>
+                              <% else %>
+                                <%= image_tag "avatar_image.jpg", width: 75, height: 75 %>
+                              <% end %>
+                            </div>
+                            <div class="col-md-10">
+                              <h4><%= user.first_name %></h4>
+                              <% if conversation.messages.last != nil %>
+                                <p><%= conversation.messages.last.body %></p>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
-          </div>
           <% else %>
-          <h4>You don't have conversations yet!</h4>
+            <h4>You don't have any conversations.</h4>
           <% end %>
         </div>
 
         <div id="requests" class="tab-pane fade">
           <h3>Requests</h3>
-          <% if current_user.pro == true %>
           <ul class="nav nav-tabs margin-bottom">
-            <li class="active"><a data-toggle="tab" href="#received_request">Received</a></li>
-            <li><a data-toggle="tab" href="#sent_request">Sent</a></li>
+            <% if current_user.pro == true %>
+              <li class="active"><a data-toggle="tab" href="#received_request">Received</a></li>
+              <li><a data-toggle="tab" href="#sent_request">Sent</a></li>
+            <% else %>
+              <li class="active"><a data-toggle="tab" href="#sent_request">Sent</a></li>
+            <% end %>
           </ul>
           <div class="tab-content">
-            <div id="received_request" class="tab-pane fade in active">
-              <%= render 'inbox_requests_self' %>
-            </div>
-            <div id="sent_request" class="tab-pane fade">
-              <%= render 'inbox_requests_others' %>
-            </div>
+            <% if current_user.pro == true %>
+              <div id="received_request" class="tab-pane fade in active">
+                <%= render 'inbox_requests_self' %>
+              </div>
+              <div id="sent_request" class="tab-pane fade">
+                <%= render 'inbox_requests_others' %>
+              </div>
+            <% else %>
+              <div id="sent_request" class="tab-pane fade in active">
+                <%= render 'inbox_requests_others' %>
+              </div>
+            <% end %>
           </div>
-          <% else %>
-            <%= render 'inbox_requests_others' %>
-          <% end %>
         </div>
         <div id="bookings" class="tab-pane fade">
           <h3>Bookings</h3>
-        <% if current_user.pro == true %>
-          <ul class="nav nav-tabs margin-bottom">
-            <li class="active"><a data-toggle="tab" href="#received_booking">Received</a></li>
-            <li><a data-toggle="tab" href="#sent_booking">Sent</a></li>
-          </ul>
-          <div class="tab-content">
-            <div id="received_booking" class="tab-pane fade in active">
-              <%= render 'inbox_bookings_self' %>
+            <ul class="nav nav-tabs margin-bottom">
+              <% if current_user.pro == true %>
+                <li class="active"><a data-toggle="tab" href="#received_booking">Received</a></li>
+                <li><a data-toggle="tab" href="#sent_booking">Sent</a></li>
+              <% else %>
+                <li class="active"><a data-toggle="tab" href="#sent_booking">Sent</a></li>
+              <% end %>
+            </ul>
+            <div class="tab-content">
+              <% if current_user.pro == true %>
+                <div id="received_booking" class="tab-pane fade in active">
+                  <%= render 'inbox_bookings_self' %>
+                </div>
+                <div id="sent_booking" class="tab-pane fade">
+                <%= render 'inbox_bookings_others' %>
+              </div>
+              <% else %>
+                <div id="sent_booking" class="tab-pane fade in active">
+                  <%= render 'inbox_bookings_others' %>
+                </div>
+              <% end %>
             </div>
-            <div id="sent_booking" class="tab-pane fade">
-              <%= render 'inbox_bookings_others' %>
-            </div>
-          </div>
-          <% else %>
-            <%= render 'inbox_bookings_others' %>
-          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--
-<script>
-  $(document).ready(function() {
-    $('.status-accepted').hover(function() {
-      $(this).html('Delete');
-    }, function() {
-      $(this).html('Accepted');
-    });
-    $('.status-pending').hover(function() {
-      $(this).html('Delete');
-    }, function() {
-      $(this).html('Pending');
-    });
-  });
-</script> -->

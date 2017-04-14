@@ -20,7 +20,9 @@ class PagesController < ApplicationController
   end
 
   def payment
-    @user = User.new
+    @user = User.find(params[:user_id])
+    @booking = Booking.find(params[:booking])
+    @amount = @booking.price_cents
   end
 
   def contact_mailer

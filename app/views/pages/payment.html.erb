@@ -11,39 +11,39 @@
             <div class="form-inputs">
               <div class="row">
                 <div class="col-md-6">
-                  <%= f.input :first_name, required: true, autofocus: true, input_html: {value: current_user.first_name} %>
+                  <%= f.input :first_name, required: true, autofocus: true, input_html: {value: @user.first_name} %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :last_name, required: true, input_html: {value: current_user.last_name}  %>
+                  <%= f.input :last_name, required: true, input_html: {value: @user.last_name}  %>
                 </div>
                 <div class="col-md-12">
-                  <%= f.input :address, required: true, input_html: {value: current_user.address}  %>
+                  <%= f.input :address, required: true, input_html: {value: @user.address}  %>
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :postal_code, required: true, input_html: {value: current_user.postal_code}  %>
+                  <%= f.input :postal_code, required: true, input_html: {value: @user.postal_code}  %>
                 </div>
               </div>
             </div>
           <% end %>
           <h4>Payment Information</h4>
           <hr>
-<!-- stripe -->
-            <%= form_tag charges_path do %>
-              <article>
-                <% if flash[:error].present? %>
-                  <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
-                  </div>
-                <% end %>
-              </article>
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      Stripe.setPublishableKey('pk_test_oqxcVbV2SGxUWqO8cEv8y1DV');
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-description="Account Activation"
-                      data-amount="100"
-                      data-locale="auto"></script>
-            <% end %>
-<!-- end of stripe -->
+          <!-- STRIPE PAYMENT -->
+          <%= form_tag user_charges_path(amount: @amount, booking: @booking.id) do %>
+            <article>
+              <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+              <% end %>
+            </article>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    Stripe.setPublishableKey('pk_test_oqxcVbV2SGxUWqO8cEv8y1DV');
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Account Activation"
+                    data-amount="<%= @amount %>"
+                    data-locale="auto"></script>
+          <% end %>
+          <!-- END OF STRIPE -->
         </div>
       </div>
       <div class="col-md-4">
@@ -55,14 +55,14 @@
               <p>Sign-up fee:</p>
             </div>
             <div class="col-md-6" align='right'>
-              <p>1.00 €</p>
+              <p><%= '%.2f' % (@amount/100) %> €</p>
             </div>
             <div class="col-md-12"><hr></div>
             <div class="col-md-6">
               <h4>Total:</h4>
             </div>
             <div class="col-md-6" align='right'>
-              <h4>1.00 €</h4>
+              <h4><%= '%.2f' % (@amount/100) %> €</h4>
             </div>
           </div>
         </div>

@@ -7,11 +7,11 @@
   <% if booking.request.confirmed == true %>
     <div class="card" id="card-booking">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 text-center">
           <% if booking.request.user.avatar != nil %>
             <%= cl_image_tag booking.request.user.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
           <% else %>
-            <%= image_tag "avatar_image.jpg", width: 85, height: 85, radius: 85, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+            <%= image_tag "avatar_image.jpg", width: 500, height: 500, class: "user-picture" %>
           <% end %>
           <b><%= booking.request.user.first_name %> <%= booking.request.user.last_name %></b>
         </div>
@@ -19,12 +19,15 @@
           <p><b>From</b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
           <p><b>To</b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
           <p><b>In</b> <%= booking.request.location %></p>
-        </div>
-        <div class="col-md-2">
           <% if booking.paid == true %>
             <span class="label label-success">Paid</span>
           <% else %>
             <span class="label label-primary">Unpaid</span>
+          <% end %>
+        </div>
+        <div class="col-md-2">
+          <% if !booking.paid %>
+            <%= link_to "Pay", { controller: :pages, action: :payment, user_id: current_user.id, booking: booking }, class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>

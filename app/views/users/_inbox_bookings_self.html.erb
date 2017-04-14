@@ -7,7 +7,7 @@
   <% if booking.request.confirmed == true %>
     <div class="card">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 text-center">
           <% if booking.request.client.avatar != nil %>
             <%= cl_image_tag booking.request.client.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
           <% else %>
@@ -19,8 +19,6 @@
           <p><b>From</b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
           <p><b>To</b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
           <p><b>In</b> <%= booking.request.location %></p>
-        </div>
-        <div class="col-md-2">
           <% if booking.paid == true %>
             <span class="label label-success">Paid</span>
           <% else %>

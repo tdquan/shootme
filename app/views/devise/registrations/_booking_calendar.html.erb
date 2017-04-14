@@ -60,29 +60,35 @@
 <% content_for(:after_js) do %>
   <script type="text/javascript">
     $(function () {
-        $('#datetimepicker1').datetimepicker({
-          format: 'DD-MM-YYYY hh:mm A',
-          debug: true,
-          useCurrent: false
-        });
+      // Initiate the 2 date pickers
+      $('#datetimepicker1').datetimepicker({
+        format: 'DD-MM-YYYY hh:mm A',
+        debug: true,
+        useCurrent: false
+      });
 
-        $('#datetimepicker2').datetimepicker({
-          format: 'DD-MM-YYYY hh:mm A',
-          debug: true,
-          useCurrent: false
-        });
+      $('#datetimepicker2').datetimepicker({
+        format: 'DD-MM-YYYY hh:mm A',
+        debug: true,
+        useCurrent: false
+      });
 
-        $(".input-group-addon").each(function() {
-          $(this).trigger('click');
-        });
-        $("#request_end_time").blur();
+      // Expand calendar views
+      $(".input-group-addon").each(function() {
+        $(this).trigger('click');
+      });
+      $("#request_end_time").blur();
 
-        $("#datetimepicker1").on("dp.change", function (e) {
-            $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker2").on("dp.change", function (e) {
-            $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
-        });
+      // Example of disabled dates
+      // $('#datetimepicker1').data("DateTimePicker").disabledDates(['21/04/2017'])
+
+      // Link 2 pickers so you can not select dates earlier than start date
+      $("#datetimepicker1").on("dp.change", function (e) {
+          $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+      });
+      $("#datetimepicker2").on("dp.change", function (e) {
+          $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+      });
     });
   </script>
 <% end %>

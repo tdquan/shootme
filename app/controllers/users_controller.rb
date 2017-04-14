@@ -7,11 +7,13 @@ class UsersController < ApplicationController
   def inbox
     # messages
     @conversations = Conversation.all
+
     # request to others:
     # request client is the current user
     # request user is the pro
     @requests_to_self = current_user.requests_to_self
     @requests_to_others = current_user.requests_to_others
+
     # bookings
     @bookings_to_others = []
     @bookings_to_self = []
@@ -20,15 +22,6 @@ class UsersController < ApplicationController
       @bookings_to_self << booking if booking.request.user_id == current_user.id
     end
     @review = Review.new
-  end
-
-  def new
-  end
-
-  private
-
-  def avatar_params
-    params.require(:user).permit(:name, :avatar)
   end
 end
 

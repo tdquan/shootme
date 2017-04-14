@@ -15,12 +15,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    # @booking = @request.bookings.build(booking_params)
-    # if @booking.save
-    #   puts "Hurray"
-    # else
-    #   puts "GODDAMNIT!"
-    # end
+    @booking = @request.bookings.build(booking_params)
+    if @booking.save
+      puts "Hurray"
+    else
+      puts "GODDAMNIT!"
+    end
   end
 
   def update
