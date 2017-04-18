@@ -45,6 +45,25 @@ class SearchController < ApplicationController
       marker.lat user.latitude
       marker.lng user.longitude
       marker.infowindow render_to_string(partial: "/users/map_box", locals: { user: user })
+      if user.role == "Drone Pilot"
+        marker.picture({
+          url: view_context.image_path("pin_yellow.png"),
+          width: 32,
+          height: 57
+        })
+      elsif user.role == "Videographer"
+        marker.picture({
+          url: view_context.image_path("pin_green.png"),
+          width: 32,
+          height: 57
+        })
+      else
+        marker.picture({
+          url: view_context.image_path("pin_red.png"),
+          width: 32,
+          height: 57
+        })
+      end
     end
 
     respond_to do |f|
