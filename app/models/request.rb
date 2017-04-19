@@ -7,7 +7,7 @@ class Request < ApplicationRecord
   validates :end_time, presence: true
   validates :location, presence: true
 
-  monetize :price_cents
+  monetize :price_cents, allow_nil: true
 
   # Geocoding
   geocoded_by :address

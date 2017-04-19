@@ -73,6 +73,9 @@ class User < ApplicationRecord
   has_many :conversations_as_client, class_name: 'Conversation', foreign_key: 'client_id'
   has_many :messages
 
+  ## Wallet
+  has_one :wallet
+
   ## Elasticsearch
   # include Elasticsearch::Model
   # include Elasticsearch::Model::Callbacks

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412124123) do
+ActiveRecord::Schema.define(version: 20170419081635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,9 +155,19 @@ ActiveRecord::Schema.define(version: 20170412124123) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wallets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "EUR", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
+  end
+
   add_foreign_key "albums", "users"
   add_foreign_key "bookings", "requests"
   add_foreign_key "conversations", "users"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "bookings"
+  add_foreign_key "wallets", "users"
 end

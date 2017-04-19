@@ -15,7 +15,11 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests_to_others.build(request_params)
+    @current_profile = User.find(params[:user_id])
+    if @current_profile.fee_cents && @current_profile.fee_cents > 0
+      @request = current_user.requests_to_others.build(request_params)
+      @request.price_cents = @current_profile.fee_cents
+    end
     if @request.save
       HomePageMailer.creation_confirmation(@request).deliver_now
     else
@@ -43,7 +47,7 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:user_id, :client_id, :start_time, :end_time,
-      :location, :confirmed, :price_cents)
+      :location, :confirmed)
   end
 
   def set_request

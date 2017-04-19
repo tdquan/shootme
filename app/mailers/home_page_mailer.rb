@@ -41,6 +41,7 @@ class HomePageMailer < ApplicationMailer
 
   def booking_confirmation(booking)
     @booking = booking
+    @request = @booking.request
 
     mail(
       to:       @request.client.email,
