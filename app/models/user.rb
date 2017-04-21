@@ -68,6 +68,9 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            dependent: :destroy
 
+  has_many :bookings_to_self, through: :requests_to_self, source: :booking
+  has_many :bookings_to_others, through: :requests_to_others, source: :booking
+
   ## Conversations
   has_many :conversations_as_user, class_name: 'Conversation', foreign_key: 'user_id'
   has_many :conversations_as_client, class_name: 'Conversation', foreign_key: 'client_id'

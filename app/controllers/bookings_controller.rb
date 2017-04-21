@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, except: [:index, :new, :user_confirmed, :client_confirmed]
   def index
     @bookings = Booking.all
   end
@@ -25,6 +25,19 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(booking_params)
+    redirect_to :back
+  end
+
+  def user_confirmed
+    @booking = Booking.find(params[:booking_id])
+    @booking.update(booking_params)
+    redirect_to :back
+  end
+
+  def client_confirmed
+    @booking = Booking.find(params[:booking_id])
+    @booking.update(booking_params)
+    redirect_to :back
   end
 
   def destroy
@@ -35,7 +48,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:user_id, :start_time, :end_time, :location,
-      :client_id, :paid, :price_cents)
+      :client_id, :paid, :price_cents, :user_confirmed)
   end
 
   def set_booking

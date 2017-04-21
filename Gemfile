@@ -65,8 +65,6 @@ gem 'devise-i18n'
 
 gem 'sidekiq'
 gem 'faker'
-# mails
-gem 'mailchimp-api', '~> 2.0', '>= 2.0.6'
 
 # search
 # gem 'elasticsearch-model'

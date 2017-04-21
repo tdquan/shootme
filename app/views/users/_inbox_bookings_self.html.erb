@@ -2,30 +2,38 @@
   <div class="card">
     <p>No received bookings yet!</p>
   </div>
-<% end %>
-<% @bookings_to_self.each do |booking| %>
-  <% if booking.request.confirmed == true %>
-    <div class="card card-inbox">
-      <div class="row">
-        <div class="col-md-2 text-center">
-          <% if booking.request.client.avatar != nil %>
-            <%= cl_image_tag booking.request.client.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
-          <% else %>
-            <%= image_tag "avatar_image.jpg", width: 85, height: 85, radius: 85, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
-          <% end %>
-          <b><%= booking.request.client.first_name %> <%= booking.request.client.last_name %></b>
-        </div>
-        <div class="col-md-8">
-          <p><b>From</b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
-          <p><b>To</b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
-          <p><b>In</b> <%= booking.request.location %></p>
-          <% if booking.paid == true %>
-            <span class="label label-success">Paid</span>
-          <% else %>
-            <span class="label label-primary">Unpaid</span>
-          <% end %>
+<% else %>
+  <% @bookings_to_self.each do |booking| %>
+    <% if booking.request.confirmed == true %>
+      <div class="card card-inbox">
+        <div class="row">
+          <div class="col-md-2 text-center">
+            <% if booking.request.client.avatar != nil %>
+              <%= cl_image_tag booking.request.client.avatar.path, width: 500, height: 500, class: "user-picture", crop: :fill, gravity: :face %>
+            <% else %>
+              <%= image_tag "avatar_image.jpg", width: 500, height: 500, class: "user-picture" %>
+            <% end %>
+            <b><%= booking.request.client.first_name %> <%= booking.request.client.last_name %></b>
+          </div>
+
+          <div class="col-md-7">
+            <p><b>From</b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
+            <p><b>To</b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
+            <p><b>In</b> <%= booking.request.location %></p>
+            <% if booking.paid == true %>
+              <span class="label label-success">Paid</span>
+            <% else %>
+              <span class="label label-primary">Unpaid</span>
+            <% end %>
+          </div>
+
+          <div class="col-md-3">
+            <% if booking.user_confirmed == false %>
+              <%= link_to "Mark as done", { controller: :bookings, action: :user_confirmed, user_id: current_user.id, booking_id: booking.id, booking: { user_confirmed: true } }, method: :put, class: "btn btn-primary" %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

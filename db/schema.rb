@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419081635) do
+ActiveRecord::Schema.define(version: 20170421101548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,13 +56,15 @@ ActiveRecord::Schema.define(version: 20170419081635) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.boolean  "paid"
     t.integer  "request_id"
-    t.integer  "price_cents", default: 0, null: false
+    t.integer  "price_cents",      default: 0,     null: false
     t.float    "longitude"
     t.float    "latitude"
+    t.boolean  "client_confirmed", default: false
+    t.boolean  "user_confirmed",   default: false
     t.index ["request_id"], name: "index_bookings_on_request_id", using: :btree
   end
 
@@ -73,6 +75,16 @@ ActiveRecord::Schema.define(version: 20170419081635) do
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_conversations_on_client_id", using: :btree
     t.index ["user_id"], name: "index_conversations_on_user_id", using: :btree
+  end
+
+  create_table "job_codes", force: :cascade do |t|
+    t.integer  "booking_id"
+    t.string   "code"
+    t.boolean  "used",        default: false
+    t.datetime "code_expiry"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["booking_id"], name: "index_job_codes_on_booking_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -167,6 +179,7 @@ ActiveRecord::Schema.define(version: 20170419081635) do
   add_foreign_key "albums", "users"
   add_foreign_key "bookings", "requests"
   add_foreign_key "conversations", "users"
+  add_foreign_key "job_codes", "bookings"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "wallets", "users"

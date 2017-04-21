@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :users, only: :index do
     resources :bookings do
       resources :reviews
+      put 'user_confirmed', to: "bookings#user_confirmed"
+      put 'client_confirmed', to: "bookings#client_confirmed"
     end
     get 'payment', to: "pages#payment"
     get 'wallet', to: "wallet#index"
