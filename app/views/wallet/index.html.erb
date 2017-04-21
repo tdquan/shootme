@@ -1,0 +1,7 @@
+<div>
+  <% @wallets.each do |wallet| %>
+    <%= link_to user_wallet_payment_path(amount: wallet.amount_cents) do  %>
+      <%= wallet.amount %> €
+    <% end %>
+  <% end %>
+</div>

@@ -26,7 +26,10 @@ Rails.application.routes.draw do
       resources :reviews
     end
     get 'payment', to: "pages#payment"
-    resources :charges
+    get 'wallet', to: "wallet#index"
+    get 'wallet/payment', to: "wallet#payment"
+    post 'wallet/top_up', to: "wallet#top_up", as: :wallet_topup
+    resources :charges, only: [:new, :create]
     resources :requests
     resources :conversations do
       resources :messages

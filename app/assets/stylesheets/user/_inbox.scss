@@ -11,11 +11,14 @@
 }
 
 .tab-content .card {
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  &:last-child {
-    border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  &:first-child {
+    border-top: none;
   }
+}
+
+.card-inbox .btn {
+  width: 100%;
 }
 
 #messages .card {
@@ -27,10 +30,6 @@
   position: absolute;
   right: 20px;
   bottom: 20px;
-}
-
-#card-booking{
-  position: relative;
 }
 
 #review_rating {

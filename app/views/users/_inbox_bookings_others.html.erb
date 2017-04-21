@@ -5,7 +5,7 @@
 <% end %>
 <% @bookings_to_others.each do |booking| %>
   <% if booking.request.confirmed == true %>
-    <div class="card" id="card-booking">
+    <div class="card card-inbox">
       <div class="row">
         <div class="col-md-2 text-center">
           <% if booking.request.user.avatar != nil %>
