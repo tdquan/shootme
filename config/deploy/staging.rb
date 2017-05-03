@@ -17,6 +17,7 @@ set :ssh_options, {
     user: fetch(:user),
     password: 'shootmepass'
   }
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
