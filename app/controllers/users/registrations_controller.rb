@@ -30,8 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
-
     resource.save
+    resource.wallet = Wallet.create!
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -48,7 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    resource.wallet = Wallet.new
   end
 
   def update

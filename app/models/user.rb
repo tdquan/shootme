@@ -102,6 +102,7 @@ class User < ApplicationRecord
     else
       user = User.new(user_params)
       user.save
+      user.wallet = Wallet.create!
     end
     user
   end
@@ -119,6 +120,7 @@ class User < ApplicationRecord
         password: "123456"
         # photo: "https://www.google.com/s2/photos/profile/#{user.id}"
       )
+      user.wallet = Wallet.create!
     end
     user
   end
