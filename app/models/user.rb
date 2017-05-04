@@ -77,7 +77,8 @@ class User < ApplicationRecord
   has_many :messages
 
   ## Wallet
-  has_one :wallet
+  has_one :wallet,
+          dependent: :destroy
 
   ## Elasticsearch
   # include Elasticsearch::Model
