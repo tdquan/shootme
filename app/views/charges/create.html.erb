@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="card col-md-6 col-md-offset-3 text-center">
-      <h2>Thank you, you paid <strong><%= '%.2f' % (params[:amount].to_i/100) %></strong>!</h2>
+      <h2><%= t("payment.thank_you") %> <strong><%= '%.2f' % (params[:amount].to_i/100) %></strong>!</h2>
     </div>
   </div>
 </div>

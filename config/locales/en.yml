@@ -1,23 +1,48 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  password: Password
+  search: Search
+  name: Name
+  send: Send
+  back: Back
+  profile: Profile
+  delete: Delete
+  your_message: Your message
+  landing_page:
+    create_your_account: Create your free account
+    today_on_shootme: today on Shoot-me.
+    create_account: Create account
+    show_location: Show locations
+    top_description: Shoot-Me is the confluence of photography and video production enthusiasts! This platform puts you in direct contact with gifted people in the filed of image and visual production to help you immortalize your precious moments at the lowest price and without going through very expensive agencies ...
+    clear_packages: Clear packages that suit your needs
+    standard_account: Standard Account - Artist
+    standard_description: You are passionate about photography and you want to make a source of income out of it? Find your future customers for free on Shoot-Me and exchange with them directly on our plateform.
+    premium_account: Premium Account - Artist
+    premium_description: Benefit from all the advantages of a standard account and contact your future customers directly by email or phone. You can also upload your most beautiful photos and build your portfolio directly on your private space to give your future customers a taste of your creativity!
+    standard_account_free: Standard Account Free - Service Search
+    standard_free_description: Take advantage of maximum possibilities and find talented people in the field of photography and video production, able to help you capture your best moments in photo and / or video all at the lowest prices and without going through corporations!
+    why_join_shootme: Why join Shoot-Me?
+    brodcast_your_work: "Broadcast your works / portfolio:"
+    brodacast_desc: Upload the best samples of your work so that the new customers can quickly recognize the quality of your presentation and find your contact information in one place.
+    build_your_reputation: "Build your reputation / brand:"
+    build_desc: Gather all your customers' positive opinions in one place and reinforce your credibility in the eyes of future clients. Thanks to Shoot-Me and your satisfied customers, you will build a strong presence on the web and optimize your brand name.
+    attractive_pricing: "Very attractive pricing:"
+    attractive_desc: At only one euro, you can access all the services of Shoot-Me thus gaining in exposure and building awareness.
+    stay_connected: Stay connected
+    all_rights: ©2017 All rights reserved
+  navbar:
+    inbox: Inbox
+    my_profil: My profile
+    logout: Log out
+    signup: Sign up
+    login: Login
+  gallery:
+    photo_galleries: Photo Galleries
+    no_galleries: This user has no galleries.
+    photos_of: Photos of
+    upload: Upload photos
+    reviews: review
+    view: View galllery
+  payment:
+    thank_you: Thank you, you paid
+    amount: Amount:
+

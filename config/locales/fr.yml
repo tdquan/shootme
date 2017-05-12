@@ -1,0 +1,58 @@
+fr:
+  password: Mot de passe
+  search: Chercher
+  name: Nom
+  send: Envoyer
+  back: Retour
+  delete: Supprimer
+  your_message: Votre message
+  landing_page:
+    create_your_account: Créez votre compte gratuit
+    today_on_shootme: Aujourd'hui sur Shoot-me.
+    create_account: Créer un compte
+    show_location: Afficher les lieux
+    top_description: "Shoot-Me est le lieu de rendez-vous des amateurs de photographie et de production
+    vidéo! Cette plate-forme vous met en contact direct avec des personnes expérimentées dans l'image
+    la production visuelle pour vous aider à immortaliser vos moments précieux au prix le
+    plus bas et sans passer par des agences très coûteuses..."
+    clear_packages: Des offres claires qui correspondent à vos besoins
+    standard_account: Compte standard - Artiste
+    standard_description: "Vous êtes passionné par la photographie et vous voulez en faire une source de
+    revenus? Retrouvez vos futurs clients gratuitement sur Shoot-Me et échangez avec eux directement
+    sur notre plateforme."
+    premium_account: Compte Premium - Artiste
+    premium_description: "Profitez de tous les avantages d'un compte standard et contactez vos futurs
+    clients directement par email ou par téléphone. Vous pouvez également télécharger
+    vos plus belles photos et créer votre galerie directement sur votre espace privé pour donner à
+    vos futurs clients un avant-goût de votre créativité!"
+    standard_account_free: Compte standard gratuit - Recherche de préstation
+    standard_free_description: "Profitez des possibilités maximales et trouvez des personnes talentueuses
+    dans le domaine de la photographie et de la production vidéo, vous permettant de capturer vos meilleurs
+    moments en photo et / ou vidéo au prix le plus bas et sans passer par les agences!"
+    why_join_shootme: Pourquoi rejoindre Shoot-Me?
+    brodcast_your_work: "Diffusez votre travaille / galerie:"
+    brodcast_desc: "Téléchargez vos meilleurs créations afin que les nouveaux clients
+    puissent rapidement reconnaître la qualité de votre travail et trouver vos informations de contact
+    en un seul endroit."
+    build_your_reputation: "Construisez votre réputation / marque:"
+    build_desc: "Rassemblez toutes les avis positifs de vos clients en un seul endroit et augmentez
+    votre crédibilité aux yeux des futurs clients. Grâce à Shoot-Me et à vos clients satisfaits,
+    vous allez créer une forte présence sur le Web et optimiser votre image de marque."
+    attractive_pricing: "Prix très attractifs:"
+    attractive_desc: "Avec un seul euro, vous pouvez accéder à tous les services de Shoot-Me, ce qui augmente
+    l'exposition et la sensibilisation."
+    stay_connected: Restez connecté
+    all_rights: ©2017 Tout droits reservés
+  navbar:
+    inbox: Messages
+    my_profil: Mon profil
+    logout: Se déconnecter
+    signup: S'enregistrer
+    login: Se connecter
+  gallery:
+    photo_galleries: Galeries photos
+    no_galleries: This user has no galleries.
+    photos_of: Photos of
+    upload: Upload photos
+    reviews: review
+    view: View galllery

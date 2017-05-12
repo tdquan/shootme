@@ -2,16 +2,17 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   mount Attachinary::Engine => "/attachinary"
 
-  # ROOT
-  root to: 'pages#landing_page'
-
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   devise_scope :user do
     get '/users/:user_id', to: "users/registrations#show", as: :user
   end
 
+
+  # ROOT
+  scope '(:locale)', locale: /fr|en/ do
   # Edit and modify galleries
+  root to: 'pages#landing_page'
 
   get '/users/:user_id/gallery/:album_id', to: "albums#render_gallery", as: :render_gallery
   get '/users/:user_id/all_galleries', to: "albums#all_galleries", as: :all_galleries
@@ -39,4 +40,5 @@ Rails.application.routes.draw do
   get 'search', to: "search#search", as: :search
   get 'inbox', to: "users#inbox", as: :inbox
   post 'mailer', to: "pages#contact_mailer", as: :contact
+end
 end
