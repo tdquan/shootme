@@ -1,12 +1,12 @@
-role :app, %w{shootme@95.85.20.211}
-role :web, %w{shootme@95.85.20.211}
-role :db,  %w{shootme@95.85.20.211}
+role :app, %w{shootme2@95.85.20.211}
+role :web, %w{shootme2@95.85.20.211}
+role :db,  %w{shootme2@95.85.20.211}
 
 set :application, "shootme"
 set :repo_url, "git@git.cbm-groupe.fr:internal/SHOUTME.git"
 
 set :rails_env, :production
-set :deploy_to, '/home/shootme/staging'
+set :deploy_to, '/home/shootme2/staging'
 
 set :branch, 'development'
 
