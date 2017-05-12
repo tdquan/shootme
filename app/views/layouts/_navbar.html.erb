@@ -21,7 +21,7 @@
           &nbsp;
 
           <%= link_to inbox_path(current_user) do %>
-            <span>Inbox</span>
+            <span><%= t("navbar.inbox") %></span>
             <span class="badge bg-red"><%= Conversation.unread_count(current_user) %></span>
           <% end %>
           &nbsp;
@@ -48,14 +48,14 @@
           </a>
 
           <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to('My profile', user_path(current_user)) %>
-              <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+              <%= link_to(t("navbar.my_profil"), user_path(current_user)) %>
+              <%= link_to(t("navbar.logout"), destroy_user_session_path, method: :delete, class: "dropdown-item") %>
           </div>
         </div>
       <% else %>
         <div class="signup-group">
-          <%= link_to("Sign up", new_user_registration_path, class: "dropdown-item btn btn-primary") %>
-          <%= link_to("Login", new_user_session_path, class: "dropdown-item btn btn-default") %>
+          <%= link_to(t("navbar.signup"), new_user_registration_path, class: "dropdown-item btn btn-primary") %>
+          <%= link_to(t("navbar.login"), new_user_session_path, class: "dropdown-item btn btn-default") %>
         </div>
       <% end %>
     </div>

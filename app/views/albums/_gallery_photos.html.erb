@@ -1,23 +1,23 @@
 <div id="gallery_photos">
-  <h3>Photos of <%= @current_album.name %></h3>
+  <h3><%= t("gallery.photos_of") @current_album.name %></h3>
   <hr>
   <div class="card">
     <%= link_to all_galleries_path, class:"btn btn-primary", remote: true do %>
-      <i class="fa fa-angle-left"></i>Back
+      <i class="fa fa-angle-left"></i><%= t("back") %>
     <% end %>
     <br><br>
     <div class="row">
       <% @current_album.photos.each do |p| %>
         <div class="col-md-3 col-xs-6 album-photos-thumbnail" data-public-id="<%= p.public_id %>">
           <%= cl_image_tag p.path, crop: "lpad", height: 100, gravity: "center" %>
-          <p class="text-center delete-photo-link"><%= link_to "Delete", delete_photo_path(public_id: p.public_id), method: :put, remote: true %></p>
+          <p class="text-center delete-photo-link"><%= link_to t("delete"), delete_photo_path(public_id: p.public_id), method: :put, remote: true %></p>
         </div>
       <% end %>
     </div>
     <hr>
     <%= simple_form_for @album, url: {action: 'add_photo', controller: 'albums'}, method: :put, remote: :true, html: { class: "album-photos-thumbnail add-photo-link" } do |f| %>
       <%= f.input :photos, as: :attachinary, input_html: { multiple: true }, label: false, class: "attachinary-input" %>
-      <%= f.button :submit, "Upload photos", class: "btn btn-primary", disabled: true %>
+      <%= f.button :submit, t("gallery.upload"), class: "btn btn-primary", disabled: true %>
     <% end %>
   </div>
 </div
