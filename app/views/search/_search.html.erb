@@ -34,7 +34,7 @@
           <% if user.count_reviews == 0 %>
           <% else %>
             <%= render "reviews/stars", user: user %>
-            <span class="block"><i href="#"><%= pluralize(user.count_reviews, 'review') %></i></span>
+            <span class="block"><i href="#"><%= pluralize(user.count_reviews, t('search.review')) %></i></span>
           <% end %>
         </div>
       </div>
@@ -42,7 +42,7 @@
   <% end %>
 <% else %>
   <div class="card block">
-    <h4 class="text-center">No results found.</h4>
+    <h4 class="text-center"><%= t('search.no_result') %></h4>
   </div>
   <%# flash[:notice] = "No results found." %>
   <%#= params.inspect %>

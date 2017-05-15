@@ -1,6 +1,6 @@
 <% if @requests_to_others.first == nil %>
   <div class="card">
-    <p>No sent requests yet!</p>
+    <p><%= t('users.no_sent_request') %></p>
   </div>
 <% end %>
 <% @requests_to_others.each do |request| %>
@@ -15,17 +15,17 @@
         <b><%= request.user.first_name %> <%= request.user.last_name %></b>
       </div>
       <div class="col-md-10">
-        <p><b>From</b> <%= request.start_time.to_formatted_s(:long) %></p>
-        <p><b>To</b> <%= request.end_time.to_formatted_s(:long) %></p>
-        <p><b>In</b> <%= request.location %></p>
+        <p><b><%= t('from') %></b> <%= request.start_time.to_formatted_s(:long) %></p>
+        <p><b><%= t('to') %></b> <%= request.end_time.to_formatted_s(:long) %></p>
+        <p><b><%= t('in') %></b> <%= request.location %></p>
         <% if request.confirmed == true %>
-          <span class="label label-success">Accepted</span>
+          <span class="label label-success"><%= t('users.accepted') %></span>
         <% end %>
         <% if request.confirmed == false %>
-          <span class="label label-primary">Rejected</span>
+          <span class="label label-primary"><%= t('users.rejected') %></span>
         <% end %>
         <% if request.confirmed == nil %>
-          <span class="label label-info">Pending</span>
+          <span class="label label-info"><%= t('users.pending') %></span>
         <% end %>
       </div>
     </div>

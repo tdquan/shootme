@@ -14,7 +14,7 @@
         </div>
         <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
         <br>
-        <%= f.submit "Send", class: "btn btn-primary", id: "send-message" %>
+        <%= f.submit t('send'), class: "btn btn-primary", id: "send-message" %>
       <% end %>
     </div>
   </div>

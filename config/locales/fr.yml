@@ -56,3 +56,6 @@ fr:
     upload: Upload photos
     reviews: review
     view: View galllery
+  payment:
+    thank_you: Thank you, you paid
+    amount: "Amount:"

@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: <%= '%.2f' % (params[:amount]/100) %> €</span>
+      <span><%= t('payment.amount') %> <%= '%.2f' % (params[:amount]/100) %> €</span>
     </label>
   </article>
 

@@ -2,7 +2,7 @@
   <div class="chat-bg">
     <% if @over_ten %>
       <%= link_to '?m=all' do %>
-        <div class="text-center chat-show-previous">Show Previous</div>
+        <div class="text-center chat-show-previous"><%= t('messages.show_previous') %></div>
       <% end %>
     <% end %>
     <% @messages.each do |message| %>

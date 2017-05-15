@@ -1,11 +1,11 @@
 <div class="col-md-10 col-md-offset-1 payment-wrapper">
-  <h3>Payment</h3>
+  <h3><%= t('payment.payment') %></h3>
   <hr>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <h4>Personal Information</h4>
+          <h4><%= t('payment.personal_infos') %></h4>
           <hr>
           <%= simple_form_for @user, url: '', class: "row" do |f| %>
             <div class="form-inputs">
@@ -25,7 +25,7 @@
               </div>
             </div>
           <% end %>
-          <h4>Payment Information</h4>
+          <h4><%= t('payment.payment_infos') %></h4>
           <hr>
           <!-- STRIPE PAYMENT -->
           <%= form_tag user_charges_path(amount: @amount, booking: @booking.id) do %>
@@ -48,11 +48,11 @@
       </div>
       <div class="col-md-4">
         <div class="card">
-          <h4>Payment Summary</h4>
+          <h4><%= t('payment.summary') %></h4>
           <hr>
           <div class="row">
             <div class="col-md-6">
-              <p>Sign-up fee:</p>
+              <p><%= t('payment.signup_free') %></p>
             </div>
             <div class="col-md-6" align='right'>
               <p><%= '%.2f' % (@amount/100) %> €</p>

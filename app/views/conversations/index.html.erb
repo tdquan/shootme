@@ -1,5 +1,5 @@
 <div class="ui segment">
-  <h3>Mailbox</h3>
+  <h3><%= t('messages.mailbox') %></h3>
   <div class="ui list">
     <div class="item">
       <% @conversations.each do |conversation| %>
@@ -16,12 +16,12 @@
   </div>
 </div>
 <div class="ui segment">
-  <h3>All Users</h3>
+  <h3><%= t('messages.all_users') %></h3>
   <div class="ui list">
     <% @users.each do |user| %>
       <% if user.id != current_user.id %>
         <div class="item">
-        <%= user.first_name %> <%= link_to 'Message me!', user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post'%>
+        <%= user.first_name %> <%= link_to t('messages.message_me'), user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post'%>
         </div>
       <% end %>
     <% end %>

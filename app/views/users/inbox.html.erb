@@ -2,16 +2,16 @@
   <div class="col-md-11 col-md-offset-1">
     <div class="col-md-3">
       <ul class="card nav nav-pills nav-stacked">
-        <li role="presentation" class="active"><a data-toggle="pill" href="#messages">Messages</a></li>
-        <li role="presentation"><a data-toggle="pill" href="#requests">Requests</a></li>
-        <li role="presentation"><a data-toggle="pill" href="#bookings">Bookings</a></li>
+        <li role="presentation" class="active"><a data-toggle="pill" href="#messages"><%= t('users.messages') %></a></li>
+        <li role="presentation"><a data-toggle="pill" href="#requests"><%= t('users.requests') %></a></li>
+        <li role="presentation"><a data-toggle="pill" href="#bookings"><%= t('users.bookings') %></a></li>
       </ul>
     </div>
 
     <div class="col-md-8">
       <div class="tab-content">
         <div id="messages" class="tab-pane fade in active">
-          <h3>Inbox</h3>
+          <h3><%= t('users.inbox') %></h3>
           <% if @conversations %>
             <div class="ui segment">
               <div class="ui list">
@@ -48,18 +48,18 @@
               </div>
             </div>
           <% else %>
-            <h4>You don't have any conversations.</h4>
+            <h4><%= t('users.no_conversations') %></h4>
           <% end %>
         </div>
 
         <div id="requests" class="tab-pane fade">
-          <h3>Requests</h3>
+          <h3><%= t('users.requests') %></h3>
           <ul class="nav nav-tabs margin-bottom">
             <% if current_user.pro == true %>
-              <li class="active"><a data-toggle="tab" href="#received_request">Received</a></li>
-              <li><a data-toggle="tab" href="#sent_request">Sent</a></li>
+              <li class="active"><a data-toggle="tab" href="#received_request"><%= t('users.received') %></a></li>
+              <li><a data-toggle="tab" href="#sent_request"><%= t('sent') %></a></li>
             <% else %>
-              <li class="active"><a data-toggle="tab" href="#sent_request">Sent</a></li>
+              <li class="active"><a data-toggle="tab" href="#sent_request"><%= t('sent') %></a></li>
             <% end %>
           </ul>
           <div class="tab-content">
@@ -78,13 +78,13 @@
           </div>
         </div>
         <div id="bookings" class="tab-pane fade">
-          <h3>Bookings</h3>
+          <h3><%= t('users.bookings') %></h3>
             <ul class="nav nav-tabs margin-bottom">
               <% if current_user.pro == true %>
-                <li class="active"><a data-toggle="tab" href="#received_booking">Received</a></li>
-                <li><a data-toggle="tab" href="#sent_booking">Sent</a></li>
+                <li class="active"><a data-toggle="tab" href="#received_booking"><%= t('users.received') %></a></li>
+                <li><a data-toggle="tab" href="#sent_booking"><%= t('sent') %></a></li>
               <% else %>
-                <li class="active"><a data-toggle="tab" href="#sent_booking">Sent</a></li>
+                <li class="active"><a data-toggle="tab" href="#sent_booking"><%= t('sent') %></a></li>
               <% end %>
             </ul>
             <div class="tab-content">

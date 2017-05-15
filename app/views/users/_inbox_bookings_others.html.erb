@@ -1,6 +1,6 @@
 <% if @bookings_to_others.first == nil %>
   <div class="card">
-    <p>No sent bookings yet!</p>
+    <p><%= t('users.no_booking') %></p>
   </div>
 <% end %>
 <% @bookings_to_others.each do |booking| %>
@@ -16,18 +16,18 @@
           <b><%= booking.request.user.first_name %> <%= booking.request.user.last_name %></b>
         </div>
         <div class="col-md-8">
-          <p><b>From</b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
-          <p><b>To</b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
-          <p><b>In</b> <%= booking.request.location %></p>
+          <p><b><%= t('from') %></b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
+          <p><b><%= t('to') %></b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
+          <p><b><%= t('in') %></b> <%= booking.request.location %></p>
           <% if booking.paid == true %>
-            <span class="label label-success">Paid</span>
+            <span class="label label-success"><%= t('users.paid') %></span>
           <% else %>
-            <span class="label label-primary">Unpaid</span>
+            <span class="label label-primary"><%= t('users.unpaid') %></span>
           <% end %>
         </div>
         <div class="col-md-2">
           <% if !booking.paid %>
-            <%= link_to "Pay", { controller: :pages, action: :payment, user_id: current_user.id, booking: booking }, class: "btn btn-primary" %>
+            <%= link_to t('users.pay'), { controller: :pages, action: :payment, user_id: current_user.id, booking: booking }, class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>

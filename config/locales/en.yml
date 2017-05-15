@@ -6,6 +6,10 @@ en:
   back: Back
   profile: Profile
   delete: Delete
+  from: From
+  to: To
+  in: In
+  sent: Sent
   your_message: Your message
   landing_page:
     create_your_account: Create your free account
@@ -44,5 +48,41 @@ en:
     view: View galllery
   payment:
     thank_you: Thank you, you paid
-    amount: Amount
-
+    amount: "Amount:"
+    payment: Payment
+    personal_infos: Personal Information
+    payment_infos: Payment Information
+    summary: Payment Summary
+    signup_free: "Sign-up fee:"
+  messages:
+    mailbox: Mailbox
+    all_users: All Users
+    message_me: 'Message me!'
+    show_previous: Show Previous
+  reviews:
+    select_rating: Select your rating
+    leave: Leave Review
+    comment: "Comment:"
+  search:
+    no_result: No results found.
+    review: review
+  users:
+    no_booking: No sent bookings yet!
+    paid: Paid
+    unpaid: Unpaid
+    pay: Pay
+    no_received_booking: No received bookings yet!
+    mark_as_done: Mark as done
+    no_sent_request: No sent requests yet!
+    accepted: Accepted
+    rejected: Rejected
+    pending: Pending
+    no_received_request: No received requests yet!
+    accept: Accept
+    reject: Reject
+    messages: Messages
+    requests: Requests
+    bookings: Bookings
+    inbox: Inbox
+    no_conversations: You don't have any conversations.
+    received: Received
