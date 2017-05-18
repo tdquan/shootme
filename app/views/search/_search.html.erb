@@ -18,11 +18,11 @@
             <div class="role-div">
               <% @roles.each do |role| %>
                 <% if role == "Photographer" %>
-                  <span class=" label label-primary"><%= role %></span>
+                  <span class=" label label-primary"><%= t('photographer') %></span>
                 <% elsif role == "Videographer" %>
-                  <span class="label label-success"><%= role %></span>
+                  <span class="label label-success"><%= t('videographer') %></span>
                 <% else %>
-                  <span class="label label-info"><%= role %></span>
+                  <span class="label label-info"><%= t('drone_pilot') %></span>
                 <% end %>
               <% end %>
             </div>
@@ -42,7 +42,7 @@
   <% end %>
 <% else %>
   <div class="card block">
-    <h4 class="text-center"><%= t('search.no_result') %></h4>
+    <h4 class="text-center"><%= t('no_result') %></h4>
   </div>
   <%# flash[:notice] = "No results found." %>
   <%#= params.inspect %>

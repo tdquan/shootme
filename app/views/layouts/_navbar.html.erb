@@ -58,6 +58,9 @@
           <%= link_to(t("navbar.login"), new_user_session_path, class: "dropdown-item btn btn-default") %>
         </div>
       <% end %>
+    <span class="locale-choice locale-choice-xs">
+      <%= link_to image_tag('fr.png'), { :locale=>'fr' }, class: "fr" %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= link_to image_tag('uk.jpg'), { :locale=>'en' }, class: "en" %>
+    </span>
     </div>
   </div>
 </nav>

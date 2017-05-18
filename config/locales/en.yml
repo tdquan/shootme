@@ -1,5 +1,10 @@
 en:
+  photographer: Photographer
+  videographer: Videographer
+  drone_pilot: Drone Pilot
   password: Password
+  forgot_password: Forgot your password?
+  send_reset_password: Send me reset password instructions
   search: Search
   name: Name
   send: Send
@@ -10,7 +15,10 @@ en:
   to: To
   in: In
   sent: Sent
+  update: Update
   your_message: Your message
+  receive_confirmation: Didn't receive confirmation instructions?
+  unlock_instructions: Didn't receive unlock instructions?
   landing_page:
     create_your_account: Create your free account
     today_on_shootme: today on Shoot-me.
@@ -63,9 +71,8 @@ en:
     select_rating: Select your rating
     leave: Leave Review
     comment: "Comment:"
-  search:
-    no_result: No results found.
-    review: review
+  no_result: No results found.
+  review: review
   users:
     no_booking: No sent bookings yet!
     paid: Paid
@@ -86,3 +93,42 @@ en:
     inbox: Inbox
     no_conversations: You don't have any conversations.
     received: Received
+    my_profil: My profile
+    full_name: Full name
+    email: Email
+    address: Address
+    description: Description
+    edit_profile: Edit profile
+    current_informations: "Enter your current informartion:"
+    change_password: "Change your password:"
+    update_information: "Update your informartion:"
+    first_name: First name
+    last_name: Last name
+    zip_code: Zip code
+    city: City
+    upload_avatar: "Upload avatar:"
+    are_you_professional: Are you a professional?
+    select_role: "Select your role:"
+    fee: Fee
+    upload_album: "Upload album photos:"
+    album_name: Album name
+    cancel_account: Cancel my account
+    are_you_sure: Are you sure?
+    unhappy: Unhappy?
+    upload: Upload
+  form:
+    search_term: Search term
+    location: Location
+    professions: Professions
+    reset_filters: Reset Filters
+  simple_form:
+    options:
+      defaults:
+        role:
+          photographer: Photographer
+          drone_pilot: Drone Pilot
+          videographer: Videographer
+        profession:
+          photographer: Photographer
+          drone_pilot: Drone Pilot
+          videographer: Videographer

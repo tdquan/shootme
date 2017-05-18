@@ -1,11 +1,24 @@
 fr:
+  photographer: Photographe
+  videographer: Vidéaste
+  drone_pilot: Pilote de drone
   password: Mot de passe
+  forgot_password: Mot de passe oublié?
+  send_reset_password: Envoyez-moi des instructions de réinitialisation
   search: Chercher
   name: Nom
   send: Envoyer
   back: Retour
+  profile: Profil
   delete: Supprimer
+  from: De
+  to: A
+  in: Dans
+  sent: Envoyé
+  update: Valider
   your_message: Votre message
+  receive_confirmation: Vous n'avez pas reçu les instructions de confirmation?
+  unlock_instructions: Vous n'avez pas reçu les instructions de déverrouillage?
   landing_page:
     create_your_account: Créez votre compte gratuit
     today_on_shootme: Aujourd'hui sur Shoot-me.
@@ -39,8 +52,9 @@ fr:
     votre crédibilité aux yeux des futurs clients. Grâce à Shoot-Me et à vos clients satisfaits,
     vous allez créer une forte présence sur le Web et optimiser votre image de marque."
     attractive_pricing: "Prix très attractifs:"
-    attractive_desc: "Avec un seul euro, vous pouvez accéder à tous les services de Shoot-Me, ce qui augmente
-    l'exposition et la sensibilisation."
+    attractive_desc: "A partir de 2 euros par mois, vous pouvez accéder à tous les services du compte
+    photographe de Shoot-Me, prenez de la hauteur et de la visibilité, soyez rémunéré et apprécié par
+    votre sensibilité sans vous ruiner."
     stay_connected: Restez connecté
     all_rights: ©2017 Tout droits reservés
   navbar:
@@ -51,11 +65,87 @@ fr:
     login: Se connecter
   gallery:
     photo_galleries: Galeries photos
-    no_galleries: This user has no galleries.
-    photos_of: Photos of
-    upload: Upload photos
-    reviews: review
-    view: View galllery
+    no_galleries: Cet utilisateur n'a pas de galeries.
+    photos_of: "Photos de "
+    upload: Télécharger des photos
+    reviews: Avis
+    view: Galerie
   payment:
-    thank_you: Thank you, you paid
-    amount: "Amount:"
+    thank_you: Merci de votre paiement
+    amount: "Montant:"
+    payment: Paiement
+    personal_infos: Informations personnelles
+    payment_infos: Informations de paiement
+    summary: Résumé de paiement
+    signup_free: "Frais d'inscription:"
+  messages:
+    mailbox: Boîte de réception
+    all_users: Tous les utilisateurs
+    message_me: 'Envoie moi un message!'
+    show_previous: Afficher les précédents
+  reviews:
+    select_rating: Sélectionnez votre note
+    leave: Annuler
+    comment: "Commentaire:"
+  no_result: Aucun résultat trouvé.
+  review: avis
+  users:
+    no_booking: Pas encore de réservation envoyée!
+    paid: Payé
+    unpaid: Non payé
+    pay: Payer
+    no_received_booking: Aucune réservation reçue pour le moment!
+    mark_as_done: marque comme terminé
+    no_sent_request: Aucune demande envoyée pour le moment!
+    accepted: Acceptées
+    rejected: Rejetées
+    pending: En attente
+    no_received_request: Aucune demande reçue pour le moment!
+    accept: Accepter
+    reject: Rejeter
+    messages: Messages
+    requests: Demandes
+    bookings: Réservations
+    inbox: Boîte de réception
+    no_conversations: Vous n'avez aucune conversation.
+    received: Reçues
+    my_profil: Mon profil
+    full_name: Nom
+    email: Email
+    address: Adresse
+    description: Description
+    edit_profile: Editer mon profil
+    current_informations: "Entrez vos informations personnelles:"
+    change_password: "Changez votre mot de passe:"
+    update_information: "Mettez à jour vos informations:"
+    first_name: Prénom
+    last_name: Nom
+    zip_code: Code postal
+    city: Ville
+    upload_avatar: "Modifier mon avatar"
+    are_you_professional: Êtes-vous un professionnel?
+    select_role: "Sélectionnez votre spécialité:"
+    fee: Frais
+    upload_album: "Télécharger des photos:"
+    album_name: Nom de l'album
+    cancel_account: Supprimer mon compte
+    are_you_sure: Êtes-vous sûr?
+    unhappy: Mécontent?
+    upload: Télécharger
+    my_profile: Mon profil
+  form:
+    search_term: Recherche
+    location: Position
+    professions: Spécialité
+    reset_filters: Réinitialiser les filtres
+  simple_form:
+    options:
+      defaults:
+        role:
+          photographer: Photographe
+          drone_pilot: Pilote de drone
+          videographer: Vidéaste
+        profession:
+          photographer: Photographe
+          drone_pilot: Pilote de drone
+          videographer: Vidéaste
