@@ -5,9 +5,17 @@
 .btn-facebook{
   background: #3b5998;
   color: white;
+  &:hover {
+    color: white;
+    background-color: darken(#3b5998, 10%);
+  }
 }
 
 .btn-google{
   background: #ea4335;
   color: white;
+  &:hover {
+    color: white;
+    background-color: darken(#ea4335, 10%);
+  }
 }

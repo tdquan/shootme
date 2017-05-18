@@ -20,21 +20,21 @@
   <% end -%>
 
   <%- if devise_mapping.omniauthable? %>
-  <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-  <br>
-    <div class="col-md-6">
-      <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-facebook" do %>
-        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
-      <% end %>
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <br>
+      <div class="col-md-6">
+        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-facebook" do %>
+          <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" do %>
+          <i class="fa fa-google" aria-hidden="true"></i> Google
+        <% end %>
+      </div>
     </div>
-    <div class="col-md-6">
-      <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" do %>
-        <i class="fa fa-google" aria-hidden="true"></i> Google
-      <% end %>
     </div>
-  </div>
-  </div>
   <% end -%>
 </div>
 

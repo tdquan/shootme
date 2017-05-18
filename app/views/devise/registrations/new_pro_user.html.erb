@@ -1,0 +1,97 @@
+<div class="col-xs-10 col-xs-offset-1">
+  <div class="padded-card">
+    <div class="card">
+      <h2>Sign up as a Pro User</h2>
+      <hr>
+
+      <%= simple_form_for(resource, as: resource_name, url: pro_registration_path(resource_name), data: {toggle: "validator"}, html: {novalidate: false}) do |f| %>
+        <%= f.error_notification %>
+        <div>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab">Personal Information</a></li>
+            <li role="presentation"><a href="#payment-info" aria-controls="payment-info" role="tab" data-toggle="tab">Payment Information</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+
+          <!-- PERSONAL INFO -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="personal-info">
+              <fieldset class="row">
+                <div class="col-md-6">
+                  <div class="form-inputs">
+                    <%= f.input :first_name, required: true, autofocus: true %>
+                    <%= f.input :last_name, required: true %>
+                    <%= f.input :pro, required: true, wrapper_html: {class: "hidden"}, input_html: {checked: true} %>
+                    <hr>
+                    <%= f.input :email, required: true %>
+                    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                    <%= f.input :password_confirmation, required: true %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-inputs">
+                    <%= f.input :address %>
+                    <%= f.input :postal_code, as: :hidden %>
+                    <%= f.input :city, as: :hidden %>
+                    <%= f.input :country, as: :hidden %>
+                    <%= f.input :role, label: 'Select your role:', collection: @roles %>
+                    <hr>
+                    <%= f.input :fee_cents %>
+                    <%= f.input :description, as: :text, input_html: {rows: 5} %>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- PAYMENT INFO -->
+            <div role="tabpanel" class="tab-pane" id="payment-info">
+              <fieldset class="row">
+                <div class="form-group">
+                  <label class="control-label string required" for="user_first_name">
+                    <abbr title="required">*</abbr> Card Number
+                  </label>
+                  <input class="form-control" required="required" aria-required="true" type="text" id="card-number" pattern="[0-9]{12}">
+                  <input class="form-control" required="required" aria-required="true" id="card-expiry" type="month">
+                </div>
+              </fieldset>
+              <% content_for(:after_js) do %>
+                <script src="https://checkout.stripe.com/checkout.js"></script>
+                <script>
+                  // var handler = StripeCheckout.configure({
+                  //   key: 'pk_test_5RlwKtafN0ekv28eTsQ1etmQ',
+                  //   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+                  //   locale: 'auto',
+                  //   token: function(token) {
+                  //     // You can access the token ID with `token.id`.
+                  //     // Get the token ID to your server-side code for use.
+                  //   }
+                  // });
+                  // $('#new_user').submit(function () {
+                  //   Stripe.customers.create({
+                  //     source: token.id
+                  //   }).then(function (customer) {
+                  //     Stripe.charge.create({
+                  //       amount: 1000,
+                  //       currency: 'usd',
+                  //       customer: customer.id
+                  //     });
+                  //   });
+                  // });
+                </script>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions text-center">
+          <%= f.button :submit, "Sign up", class: "btn btn-primary", id: "signup" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

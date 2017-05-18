@@ -30,6 +30,7 @@ function onPlaceChanged() {
   $('#user_address').trigger('blur').val(components.address);
   $('#user_postal_code').val(components.zip_code);
   $('#user_city').val(components.city);
+  $('#user_country').val(components.country);
   $('#request-location').trigger('blur').val(components.address);
 }
 

@@ -1,4 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  prepend_before_action :set_minimum_password_length, only: [:new, :new_pro_user, :edit]
+
   def show
     @current_user = current_user
     @request = Request.new
@@ -24,8 +26,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @role = ["Photographer", "Videographer", "Drone Pilot"]
     super
+  end
+
+  def new_pro_user
+    build_resource({})
+    @roles = ["Photographer", "Videographer", "Drone Pilot"]
+    yield resource if block_given?
+    respond_with resource
   end
 
   def create
@@ -47,6 +55,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       set_minimum_password_length
       respond_with resource
+    end
+  end
+
+  def create_pro
+    build_resource(sign_up_params)
+    resource.save
+    resource.wallet = Wallet.create!
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        redirect_to home_path
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render :new_pro_user
     end
   end
 

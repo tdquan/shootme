@@ -37,7 +37,7 @@
               <% end %>
             </article>
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    Stripe.setPublishableKey('pk_test_oqxcVbV2SGxUWqO8cEv8y1DV');
+                    Stripe.setPublishableKey("<%= Rails.configuration.stripe[:secret_key] %>");
                     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                     data-description="Account Activation"
                     data-amount="<%= @amount %>"
