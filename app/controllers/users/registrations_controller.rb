@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :authenticate_user!, only: [:new, :create]
   def show
     @current_user = current_user
     @request = Request.new
