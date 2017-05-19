@@ -20,7 +20,7 @@
           <% end %>
           &nbsp;
 
-          <%= link_to inbox_path(current_user) do %>
+          <%= link_to inbox_path do %>
             <span><%= t("navbar.inbox") %></span>
             <span class="badge bg-red"><%= Conversation.unread_count(current_user) %></span>
           <% end %>
