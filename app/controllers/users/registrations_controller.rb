@@ -1,21 +1,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :authenticate_user!, only: [:new, :create]
   def show
-    @current_user = current_user
-    @request = Request.new
-    @cities = ["Paris", "London"]
-    @current_profile = User.find(params[:user_id])
-    @requests = Request.where(user: @current_profile)
-    @review = Review.new
-    @bookings_to_others = []
-    Booking.all.each do |booking|
-      @bookings_to_others << booking if booking.request.client_id == current_user.id
-    end
+    if can? :read, User
+      @current_user = current_user
+      @request = Request.new
+      @cities = ["Paris", "London"]
+      @current_profile = User.find(params[:user_id])
+      @requests = Request.where(user: @current_profile)
+      @review = Review.new
+      @bookings_to_others = []
+      Booking.all.each do |booking|
+        @bookings_to_others << booking if booking.request.client_id == current_user.id
+      end
 
-    if @current_profile.role
-      @roles = @current_profile.role.split(" - ").sort
+      if @current_profile.role
+        @roles = @current_profile.role.split(" - ").sort
+      else
+        @roles = []
+      end
     else
-      @roles = []
+      redirect_to new_user_session_path
     end
   end
 
