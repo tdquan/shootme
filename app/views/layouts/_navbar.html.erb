@@ -2,8 +2,14 @@
   <div class="navbar-content">
     <!-- LOGO -->
     <div class="logo-group text-center">
-      <%= link_to root_path do %>
-        <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+      <% if current_user %>
+          <%= link_to home_path do %>
+              <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+          <% end %>
+      <% else %>    
+        <%= link_to root_path do %>
+          <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -15,10 +21,6 @@
       <% if user_signed_in? %>
 
         <div class="dropdown inline-block float-right">
-          <%= link_to user_wallet_path(current_user) do %>
-            <span class="badge bg-green"><%= current_user.wallet.amount %> <i class='fa fa-<%= current_user.wallet.amount_currency.downcase %>'></i></span>
-          <% end %>
-          &nbsp;
 
           <%= link_to inbox_path do %>
             <span><%= t("navbar.inbox") %></span>

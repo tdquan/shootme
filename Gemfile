@@ -54,7 +54,7 @@ gem 'gmaps4rails'
 gem "coffee-rails"
 
 # authorizations:
-gem 'pundit'
+gem 'cancancan', '~> 1.10'
 
 # authentification
 gem 'simple_token_authentication'

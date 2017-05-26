@@ -6,8 +6,12 @@ tmp/*
 .DS_Store
 public/assets
 
+
 # Ignore application configuration
 /config/application.yml
 
 # Ignore database files
 *.db
+.idea/
+tmp/
+SHOUTME.iml

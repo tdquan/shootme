@@ -14,7 +14,7 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'layouts/navbar' %>
     <%= yield %>
-    <script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places&key=AIzaSyCvK7QsC0wM6rqGM3Qe1VGl9AfHCX4-T3s'></script>
+    <script src='http://maps.googleapis.com/maps/api/js?v=3&amp;libraries=places&key=AIzaSyCvK7QsC0wM6rqGM3Qe1VGl9AfHCX4-T3s'></script>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
