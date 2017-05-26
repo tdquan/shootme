@@ -19,7 +19,7 @@ class ChargesController < ApplicationController
         booking.save
       end
     end
-    redirect_to inbox_path(current_user)
+    redirect_to inbox_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

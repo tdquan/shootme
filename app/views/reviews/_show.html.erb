@@ -1,16 +1,18 @@
-<div class=" card card-review review">
-  <div class="review-comment">
-    <p><%= t('reviews.comment') %></p>
-    <%= booking.review.comment %>
+<% if booking.review.present? %>
+  <div class=" card card-review review">
+    <div class="review-comment">
+        <p><%= t('reviews.comment') %></p>
+        <%= booking.review.comment %>
+    </div>
   </div>
-</div>
-<div class="review-info">
-  <div class="review-author">
-    <%= link_to "#{booking.request.client.first_name}" %>
+  <div class="review-info">
+    <div class="review-author">
+      <%= link_to "#{booking.request.client.first_name}" %>
+    </div>
+    <div class="review-rating">
+      <i class="fa fa-star star-review"></i> <%= booking.review.rating %>
+    </div>
   </div>
-  <div class="review-rating">
-    <i class="fa fa-star star-review"></i> <%= booking.review.rating %>
-  </div>
-</div>
+<% end %>
 
 

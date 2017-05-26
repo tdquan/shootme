@@ -1,7 +1,8 @@
 <% if @users.empty? == false %>
   <% @users.each do |user| %>
     <% @roles = user.role.split(" - ").sort if user.role? %>
-    <%= link_to user_path(user.id), class: "card card-popup block" do %>
+     <div class="card card-popup block">
+      <%= link_to user_path(user.id) do %>
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
           <div class="avatar-round">
@@ -30,7 +31,10 @@
           <br>
           <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
         </div>
+       <% end %>
         <div class="col-md-3 list-ratings text-center">
+          <%= link_to t("messages.send_message"), user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post', class: "btn-default btn btn-primary" %>
+          <%= link_to t("users.book"), user_path(user.id), class: "btn-default btn btn-primary" %>
           <% if user.count_reviews == 0 %>
           <% else %>
             <%= render "reviews/stars", user: user %>
@@ -38,7 +42,7 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+     </div>
   <% end %>
 <% else %>
   <div class="card block">

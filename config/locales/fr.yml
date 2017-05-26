@@ -5,7 +5,6 @@ fr:
   password: Mot de passe
   forgot_password: Mot de passe oublié?
   send_reset_password: Envoyez-moi des instructions de réinitialisation
-  search: Chercher
   name: Nom
   send: Envoyer
   back: Retour
@@ -79,6 +78,7 @@ fr:
     summary: Résumé de paiement
     signup_free: "Frais d'inscription:"
   messages:
+    send_message: Envoyer un message
     mailbox: Boîte de réception
     all_users: Tous les utilisateurs
     message_me: 'Envoie moi un message!'
@@ -133,11 +133,15 @@ fr:
     unhappy: Mécontent?
     upload: Télécharger
     my_profile: Mon profil
+    book: Reserver
   form:
     search_term: Recherche
     location: Position
     professions: Spécialité
     reset_filters: Réinitialiser les filtres
+  search:
+    search: Chercher
+    review: Avis
   simple_form:
     options:
       defaults:

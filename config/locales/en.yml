@@ -63,6 +63,7 @@ en:
     summary: Payment Summary
     signup_free: "Sign-up fee:"
   messages:
+    send_message: Send a message
     mailbox: Mailbox
     all_users: All Users
     message_me: 'Message me!'
@@ -116,6 +117,7 @@ en:
     are_you_sure: Are you sure?
     unhappy: Unhappy?
     upload: Upload
+    book: Book
   form:
     search_term: Search term
     location: Location
