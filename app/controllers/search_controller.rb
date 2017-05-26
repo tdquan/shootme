@@ -1,6 +1,7 @@
 # require 'elasticsearch/dsl'
 
 class SearchController < ApplicationController
+  skip_before_action :authenticate_user!
   def search
     # Search filtering
     if params[:user][:q].blank? && params[:user][:location].blank? && params[:user][:profession].count <= 1

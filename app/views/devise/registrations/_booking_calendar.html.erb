@@ -1,7 +1,7 @@
 <h3>Select the date</h3>
 <hr>
 <div class="card">
-  <%= simple_form_for @request, url: user_requests_path, class: "row" do |f| %>
+  <%= simple_form_for @request, url: user_requests_path, html: {novalidate: false}, class: "row" do |f| %>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">

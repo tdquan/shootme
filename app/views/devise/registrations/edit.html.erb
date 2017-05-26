@@ -1,7 +1,7 @@
 <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
   <div class="padded-card">
     <div class="card">
-      <h2>Edit profile</h2>
+      <h2><%= t('users.edit_profile') %></h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
@@ -12,16 +12,16 @@
           <div class="form-inputs">
             <div class="row">
               <div class="col-md-12">
-                <p class="title-edit-page">Enter your current informartion:</p>
+                <p class="title-edit-page"><%= t('users.current_informations') %></p>
               </div>
               <div class="col-md-6">
-                <%= f.input :email, required: true, autofocus: true %>
+                <%= f.input :email, required: true, autofocus: true, label: t('users.email') %>
               </div>
               <div class="col-md-6">
                 <%= f.input :current_password, required: true %>
               </div>
               <div class="col-md-12">
-                <p class="title-edit-page">Change your password:</p>
+                <p class="title-edit-page"><%= t('users.change_password') %></p>
               </div>
               <div class="col-md-6">
                 <%= f.input :password, autocomplete: "off", required: false %>
@@ -30,26 +30,26 @@
                 <%= f.input :password_confirmation, required: false %>
               </div>
               <div class="col-md-12">
-                <p class="title-edit-page">Update your informartion:</p>
+                <p class="title-edit-page"><%= t('users.update_information') %></p>
               </div>
               <div class="col-md-6">
-                <%= f.input :first_name, required: true %>
+                <%= f.input :first_name, required: true, label: t('users.first_name') %>
               </div>
               <div class="col-md-6">
-                <%= f.input :last_name, required: true %>
+                <%= f.input :last_name, required: true, label: t('users.last_name') %>
               </div>
               <div class="col-md-6 user_address">
-                <%= f.input :address, required: true %>
+                <%= f.input :address, required: true, label: t('users.address') %>
               </div>
               <div class="col-md-6 user_postal_code">
-                <%= f.input :postal_code, required: false %>
+                <%= f.input :postal_code, required: false, label: t('users.zip_code') %>
               </div>
               <div class="col-md-6 user_city">
-                <%= f.input :city, required: false %>
+                <%= f.input :city, required: false, label: t('users.city') %>
               </div>
 
               <div class="col-md-12">
-                <p class="title-edit-page">Upload avatar:</p>
+                <p class="title-edit-page"><%= t('users.upload_avatar') %></p>
               </div>
               <!-- Upload avatar -->
               <div class="col-md-12"><%= f.input :avatar, as: :attachinary, label: false, class: "attachinary-input" %></div>
@@ -58,15 +58,16 @@
 
               <div class="col-md-12">
                 <div class="checkbox_pro title-edit-page">
-                  <%= f.input :pro, as: :boolean, label: "Are you a professional?" %>
+                  <%= f.input :pro, as: :boolean, label: t('users.are_you_professional') %>
                 </div>
               </div>
               <div class="hidden_pro">
                 <div class="col-md-12">
-                  <%= f.input :role, label: 'Select your role:', collection: ["Photographer", "Videographer", "Drone Pilot"] %>
+                  <%= f.input :role, label: t('users.select_role'), collection: ["Photographer", "Drone pilot", "Videographer"] %>
+
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :fee_cents, required: true, label: 'Fee' %>
+                  <%= f.input :fee_cents, required: true, label: t('users.fee') %>
                 </div>
                 <div class="col-md-12">
                   <%= f.input :description, required: true, as: :text %>
@@ -74,14 +75,14 @@
 
                 <!-- Album upload -->
                 <div class="col-md-12">
-                  <h3>Upload an album</h3>
+                  <h3><%= t('users.upload') %></h3>
                 </div>
                 <%= f.fields_for @album do |f_album|%>
                   <div class="col-md-12">
-                    <%= f_album.input :name, label: "Album name", required: true %>
+                    <%= f_album.input :name, label: t('users.album_name'), required: true %>
                   </div>
                   <div class="col-md-12">
-                    <p class="title-edit-page">Upload album photos:</p>
+                    <p class="title-edit-page"><%= t('users.upload_album') %></p>
                   </div>
                   <div class="col-md-12">
                     <div class="col-md-12"><%= f_album.input :photos, as: :attachinary, input_html: { multiple: true }, label: false, class: "attachinary-input" %></div>
@@ -92,15 +93,15 @@
           </div>
           <br>
           <div class="form-actions text-center col-md-12">
-            <%= f.button :submit, "Update", class: "btn btn-primary" %>
+            <%= f.button :submit, t('update'), class: "btn btn-primary" %>
             <br>
-            <%= link_to "Back", :back %>
+            <%= link_to t('back'), :back %>
           </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <h3><%= t('users.cancel_account') %></h3>
 
-      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <p><%= t('users.unhappy') %> <%= link_to t('users.cancel_account'), registration_path(resource_name), data: { confirm: t('users.are_you_sure') }, method: :delete %></p>
 
     </div>
   </div>

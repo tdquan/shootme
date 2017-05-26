@@ -19,13 +19,29 @@ class RequestsController < ApplicationController
     if @current_profile.fee_cents && @current_profile.fee_cents > 0
       @request = current_user.requests_to_others.build(request_params)
       @request.price_cents = @current_profile.fee_cents
-    end
-    if @request.save
-      HomePageMailer.creation_confirmation(@request).deliver_now
+      if @request.save
+        HomePageMailer.creation_confirmation(@request).deliver_now
+        redirect_to :back
+      end
     else
-      puts "GODDAMNIT!"
+      flash[:error] = "Error. Cannot create appointment. Please contact user for more information."
+      @current_user = current_user
+      @request = Request.new
+      @current_profile = User.find(params[:user_id])
+      @requests = Request.where(user: @current_profile)
+      @review = Review.new
+      @bookings_to_others = []
+      Booking.all.each do |booking|
+        @bookings_to_others << booking if booking.request.client_id == current_user.id
+      end
+
+      if @current_profile.role
+        @roles = @current_profile.role.split(" - ").sort
+      else
+        @roles = []
+      end
+      render template: 'devise/registrations/show', locals: {request: @request}
     end
-    redirect_to :back
   end
 
   def update

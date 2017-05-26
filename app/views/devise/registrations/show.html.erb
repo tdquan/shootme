@@ -1,5 +1,10 @@
 <div class="container date-selection">
   <div class="row">
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p class="text-center alert alert-danger"><%= flash[:error] %></p>
+      </div>
+    <% end %>
     <div class="col-md-3 col-md-offset-1">
       <div class="card clearfix">
         <% if @current_profile.avatar? %>
@@ -12,11 +17,11 @@
         <% unless @roles == nil %>
           <% @roles.each do |role| %>
             <% if role == "Photographer" %>
-              <span class=" label label-primary"><%= role %></span>
+              <span class=" label label-primary"><%= t('photographer') %></span>
             <% elsif role == "Videographer" %>
-              <span class="label label-success"><%= role %></span>
+              <span class="label label-success"><%= t('videographer') %></span>
             <% else %>
-              <span class="label label-info"><%= role %></span>
+              <span class="label label-info"><%= t('drone_pilot') %></span>
             <% end %>
           <% end %>
         <% end %>
@@ -33,17 +38,17 @@
       </div>
       <%# if @current_profile != current_user %>
         <ul class="card nav nav-pills nav-stacked">
-          <li role="presentation"><%= link_to "Profile", user_path(@current_profile) %></li>
-          <li role="presentation"><%= link_to "View gallery", user_gallery_index_path(@current_profile) %></li>
-          <li role="presentation"><%= link_to "Reviews", "##{@current_profile.first_name}-reviews" %></li>
+          <li role="presentation"><%= link_to t("profile"), user_path(@current_profile) %></li>
+          <li role="presentation"><%= link_to t("gallery.view"), user_gallery_index_path(@current_profile) %></li>
+          <li role="presentation"><%= link_to t("gallery.reviews"), "##{@current_profile.first_name}-reviews" %></li>
         </ul>
       <%# end %>
     </div>
     <div class="col-md-7">
       <% if @current_profile != @current_user %>
-        <%= render "booking_calendar", bookings_to_others: @bookings_to_others, requests: @requests %>
+        <%= render "devise/registrations/booking_calendar", bookings_to_others: @bookings_to_others, requests: @requests %>
       <% else %>
-        <%= render "self_profile" %>
+        <%= render "devise/registrations/self_profile" %>
       <% end %>
     </div>
   </div>

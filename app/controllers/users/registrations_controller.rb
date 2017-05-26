@@ -1,22 +1,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :set_minimum_password_length, only: [:new, :new_pro_user, :edit]
-
+  skip_before_action :authenticate_user!, only: [:new, :create]
   def show
-    @current_user = current_user
-    @request = Request.new
-    @cities = ["Paris", "London"]
-    @current_profile = User.find(params[:user_id])
-    @requests = Request.where(user: @current_profile)
-    @review = Review.new
-    @bookings_to_others = []
-    Booking.all.each do |booking|
-      @bookings_to_others << booking if booking.request.client_id == current_user.id
-    end
+    if can? :read, User
+      @current_user = current_user
+      @request = Request.new
+      @current_profile = User.find(params[:user_id])
+      @requests = Request.where(user: @current_profile)
+      @review = Review.new
+      @bookings_to_others = []
+      Booking.all.each do |booking|
+        @bookings_to_others << booking if booking.request.client_id == current_user.id
+      end
 
-    if @current_profile.role
-      @roles = @current_profile.role.split(" - ").sort
+      if @current_profile.role
+        @roles = @current_profile.role.split(" - ").sort
+      else
+        @roles = []
+      end
     else
-      @roles = []
+      redirect_to new_user_session_path
     end
   end
 
@@ -45,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        respond_with resource, location: home_path
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
@@ -60,7 +63,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_pro
     build_resource(sign_up_params)
+
+    # STRIPE
+    Stripe.api_key = "sk_test_RDQ2OvHT5avxYmei7AeplbDG"
+    token = params[:stripeToken]
+
+    # Create a Customer:
+    customer = Stripe::Customer.create(
+      :email => resource[:email],
+      :source => token,
+    )
+    resource.stripe_id = customer.id
     resource.save
+
     resource.wallet = Wallet.create!
     yield resource if block_given?
     if resource.persisted?

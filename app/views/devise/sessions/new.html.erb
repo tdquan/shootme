@@ -1,7 +1,7 @@
 <div class="col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
   <div class="padded-card">
     <div class="card">
-      <h2>Log in</h2>
+      <h2><%= t('navbar.login') %></h2>
       <hr>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-actions text-center">
-          <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+          <%= f.button :submit, t('navbar.login'), class: "btn btn-primary" %>
         </div>
       <% end %>
 

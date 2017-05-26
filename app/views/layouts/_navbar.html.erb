@@ -2,8 +2,14 @@
   <div class="navbar-content">
     <!-- LOGO -->
     <div class="logo-group text-center">
-      <%= link_to root_path do %>
-        <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+      <% if current_user %>
+          <%= link_to home_path do %>
+              <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+          <% end %>
+      <% else %>    
+        <%= link_to root_path do %>
+          <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -15,12 +21,8 @@
       <% if user_signed_in? %>
 
         <div class="dropdown inline-block float-right">
-          <%= link_to user_wallet_path(current_user) do %>
-            <span class="badge bg-green"><%= current_user.wallet.amount %> <i class='fa fa-<%= current_user.wallet.amount_currency.downcase %>'></i></span>
-          <% end %>
-          &nbsp;
 
-          <%= link_to inbox_path(current_user) do %>
+          <%= link_to inbox_path do %>
             <span><%= t("navbar.inbox") %></span>
             <span class="badge bg-red"><%= Conversation.unread_count(current_user) %></span>
           <% end %>
@@ -58,6 +60,9 @@
           <%= link_to(t("navbar.login"), new_user_session_path, class: "dropdown-item btn btn-default") %>
         </div>
       <% end %>
+    <span class="locale-choice locale-choice-xs">
+      <%= link_to image_tag('fr.png'), { :locale=>'fr' }, class: "fr" %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= link_to image_tag('uk.jpg'), { :locale=>'en' }, class: "en" %>
+    </span>
     </div>
   </div>
 </nav>
