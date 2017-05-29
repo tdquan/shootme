@@ -63,6 +63,7 @@ en:
     summary: Payment Summary
     signup_free: "Sign-up fee:"
   messages:
+    message_send: Your message has been sent
     send_message: Send a message
     mailbox: Mailbox
     all_users: All Users

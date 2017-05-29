@@ -48,6 +48,7 @@ class PagesController < ApplicationController
     message = params[:mailer][:message]
     HomePageMailer.contact_mailer(user, message).deliver_now
     redirect_to :root
+    flash[:notice] = t('messages.message_send')
   end
 
 end

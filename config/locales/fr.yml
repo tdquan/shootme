@@ -78,6 +78,7 @@ fr:
     summary: Résumé de paiement
     signup_free: "Frais d'inscription:"
   messages:
+    message_send: Votre message a bien été envoyé
     send_message: Envoyer un message
     mailbox: Boîte de réception
     all_users: Tous les utilisateurs
