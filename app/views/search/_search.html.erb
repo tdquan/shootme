@@ -1,4 +1,4 @@
-<% if @users.empty? == false %>
+<% if @users.empty? %>
   <% @users.each do |user| %>
     <% @roles = user.role.split(" - ").sort if user.role? %>
      <div class="card card-popup block">
@@ -33,8 +33,12 @@
         </div>
        <% end %>
         <div class="col-md-3 list-ratings text-center">
-          <%= link_to t("messages.send_message"), user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post', class: "btn-default btn btn-primary" %>
-          <%= link_to t("users.book"), user_path(user.id), class: "btn-default btn btn-primary" %>
+          <%= link_to user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post', class: "icons-search-results" do %>
+              <i class="fa fa-comments icons-search-results" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to user_path(user.id), class: "icons-search-results" do %>
+              <i class="fa fa-calendar icons-search-results" aria-hidden="true"></i>
+          <% end %>
           <% if user.count_reviews == 0 %>
           <% else %>
             <%= render "reviews/stars", user: user %>
