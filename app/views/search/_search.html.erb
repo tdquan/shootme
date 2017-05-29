@@ -1,4 +1,4 @@
-<% if @users.empty? %>
+<% if @users.empty? == false %>
   <% @users.each do |user| %>
     <% @roles = user.role.split(" - ").sort if user.role? %>
      <div class="card card-popup block">
