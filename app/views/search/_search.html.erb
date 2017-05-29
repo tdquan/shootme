@@ -18,11 +18,11 @@
           <% if user.role? %>
             <div class="role-div">
               <% @roles.each do |role| %>
-                <% if role == "Photographer" %>
+                <% if role == "photographer" %>
                   <span class=" label label-primary"><%= t('photographer') %></span>
-                <% elsif role == "Videographer" %>
+                <% elsif role == "videographer"%>
                   <span class="label label-success"><%= t('videographer') %></span>
-                <% else %>
+                  <% elsif role == "drone_pilot" %>
                   <span class="label label-info"><%= t('drone_pilot') %></span>
                 <% end %>
               <% end %>

@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @role = ["Photographer", "Videographer", "Drone Pilot"]
+    @role = [:photographer, :videographer, :drone_pilot]
     super
   end
 
