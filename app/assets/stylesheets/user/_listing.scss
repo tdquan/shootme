@@ -21,9 +21,17 @@
   }
   .list-ratings {
     height: 100%;
-    a {
-      font-size: 12px;
-      margin-bottom: 10px;
+    text-align: right;
+    .fa-calendar {
+      margin-left: 15px;
+    }
+    .icons-search-results {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-align: right;
+    }
+    .block {
+      text-align: center;
     }
   }
 }
