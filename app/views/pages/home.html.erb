@@ -15,7 +15,7 @@
           <div class="row">
             <%= f.input :q, wrapper_html: { class: 'col-sm-4' }, label: t('form.search_term') %>
             <%= f.input :location, wrapper_html: { class: 'col-sm-4' }, as: :select, collection: @cities, label: t('form.location') %>
-            <%= f.input :profession, wrapper_html: { class: 'col-sm-4' }, as: :check_boxes, collection: ["Photographer", "Drone pilot", "Videographer"], label: t('form.professions') %>
+            <%= f.input :profession, wrapper_html: { class: 'col-sm-4' }, as: :check_boxes, collection: [:photographer, :drone_pilot, :videographer], label: t('form.professions') %>
           </div>
 
           <!-- Range slider : currently not in use -->
@@ -29,7 +29,7 @@
           <%= link_to '#', class: 'search-bar-link reset' do %>
             <i class="fa fa-close"></i><%= t('form.reset_filters') %>
           <% end %>
-          <%= f.button :submit, t('search'), class: 'btn btn-primary float-right' %>
+          <%= f.button :submit, t('search.search'), class: 'btn btn-primary float-right' %>
         <% end %>
       </div>
 

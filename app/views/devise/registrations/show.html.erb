@@ -16,9 +16,9 @@
         <div class="role-profile text-center">
         <% unless @roles == nil %>
           <% @roles.each do |role| %>
-            <% if role == "Photographer" %>
+            <% if role == :photographer %>
               <span class=" label label-primary"><%= t('photographer') %></span>
-            <% elsif role == "Videographer" %>
+            <% elsif role == :videographer %>
               <span class="label label-success"><%= t('videographer') %></span>
             <% else %>
               <span class="label label-info"><%= t('drone_pilot') %></span>

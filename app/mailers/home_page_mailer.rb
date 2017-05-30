@@ -4,7 +4,7 @@ class HomePageMailer < ApplicationMailer
   def contact_mailer(user, message)
     @user = user
     @message = message
-    mail(to: @user.email, subject: 'Hello Shoot-Me')
+    mail(to: "shootme.cbm@gmail.com", subject: 'Contact Shoot-Me')
   end
 
   def welcome(user)

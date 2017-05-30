@@ -1,7 +1,8 @@
 <% if @users.empty? == false %>
   <% @users.each do |user| %>
     <% @roles = user.role.split(" - ").sort if user.role? %>
-    <%= link_to user_path(user.id), class: "card card-popup block" do %>
+     <div class="card card-popup block">
+      <%= link_to user_path(user.id) do %>
       <div class="row list-row">
         <div class="col-md-3 list-profile-container">
           <div class="avatar-round">
@@ -17,11 +18,11 @@
           <% if user.role? %>
             <div class="role-div">
               <% @roles.each do |role| %>
-                <% if role == "Photographer" %>
+                <% if role == "photographer" %>
                   <span class=" label label-primary"><%= t('photographer') %></span>
-                <% elsif role == "Videographer" %>
+                <% elsif role == "videographer"%>
                   <span class="label label-success"><%= t('videographer') %></span>
-                <% else %>
+                  <% elsif role == "drone_pilot" %>
                   <span class="label label-info"><%= t('drone_pilot') %></span>
                 <% end %>
               <% end %>
@@ -30,7 +31,14 @@
           <br>
           <p class="list-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur doloribus ut ipsum quo molestias! Nihil odio, modi nostrum qui eveniet sunt aliquid error consequuntur, veritatis accusantium numquam rerum rem est.</p>
         </div>
+       <% end %>
         <div class="col-md-3 list-ratings text-center">
+          <%= link_to user_conversations_path(client_id: current_user.id, user_id: user.id), method: 'post', class: "icons-search-results" do %>
+              <i class="fa fa-comments icons-search-results" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to user_path(user.id), class: "icons-search-results" do %>
+              <i class="fa fa-calendar icons-search-results" aria-hidden="true"></i>
+          <% end %>
           <% if user.count_reviews == 0 %>
           <% else %>
             <%= render "reviews/stars", user: user %>
@@ -38,7 +46,7 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+     </div>
   <% end %>
 <% else %>
   <div class="card block">
