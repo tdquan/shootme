@@ -1,9 +1,9 @@
 <div class="container date-selection">
   <div class="row">
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p class="text-center alert alert-danger"><%= flash[:error] %></p>
-      </div>
+    <% if flash.present? %>
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
+      <% end %>
     <% end %>
     <div class="col-md-3 col-md-offset-1">
       <div class="card clearfix">

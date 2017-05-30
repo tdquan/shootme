@@ -41,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
+    resource.fee_cents = resource.fee_cents * 100
     resource.save
     resource.wallet = Wallet.create!
     yield resource if block_given?

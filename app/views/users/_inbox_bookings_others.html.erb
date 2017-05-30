@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-2">
           <% if !booking.paid %>
-            <%= link_to t('users.pay'), { controller: :pages, action: :payment, user_id: current_user.id, booking: booking }, class: "btn btn-primary" %>
+            <%= link_to t('users.pay'), { controller: :pages, action: :pay_for_booking, booking: booking, amount: booking.price_cents }, class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>

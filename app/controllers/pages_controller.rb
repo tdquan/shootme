@@ -37,8 +37,9 @@ class PagesController < ApplicationController
     @user = User.new
   end
 
-  def payment
-    @user = User.find(params[:user_id])
+  def pay_for_booking
+    @user = current_user
+    @charge = Stripe::Charge.new
     @booking = Booking.find(params[:booking])
     @amount = @booking.price_cents
   end

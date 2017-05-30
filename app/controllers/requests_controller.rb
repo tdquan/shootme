@@ -21,25 +21,13 @@ class RequestsController < ApplicationController
       @request.price_cents = @current_profile.fee_cents
       if @request.save
         HomePageMailer.creation_confirmation(@request).deliver_now
-        redirect_to :back
+        flash[:success] = "Request sent!"
+        set_profile
+        render template: 'devise/registrations/show', locals: {request: @request}
       end
     else
       flash[:error] = "Error. Cannot create appointment. Please contact user for more information."
-      @current_user = current_user
-      @request = Request.new
-      @current_profile = User.find(params[:user_id])
-      @requests = Request.where(user: @current_profile)
-      @review = Review.new
-      @bookings_to_others = []
-      Booking.all.each do |booking|
-        @bookings_to_others << booking if booking.request.client_id == current_user.id
-      end
-
-      if @current_profile.role
-        @roles = @current_profile.role.split(" - ").sort
-      else
-        @roles = []
-      end
+      set_profile
       render template: 'devise/registrations/show', locals: {request: @request}
     end
   end
@@ -68,5 +56,23 @@ class RequestsController < ApplicationController
 
   def set_request
     @request = Request.find(params[:id])
+  end
+
+  def set_profile
+    @current_user = current_user
+    @request = Request.new
+    @current_profile = User.find(params[:user_id])
+    @requests = Request.where(user: @current_profile)
+    @review = Review.new
+    @bookings_to_others = []
+    Booking.all.each do |booking|
+      @bookings_to_others << booking if booking.request.client_id == current_user.id
+    end
+
+    if @current_profile.role
+      @roles = @current_profile.role.split(" - ").sort
+    else
+      @roles = []
+    end
   end
 end

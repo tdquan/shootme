@@ -7,143 +7,141 @@
       <%= simple_form_for(resource, as: resource_name, url: pro_registration_path(resource_name), data: {toggle: "validator"}, html: {novalidate: false}) do |f| %>
         <%= f.error_notification %>
         <div>
-
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab">Personal Information</a></li>
-            <li role="presentation"><a href="#payment-info" aria-controls="payment-info" role="tab" data-toggle="tab">Payment Information</a></li>
-          </ul>
-
-          <!-- Tab panes -->
-
           <!-- PERSONAL INFO -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="personal-info">
-              <fieldset class="row">
-                <div class="col-md-6">
-                  <div class="form-inputs">
-                    <%= f.input :first_name, required: true, autofocus: true %>
-                    <%= f.input :last_name, required: true %>
-                    <%= f.input :pro, required: true, wrapper_html: {class: "hidden"}, input_html: {checked: true} %>
-                    <hr>
-                    <%= f.input :email, required: true %>
-                    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-                    <%= f.input :password_confirmation, required: true %>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-inputs">
-                    <%= f.input :address %>
-                    <%= f.input :postal_code, as: :hidden %>
-                    <%= f.input :city, as: :hidden %>
-                    <%= f.input :country, as: :hidden %>
-                    <%= f.input :role, label: 'Select your role:', collection: @roles %>
-                    <hr>
-                    <%= f.input :fee_cents, input_html: {min: 1} %>
-                    <%= f.input :description, as: :text, input_html: {rows: 6} %>
-                  </div>
-                </div>
-              </fieldset>
+
+          <h3>Personal Information</h3>
+          <br>
+          <fieldset class="row">
+            <div class="col-md-6">
+              <div class="form-inputs">
+                <%= f.input :first_name, required: true, autofocus: true %>
+                <%= f.input :last_name, required: true %>
+                <%= f.input :pro, required: true, wrapper_html: {class: "hidden"}, input_html: {checked: true} %>
+                <hr>
+                <%= f.input :email, required: true %>
+                <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                <%= f.input :password_confirmation, required: true %>
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-inputs">
+                <%= f.input :address %>
+                <%= f.input :postal_code, as: :hidden %>
+                <%= f.input :city, as: :hidden %>
+                <%= f.input :country, as: :hidden %>
+                <%= f.input :role, label: 'Select your role:', collection: @roles %>
+                <hr>
+                <%= f.input :fee_cents, input_html: {min: 1} %>
+                <%= f.input :description, as: :text, input_html: {rows: 6} %>
+              </div>
+            </div>
+          </fieldset>
 
-            <!-- PAYMENT INFO -->
-            <div role="tabpanel" class="tab-pane" id="payment-info">
-              <fieldset class="row">
-                <div class="col-md-12">
-                  <div class="form-inputs">
-                    <label class="control-label string required" for="user_first_name">
-                      <abbr title="required">*</abbr> Card Number
-                    </label>
-                    <div id="card-number"></div>
-                    <div id="card-errors" role="alert"></div>
-                  </div>
-                </div>
-                <div class="form-actions text-center">
-                  <%= f.button :submit, "Sign up", class: "btn btn-primary", id: "signup" %>
-                </div>
-              </fieldset>
-              <% content_for(:after_js) do %>
-                <script src="https://js.stripe.com/v3/"></script>
-                <script>
-                  // Create a Stripe client
-                  var stripe = Stripe('pk_test_5RlwKtafN0ekv28eTsQ1etmQ');
+          <hr>
 
-                  // Create an instance of Elements
-                  var elements = stripe.elements();
+          <!-- PAYMENT INFO -->
+          <h3>Payment Information</h3>
+          <br>
+          <fieldset class="row">
+            <div class="col-md-6">
+              <div class="form-inputs">
+                <label class="control-label string required" for="user_first_name">
+                  <abbr title="required">*</abbr> Card Number
+                </label>
+                <div id="card-number"></div>
+                <div id="card-errors" role="alert"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-inputs text-center">
+                <label class="control-label string"></label>
+                <div class="stripe-powered"><%= image_tag "powered_by_stripe@2x.png" %></div>
+              </div>
+            </div>
+          </fieldset>
+          <% content_for(:after_js) do %>
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+              // Create a Stripe client
+              var stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
 
-                  // Custom styling can be passed to options when creating an Element.
-                  // (Note that this demo uses a wider set of styles than the guide below.)
-                  var style = {
-                    base: {
-                      color: '#32325d',
-                      lineHeight: '20px',
-                      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                      fontSmoothing: 'antialiased',
-                      fontSize: '16px',
-                      '::placeholder': {
-                        color: '#aab7c4'
-                      }
-                    },
-                    invalid: {
-                      color: '#fa755a',
-                      iconColor: '#fa755a'
-                    }
-                  };
+              // Create an instance of Elements
+              var elements = stripe.elements();
 
-                  // Create an instance of the card Element
-                  var card = elements.create('card', {style: style});
-
-                  // Add an instance of the card Element into the `card-element` <div>
-                  card.mount('#card-number');
-
-                  // Display errors
-                  card.addEventListener('change', function(event) {
-                    var displayError = document.getElementById('card-errors');
-                    if (event.error) {
-                      displayError.textContent = event.error.message;
-                    } else {
-                      displayError.textContent = '';
-                    }
-                  });
-
-                  // Create a token or display an error when the form is submitted.
-                  var form = document.getElementById('new_user');
-                  form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-
-                    stripe.createToken(card).then(function(result) {
-                      if (result.error) {
-                        // Inform the user if there was an error
-                        var errorElement = document.getElementById('card-errors');
-                        errorElement.textContent = result.error.message;
-                      } else {
-                        // Send the token to your server
-                        stripeTokenHandler(result.token);
-                      }
-                    });
-                  });
-
-                  function stripeTokenHandler(token) {
-                    // Insert the token ID into the form so it gets submitted to the server
-                    var form = document.getElementById('new_user');
-                    var hiddenInput = document.createElement('input');
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', token.id);
-                    form.appendChild(hiddenInput);
-
-                    // Submit the form
-                    form.submit();
+              // Custom styling can be passed to options when creating an Element.
+              // (Note that this demo uses a wider set of styles than the guide below.)
+              var style = {
+                base: {
+                  color: '#32325d',
+                  lineHeight: '20px',
+                  fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                  fontSmoothing: 'antialiased',
+                  fontSize: '16px',
+                  '::placeholder': {
+                    color: '#aab7c4'
                   }
-                </script>
-              <% end %>
-            </div>
+                },
+                invalid: {
+                  color: '#fa755a',
+                  iconColor: '#fa755a'
+                }
+              };
+
+              // Create an instance of the card Element
+              var card = elements.create('card', {style: style});
+
+              // Add an instance of the card Element into the `card-element` <div>
+              card.mount('#card-number');
+
+              // Display errors
+              card.addEventListener('change', function(event) {
+                var displayError = document.getElementById('card-errors');
+                if (event.error) {
+                  displayError.textContent = event.error.message;
+                } else {
+                  displayError.textContent = '';
+                }
+              });
+
+              // Create a token or display an error when the form is submitted.
+              var form = document.getElementById('new_user');
+              form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                stripe.createToken(card).then(function(result) {
+                  if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                  } else {
+                    // Send the token to your server
+                    stripeTokenHandler(result.token);
+                  }
+                });
+              });
+
+              function stripeTokenHandler(token) {
+                // Insert the token ID into the form so it gets submitted to the server
+                var form = document.getElementById('new_user');
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', token.id);
+                form.appendChild(hiddenInput);
+
+                // Submit the form
+                form.submit();
+              }
+            </script>
+          <% end %>
+
+          <br>
+
+          <div class="form-actions text-center">
+            <%= f.button :submit, "Sign up", class: "btn btn-primary", id: "signup" %>
           </div>
         </div>
-
       <% end %>
-
-      <%#= render "devise/shared/links" %>
     </div>
   </div>
 </div>

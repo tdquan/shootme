@@ -15,7 +15,7 @@
         <% end %>
         <b><%= request.client.first_name %> <%= request.client.last_name %></b>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <p><b><%= t('from') %></b> <%= request.start_time.to_formatted_s(:long) %></p>
         <p><b><%= t('to') %></b> <%= request.end_time.to_formatted_s(:long) %></p>
         <p><b><%= t('in') %></b> <%= request.location %></p>
@@ -27,7 +27,7 @@
           <span class="label label-primary"><%= t('users.rejected') %></span>
         <% end %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <% if request.confirmed == nil %>
           <%= simple_form_for(request, url: user_request_path(current_user, request), method: :patch, html: { class: "accept-form", data: request.id } ) do |f| %>
             <div class="form-actions">
@@ -44,7 +44,7 @@
               <%= button_tag type: 'submit', class: "btn btn-primary reject-button icon-button" do %>
                 <i class="fa fa-times" aria-hidden="true"></i><%= t('users.reject') %>
               <% end %>
-              </div>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -56,14 +56,14 @@
       $(".accept-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
         e.preventDefault(); // don't submit multiple times
         this.submit(); // use the native submit method of the form element
-        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text(<%= t('users.accepted') %>).addClass('label label-success');
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text("<%= t('users.accepted') %>").addClass('label label-success');
         $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
         $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
       });
       $(".reject-form[data='<%= escape_javascript @request.id.to_s %>']").submit(function(e) {
         e.preventDefault(); // don't submit multiple times
         this.submit(); // use the native submit method of the form element
-        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text(<%= t('users.rejected') %>).addClass('label label-primary');
+        $(".request-status[data='<%= escape_javascript @request.id.to_s %>']").text("<%= t('users.rejected') %>").addClass('label label-primary');
         $(".accept-form[data='<%= escape_javascript @request.id.to_s %>'] .accept-button").hide();
         $(".reject-form[data='<%= escape_javascript @request.id.to_s %>'] .reject-button").hide();
       });

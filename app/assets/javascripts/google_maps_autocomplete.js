@@ -64,7 +64,7 @@ function getAddressComponents(place) {
   }
 
   return {
-    address: street_number == null ? route : (street_number + ' ' + route + ', ' + city + ', ' + country),
+    address: street_number == null ? (route + ', ' + city + ', ' + country) : (street_number + ' ' + route + ', ' + city + ', ' + country),
     zip_code: zip_code,
     city: city,
     country_code: country_code,

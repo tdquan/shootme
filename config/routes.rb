@@ -30,11 +30,9 @@ Rails.application.routes.draw do
         put 'user_confirmed', to: "bookings#user_confirmed"
         put 'client_confirmed', to: "bookings#client_confirmed"
       end
-      get 'payment', to: "pages#payment"
       get 'wallet', to: "wallet#index"
       get 'wallet/payment', to: "wallet#payment"
       post 'wallet/top_up', to: "wallet#top_up", as: :wallet_topup
-      resources :charges, only: [:new, :create]
       resources :requests
 
       resources :conversations do
@@ -43,6 +41,9 @@ Rails.application.routes.draw do
 
       resources :gallery, controller: :albums
     end
+
+    get 'pay_for_booking', to: "pages#pay_for_booking", as: :booking_charge
+    resources :charges, only: [:new, :create]
 
     get 'home', to: "pages#home"
     get 'search', to: "search#search", as: :search

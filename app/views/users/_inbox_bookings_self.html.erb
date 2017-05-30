@@ -16,7 +16,7 @@
             <b><%= booking.request.client.first_name %> <%= booking.request.client.last_name %></b>
           </div>
 
-          <div class="col-md-7">
+          <div class="col-md-6">
             <p><b><%= t('from') %></b> <%= booking.request.start_time.to_formatted_s(:long) %></p>
             <p><b><%= t('to') %></b> <%= booking.request.end_time.to_formatted_s(:long) %></p>
             <p><b><%= t('in') %></b> <%= booking.request.location %></p>
@@ -27,7 +27,7 @@
             <% end %>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-4">
             <% if booking.user_confirmed == false %>
               <%= link_to t('users.mark_as_done'), { controller: :bookings, action: :user_confirmed, user_id: current_user.id, booking_id: booking.id, booking: { user_confirmed: true } }, method: :put, class: "btn btn-primary" %>
             <% end %>
