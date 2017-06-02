@@ -63,11 +63,11 @@
               </div>
               <div class="hidden_pro">
                 <div class="col-md-12">
-                  <%= f.input :role, label: t('users.select_role'), collection: [:photographer, :drone_pilot, :videographer] %>
+                  <%= f.input :role, as: :check_boxes, label: t('users.select_role'), collection: @roles, label_method: lambda { |role| t("simple_form.labels.user.role.#{role.first}") } %>
 
                 </div>
                 <div class="col-md-6">
-                  <%= f.input :fee_cents, required: true, label: t('users.fee') %>
+                  <%= f.input :fee_cents, required: true, label: "#{t('users.fee')} (€/hr)", input_html: { value: number_with_precision(@fee, precision: 2), step: 0.01 } %>
                 </div>
                 <div class="col-md-12">
                   <%= f.input :description, required: true, as: :text %>
@@ -86,6 +86,29 @@
                   </div>
                   <div class="col-md-12">
                     <div class="col-md-12"><%= f_album.input :photos, as: :attachinary, input_html: { multiple: true }, label: false, class: "attachinary-input" %></div>
+                  </div>
+                <% end %>
+
+                <!-- Payment Information -->
+                <% unless current_user.stripe_id %> <!-- check if current user has a credit card in database -->
+                  <div class="col-md-12">
+                    <fieldset class="row">
+                      <div class="col-md-9">
+                        <div class="form-inputs">
+                          <label class="control-label string required" for="card-number">
+                            <abbr title="required">*</abbr> Card Number
+                          </label>
+                          <div id="card-number"></div>
+                          <div id="card-errors" role="alert"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-inputs text-center">
+                          <label class="control-label string"></label>
+                          <div class="stripe-powered"><%= image_tag "powered_by_stripe@2x.png" %></div>
+                        </div>
+                      </div>
+                    </fieldset>
                   </div>
                 <% end %>
               </div>
@@ -108,6 +131,8 @@
 </div>
 
 <% content_for(:after_js) do %>
+
+  <!-- TOGGLE PRO SECTION -->
   <script type="text/javascript">
     var checkbox_pro = $('.checkbox_pro');
     var hidden_pro = $('.hidden_pro');
@@ -131,11 +156,81 @@
     checkbox_pro.change(function(){
       hidden_pro.toggle();
     });
+  </script>
 
-    // //checkboxes
-    // var roleArray = <%= escape_javascript @role %>;
-    // $("input:checkbox[name=type]:checked").each(function(){
-    //   roleArray.push($(this).val());
-    // });
+  <!-- STRIPE -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    // Create a Stripe client
+    var stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '20px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', {hidePostalCode: true, style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-number');
+
+    // Display errors
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Create a token or display an error when the form is submitted.
+    var form = document.getElementById('edit_user');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('edit_user');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      // Submit the form
+      form.submit();
+    }
   </script>
 <% end %>
+

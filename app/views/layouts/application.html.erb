@@ -14,7 +14,7 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'layouts/navbar' %>
     <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
+      <%= content_tag :div, msg, class: "#{name} notice text-center"%>
     <% end -%>
     <%= yield %>
     <script src='http://maps.googleapis.com/maps/api/js?v=3&amp;libraries=places&key=AIzaSyCvK7QsC0wM6rqGM3Qe1VGl9AfHCX4-T3s'></script>

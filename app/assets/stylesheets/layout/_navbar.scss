@@ -2,6 +2,24 @@
   height: 60px;
   margin-bottom: 0;
   z-index: 999;
+  .dropdown {
+    margin-right: 15px;
+    height: 100%;
+    .dropdown-menu {
+      text-align: center;
+      min-width: inherit;
+      padding: 5px 10px;
+      margin-top: 15px;
+      a.dropdown-item {
+        display: block;
+        color: $brand-primary;
+        &:hover {
+          text-decoration: none;
+          color: $brand-primary;
+        }
+      }
+    }
+  }
 }
 
 .navbar-content {
@@ -30,16 +48,17 @@
 
 .avatar-group {
   float: right;
-  height: 60px;
+  height: 50px;
   display: flex;
   align-items: center;
   .avatar-name {
     display: inline-block;
     margin-right: 10px;
+    margin-bottom: 10px;
   }
   .avatar-dropdown {
     display: inline-block;
-    line-height: 60px;
+    line-height: 50px;
     font-size: 1.2em;
     i {
       vertical-align: super;
@@ -69,23 +88,9 @@
   }
 }
 
-.dropdown {
-  margin-right: 15px;
-  height: 100%;
-}
-
-.dropdown-menu {
-  text-align: center;
-  a.dropdown-item {
-    display: block;
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 .locale-choice{
   margin: 0 10px;
+  line-height: 50px;
   img {
     height: 20px;
   }

@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :set_minimum_password_length, only: [:new, :new_pro_user, :edit]
+  before_action :define_roles, only: [:edit, :update, :new_pro_user]
   skip_before_action :authenticate_user!, only: [:new, :create]
   def show
     if can? :read, User
@@ -25,6 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def edit
     @album = current_user.albums.new
+    @fee = current_user.fee_cents
     super
   end
 
@@ -34,7 +36,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new_pro_user
     build_resource({})
-    @roles = ["Photographer", "Videographer", "Drone Pilot"]
     yield resource if block_given?
     respond_with resource
   end
@@ -66,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     # STRIPE
-    Stripe.api_key = "sk_test_RDQ2OvHT5avxYmei7AeplbDG"
+    Stripe.api_key = Rails.configuration.stripe[:secret_key]
     token = params[:stripeToken]
 
     # Create a Customer:
@@ -75,8 +76,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :source => token,
     )
     resource.stripe_id = customer.id
+    resource.fee_cents = params[:user][:fee_cents].to_i * 100
+    if params[:user][:role].count > 1
+      resource.role = params[:user][:role].drop(1).join(" - ")
+    end
     resource.save
-
     resource.wallet = Wallet.create!
     yield resource if block_given?
     if resource.persisted?
@@ -102,10 +106,51 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       @album = current_user.albums.new
     end
-    super
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+
+    # STRIPE
+    unless resource.stripe_id
+      Stripe.api_key = Rails.configuration.stripe[:secret_key]
+      token = params[:stripeToken]
+
+      # Create a Customer:
+      if resource.stripe_id
+        customer = Stripe::Customer.retrieve(resource.stripe_id)
+        customer.sources.create(source: token)
+      else
+        customer = Stripe::Customer.create(
+          :email => resource[:email],
+          :source => token,
+        )
+        resource.stripe_id = customer.id
+      end
+    end
+
+    resource.fee_cents = params[:user][:fee_cents].to_i * 100
+    resource.role = params[:user][:role].drop(1).join(" - ")
+    resource_updated = update_resource(resource, account_update_params)
+    yield resource if block_given?
+    if resource_updated
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+          :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
+      bypass_sign_in resource, scope: resource_name
+      respond_with resource, location: after_update_path_for(resource)
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
   end
 
   def delete
     super
+  end
+
+  def define_roles
+    @roles = [[:photographer, "Photographer"], [:videographer, "Videographer"], [:drone_pilot, "Drone Pilot"]]
   end
 end

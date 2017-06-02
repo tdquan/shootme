@@ -3,6 +3,7 @@ class ChargesController < ApplicationController
   end
 
   def create
+    @user = current_user
     if current_user.stripe_id
       customer = Stripe::Customer.retrieve(current_user.stripe_id)
     else

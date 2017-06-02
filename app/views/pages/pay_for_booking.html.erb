@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <%= simple_form_for :charge, url: charges_url(amount: @amount, booking: @booking.id), html: { id: "booking-payment" } do |f| %>
+          <%= simple_form_for @user, url: charges_url(amount: @amount, booking: @booking.id), method: :post, html: { id: "booking-payment" } do |f| %>
             <h4><%= t('payment.personal_infos') %></h4>
             <hr>
             <div class="form-inputs">
@@ -66,7 +66,7 @@
               };
 
               // Create an instance of the card Element
-              var card = elements.create('card', {style: style});
+              var card = elements.create('card', {hidePostalCode: true, style: style});
 
               // Add an instance of the card Element into the `card-element` <div>
               card.mount('#card-number');
@@ -76,29 +76,23 @@
                 var displayError = document.getElementById('card-errors');
                 if (event.error) {
                   displayError.textContent = event.error.message;
-                  console.log("-2");
                 } else {
                   displayError.textContent = '';
-                  console.log("-1");
                 }
               });
 
               // Create a token or display an error when the form is submitted.
               var form = document.getElementById('booking-payment');
               form.addEventListener('submit', function(event) {
-                console.log("0");
                 event.preventDefault();
-                console.log("1");
                 stripe.createToken(card).then(function(result) {
                   if (result.error) {
                     // Inform the user if there was an error
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
-                    console.log("2");
                   } else {
                     // Send the token to your server
                     stripeTokenHandler(result.token);
-                    console.log("3");
                   }
                 });
               });
@@ -111,7 +105,6 @@
                 hiddenInput.setAttribute('name', 'stripeToken');
                 hiddenInput.setAttribute('value', token.id);
                 form.appendChild(hiddenInput);
-                console.log("4");
 
                 // Submit the form
                 form.submit();

@@ -1,10 +1,5 @@
 <div class="container date-selection">
   <div class="row">
-    <% if flash.present? %>
-      <% flash.each do |key, value| %>
-        <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
-      <% end %>
-    <% end %>
     <div class="col-md-3 col-md-offset-1">
       <div class="card clearfix">
         <% if @current_profile.avatar? %>
@@ -16,11 +11,11 @@
         <div class="role-profile text-center">
         <% unless @roles == nil %>
           <% @roles.each do |role| %>
-            <% if role == :photographer %>
+            <% if role == "Photographer" %>
               <span class=" label label-primary"><%= t('photographer') %></span>
-            <% elsif role == :videographer %>
+            <% elsif role == "Videographer" %>
               <span class="label label-success"><%= t('videographer') %></span>
-            <% else %>
+            <% elsif role == "Drone Pilot" %>
               <span class="label label-info"><%= t('drone_pilot') %></span>
             <% end %>
           <% end %>

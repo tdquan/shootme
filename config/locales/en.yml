@@ -95,7 +95,7 @@ en:
     inbox: Inbox
     no_conversations: You don't have any conversations.
     received: Received
-    my_profil: My profile
+    my_profile: My profile
     full_name: Full name
     email: Email
     address: Address
@@ -125,13 +125,9 @@ en:
     professions: Professions
     reset_filters: Reset Filters
   simple_form:
-    options:
-      defaults:
+    labels:
+      user:
         role:
-          photographer: Photographer
-          drone_pilot: Drone Pilot
-          videographer: Videographer
-        profession:
           photographer: Photographer
           drone_pilot: Drone Pilot
           videographer: Videographer

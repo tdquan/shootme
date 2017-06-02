@@ -110,7 +110,7 @@ fr:
     inbox: Boîte de réception
     no_conversations: Vous n'avez aucune conversation.
     received: Reçues
-    my_profil: Mon profil
+    my_profile: Mon profil
     full_name: Nom
     email: Email
     address: Adresse
@@ -144,13 +144,9 @@ fr:
     search: Chercher
     review: Avis
   simple_form:
-    options:
-      defaults:
+    labels:
+      user:
         role:
-          photographer: Photographe
-          drone_pilot: Pilote de drone
-          videographer: Vidéaste
-        profession:
           photographer: Photographe
           drone_pilot: Pilote de drone
           videographer: Vidéaste

@@ -6,7 +6,7 @@
           <%= link_to home_path do %>
               <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
           <% end %>
-      <% else %>    
+      <% else %>
         <%= link_to root_path do %>
           <%= image_tag "logo_dualtone.png", class: "navbar_logo" %>
         <% end %>
@@ -50,18 +50,24 @@
           </a>
 
           <div class="dropdown-menu dropdown-menu-right text-center" role="menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to(t("navbar.my_profil"), user_path(current_user)) %>
-              <%= link_to(t("navbar.logout"), destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+            <li><%= link_to(t("navbar.my_profil"), user_path(current_user), class: "dropdown-item") %><li>
+            <li><%= link_to(t("navbar.logout"), destroy_user_session_path, method: :delete, class: "dropdown-item") %></li>
           </div>
         </div>
       <% else %>
-        <div class="signup-group">
-          <%= link_to(t("navbar.signup"), new_user_registration_path, class: "dropdown-item btn btn-primary") %>
-          <%= link_to(t("navbar.login"), new_user_session_path, class: "dropdown-item btn btn-default") %>
-        </div>
-      <% end %>
-    <span class="locale-choice locale-choice-xs">
-      <%= link_to image_tag('fr.png'), { :locale=>'fr' }, class: "fr" %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= link_to image_tag('uk.jpg'), { :locale=>'en' }, class: "en" %>
+      <div class="signup-group">
+        <%= link_to(t("navbar.signup"), new_user_registration_path, class: "dropdown-item btn btn-primary") %>
+        <%= link_to(t("navbar.login"), new_user_session_path, class: "dropdown-item btn btn-default") %>
+      </div>
+    <% end %>
+    <span class="dropdown inline-block float-right locale-choice locale-choice-xs">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag "#{I18n.locale}.png", class: "current-language" %>
+       <i class="fa fa-sort-down"></i>
+      <ul class="dropdown-menu dropdown-menu-right text-center languague-selection">
+        <li><%= link_to image_tag('fr.png'), { :locale=>'fr' }, class: "fr" %></li>
+        <li><%= link_to image_tag('en.png'), { :locale=>'en' }, class: "en" %></li>
+      </ul>
     </span>
     </div>
   </div>

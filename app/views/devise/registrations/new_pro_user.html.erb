@@ -29,9 +29,9 @@
                 <%= f.input :postal_code, as: :hidden %>
                 <%= f.input :city, as: :hidden %>
                 <%= f.input :country, as: :hidden %>
-                <%= f.input :role, label: 'Select your role:', collection: @roles %>
+                <%= f.input :role, as: :check_boxes, label: 'Select your role:', collection: @roles, label_method: lambda { |role| t("simple_form.labels.user.role.#{role.first}") } %>
                 <hr>
-                <%= f.input :fee_cents, input_html: {min: 1} %>
+                <%= f.input :fee_cents, label: "#{t('users.fee')} (€/hr)", input_html: {min: 1, precision: 2, step: 0.01}, required: true %>
                 <%= f.input :description, as: :text, input_html: {rows: 6} %>
               </div>
             </div>
@@ -45,7 +45,7 @@
           <fieldset class="row">
             <div class="col-md-6">
               <div class="form-inputs">
-                <label class="control-label string required" for="user_first_name">
+                <label class="control-label string required" for="card-number">
                   <abbr title="required">*</abbr> Card Number
                 </label>
                 <div id="card-number"></div>
@@ -88,7 +88,7 @@
               };
 
               // Create an instance of the card Element
-              var card = elements.create('card', {style: style});
+              var card = elements.create('card', {hidePostalCode: true, style: style});
 
               // Add an instance of the card Element into the `card-element` <div>
               card.mount('#card-number');
